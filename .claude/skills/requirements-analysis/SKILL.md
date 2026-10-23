@@ -48,12 +48,16 @@ description: Use when creating, modifying, reviewing, or handing off requirement
 
 ## 会话开始
 
-读 `docs/STATUS.md`、`context.md`、`glossary.md`、当前模块 brief 和 `07-dialogue.md`（S 与 Q），用 3～5 行复述当前理解，再开始对话。
+读 `docs/STATUS.md`、`context.md`、`glossary.md`、当前模块 brief 和 `07-dialogue.md`（S 与 Q），用 3～5 行复述当前理解。
+
+- 未指定模块：列出 `CLAUDE.md` 第 1 节的模块清单，参考 `STATUS.md` 的下一步，请用户选择；不得自行开始。
+- 已指定模块：把模块选择记为 `S-xxx`，进入 1.0。
 
 ## 七步流程
 
 1. **采集**：
-   - **1a 对标调研**（模块进入分析时）：按 `references/research-guide.md` 选 1～2 个平台，产出 brief；brief 是主动提问的依据，只提取用户可见行为，设计细节进 `docs/design-notes.md`
+   - **1.0 模块边界确认**：从 `00-vision.md`、`context.md`、`glossary.md`、`02-backlog.md` 确认模块边界。不明确时，记 S（用户选择的模块），只生成一个范围 Q，停止；不做 brief、不做 27 项扫描、不生成功能问题。明确后进入 1a。
+   - **1a 对标调研**（边界明确后）：按 `references/research-guide.md` 选 1～2 个平台，产出 brief；brief 是主动提问的依据，只提取用户可见行为，设计细节进 `docs/design-notes.md`
    - **1b 模块首访**：按 `references/coverage-scan.md` 的 27 个子提问逐项判断，产出 `docs/requirements/coverage-scan.md` 记录并更新 `coverage.md`；扫描只产出问题，不产出需求
    - **1c 缺口提问**：按 `references/gap-check.md` 对当前单位逐项检查；原话先记 S，只对“未覆盖 / 部分覆盖 / 无法判断 / 缺依据”生成 Q，进 `07-dialogue.md`；已有待答 Q 不重复
    - 文档缺失或为空时先报告，不凭记忆补全
