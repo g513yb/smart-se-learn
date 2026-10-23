@@ -26,6 +26,7 @@ description: Use when creating, modifying, reviewing, or handing off requirement
 8. **主动发现必有依据**：AI 主动提出的需求候选必须引用 `P/Q/D/R`，并在提问中写明依据；没有依据的只能作为开放问题，不得写成需求候选。
 9. **整理不等于补全**：把用户原话整理成故事卡时，只能重述、拆分、归一化用语；不得补充原话中没有的角色、字段、规则、指标。缺的字段写成 Q 或“未决问题”，不写成内容。
 10. **知识回填**：Q 确认后，稳定的业务事实写入 `context.md`，术语写入 `glossary.md`；回答不得只停留在问答记录里。
+11. **冲突检查必做**：新增需求、变更需求、转为“已确认”前，按 `references/conflict-check.md` 检查并记录结论；不得把“未发现”写成“没有冲突”。
 
 违反字面规则即违反规则本意。
 
@@ -56,12 +57,12 @@ description: Use when creating, modifying, reviewing, or handing off requirement
    - **1b 模块首访**：按六维扫描（`references/elicitation-playbook.md`），更新 `coverage.md`
    - **1c 缺口提问**：读 `context.md`、`01-personas.md`、`glossary.md`；把缺口写成 Q，进 `07-questions.md`
    - 文档缺失或为空时先报告，不凭记忆补全
-2. **成形**：用故事卡（`references/story-card.md`）；过 DoR；写 Given-When-Then；来源填 `Q-/D-/R-`。
+2. **成形**：用故事卡（`references/story-card.md`）；先过冲突检查（`references/conflict-check.md`）并记录结论；过 DoR；写 Given-When-Then；来源填 `Q-/D-/R-`。
 3. **排序**：MoSCoW 或价值-成本；给出建议，优先级由人决定并记录。
 4. **建模**：按需，查 `references/modeling-guide.md`；只画能回答当前问题的图。
 5. **评审**：另一人执行五查（`references/review-checklist.md`）：完整、一致、可测、可追踪、有据。
 6. **验收标准确认**：标准可执行、无歧义后，需求可移交设计；到此为止。
-7. **变更**：影响分析 → `06-changes.md` → 回填 `05-traceability.md`。
+7. **变更**：冲突检查 → 影响分析 → `06-changes.md` → 回填 `05-traceability.md`；冲突处理见 `references/conflict-check.md`。
 
 ## 成形四问
 
@@ -96,6 +97,18 @@ description: Use when creating, modifying, reviewing, or handing off requirement
 7. 进入下一个模块或下一组问题。
 
 一次只处理一个模块或一组问题，不一次性生成整份需求文档。
+
+## 冲突检查
+
+新增、变更或转为“已确认”前执行：
+
+1. 提取冲突画像：角色、对象、行为、条件、结果、权限、规则、生命周期、隐私、依赖、范围、术语
+2. 在 backlog、NFR、愿景、术语表、上下文、追踪矩阵中检索重叠条目
+3. 按十类冲突逐项比对
+4. 结论：确定冲突 / 可能冲突 / 无冲突 / 无法判断
+5. 记录检查维度、比对条目、依据、未覆盖项
+
+详细清单与记录格式见 `references/conflict-check.md`。
 
 ## 状态流转
 
@@ -133,3 +146,4 @@ description: Use when creating, modifying, reviewing, or handing off requirement
 - 建模指南：`references/modeling-guide.md`
 - 提问手册：`references/elicitation-playbook.md`
 - 调研指南：`references/research-guide.md`
+- 冲突检查：`references/conflict-check.md`
