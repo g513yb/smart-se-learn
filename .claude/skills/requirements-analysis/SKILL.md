@@ -54,7 +54,7 @@ description: Use when creating, modifying, reviewing, or handing off requirement
 
 1. **采集**：
    - **1a 对标调研**（模块进入分析时）：按 `references/research-guide.md` 选 1～2 个平台，产出 brief；brief 是主动提问的依据，只提取用户可见行为，设计细节进 `docs/design-notes.md`
-   - **1b 模块首访**：按 `references/coverage-scan.md` 执行六维扫描，产出 `docs/requirements/coverage-scan.md` 记录并更新 `coverage.md`；扫描只产出问题，不产出需求
+   - **1b 模块首访**：按 `references/coverage-scan.md` 的 27 个子提问逐项判断，产出 `docs/requirements/coverage-scan.md` 记录并更新 `coverage.md`；扫描只产出问题，不产出需求
    - **1c 缺口提问**：读 `context.md`、`01-personas.md`、`glossary.md`；把缺口写成 Q，进 `07-questions.md`
    - 文档缺失或为空时先报告，不凭记忆补全
 2. **成形**：用故事卡（`references/story-card.md`）；先过冲突检查（`references/conflict-check.md`）并记录结论；过 DoR；写 Given-When-Then；来源填 `Q-/D-/R-`。
