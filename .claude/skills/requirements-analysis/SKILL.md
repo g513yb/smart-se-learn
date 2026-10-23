@@ -89,7 +89,7 @@ description: Use when creating, modifying, reviewing, or handing off requirement
    - **1b 模块首访**：按 `references/coverage-scan.md` 的 27 个子提问逐项判断，产出 `docs/requirements/coverage-scan.md` 记录并更新 `coverage.md`；扫描只产出问题，不产出需求
    - **1c 缺口提问**：按 `references/gap-check.md` 对当前单位逐项检查；原话先记 S，只对“未覆盖 / 部分覆盖 / 无法判断 / 缺依据”生成 Q，进 `07-dialogue.md`；已有待答 Q 不重复
    - 文档缺失或为空时先报告，不凭记忆补全
-2. **成形**：用故事卡（`references/story-card.md`）；先过冲突检查（`references/conflict-check.md`）并记录结论；过 DoR；写 Given-When-Then；来源填 `S-/D-/R-`。
+2. **成形**：按 `references/extraction-guide.md` 提取；用故事卡（`references/story-card.md`），“原文摘录”必填；先过冲突检查（`references/conflict-check.md`）并记录结论；过 DoR；写 Given-When-Then；来源填 `S-/D-/R-`。
 3. **排序**：MoSCoW 或价值-成本；给出建议，优先级由人决定并记录。
 4. **建模**：只在文字说不清流程、状态、规则、交互或边界时画；查 `references/modeling-guide.md` 选最小图型。每个图元素必须有 `S/D/R/REQ` 来源；未回答的 Q、P、I 不作来源；设计进 `DSN-`。保存到 `models/<模块>-<主题>.mmd`，文件头写问题、来源、状态；另一人评审。
 5. **评审**：另一人执行五查（`references/review-checklist.md`）：完整、一致、可测、可追踪、有据。
@@ -179,6 +179,7 @@ AI 只能把需求写入“候选”；已确认、已拒绝、变更中由人�
 - NFR 清单：`references/nfr-checklist.md`
 - 评审清单：`references/review-checklist.md`
 - 对话记录：`references/dialogue-log.md`
+- 提取规则：`references/extraction-guide.md`
 - 文件读写：`references/file-io.md`
 - 建模指南：`references/modeling-guide.md`
 - 提问手册：`references/elicitation-playbook.md`
