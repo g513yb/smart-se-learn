@@ -5,3 +5,4 @@
 - 迭代节奏：按周
 - 待决事项：
   - 技术栈（留到设计阶段）
+  - 学习记录模块：Q-020 待回答；正式 brief 待边界确认后创建；`research/learning-record-pre-synthesis.md` 仅为工作参考
