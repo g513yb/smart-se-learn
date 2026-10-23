@@ -28,6 +28,7 @@
 |---|---|---|
 | 一条需求描述（A 路径） | 成形四问 + 故事卡字段 | `elicitation-playbook.md`、`story-card.md` |
 | 一个模块（B 路径 / 扫描） | 27 个子提问 | `coverage-scan.md` |
+| 角色 / 职责 | 角色定义、目标、场景 | `01-personas.md` |
 | 术语 / 规则 / 范围 | 术语表、上下文、愿景、非目标 | `glossary.md`、`context.md`、`00-vision.md` |
 
 只检查这些固定项；清单外发现标为“清单外建议”，需用户批准。

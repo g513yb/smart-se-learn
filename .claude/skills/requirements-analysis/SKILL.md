@@ -53,10 +53,26 @@ description: Use when creating, modifying, reviewing, or handing off requirement
 - 未指定模块：列出 `CLAUDE.md` 第 1 节的模块清单，参考 `STATUS.md` 的下一步，请用户选择；不得自行开始。
 - 已指定模块：把模块选择记为 `S-xxx`，进入 1.0。
 
+## 信息充足性判断
+
+不做整体“信息够了”的判断，按关卡逐项判断：
+
+| 关卡 | 判断什么 | 不充足时 |
+|---|---|---|
+| 会话开始 | 是否指定模块 | 列清单，请用户选择 |
+| 1.0 | 模块边界是否明确 | 记 S，引用或生成范围 Q，停止 |
+| 1a | 本模块 brief 是否存在 | 不做 P 驱动的主动候选 |
+| 1b | 27 个子提问是否各有显式引用 | 无引用即未覆盖，生成 Q |
+| 1c | 四问和故事卡字段是否各有显式引用 | 无引用即缺口，生成 Q |
+| 成形 | DoR 是否通过 | 留在候选 |
+| 评审 | 五查 + 用户确认 | 退回或保持候选 |
+
+每一关只认显式引用；没有引用就是缺口。模板只规定结构和可写内容，不预填答案；“待确认”是合法状态。
+
 ## 七步流程
 
 1. **采集**：
-   - **1.0 模块边界确认**：从 `00-vision.md`、`context.md`、`glossary.md`、`02-backlog.md` 确认模块边界。不明确时，记 S（用户选择的模块），只生成一个范围 Q，停止；不做 brief、不做 27 项扫描、不生成功能问题。明确后进入 1a。
+   - **1.0 模块边界确认**：从 `00-vision.md`、`context.md`、`glossary.md`、`02-backlog.md` 确认模块边界。不明确时，记 S（用户选择的模块），先查 `07-dialogue.md` 是否已有范围 Q；有则引用原 Q，没有则生成一个范围 Q。无论哪种都停止；不做 brief、不做 27 项扫描、不生成功能问题。明确后进入 1a。
    - **1a 对标调研**（边界明确后）：按 `references/research-guide.md` 选 1～2 个平台，产出 brief；brief 是主动提问的依据，只提取用户可见行为，设计细节进 `docs/design-notes.md`
    - **1b 模块首访**：按 `references/coverage-scan.md` 的 27 个子提问逐项判断，产出 `docs/requirements/coverage-scan.md` 记录并更新 `coverage.md`；扫描只产出问题，不产出需求
    - **1c 缺口提问**：按 `references/gap-check.md` 对当前单位逐项检查；原话先记 S，只对“未覆盖 / 部分覆盖 / 无法判断 / 缺依据”生成 Q，进 `07-dialogue.md`；已有待答 Q 不重复
