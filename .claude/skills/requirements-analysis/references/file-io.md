@@ -24,7 +24,7 @@
 
 | 阶段 | 读 | 写 | 来源 | 关键规则 |
 |---|---|---|---|---|
-| 会话开始 | `CLAUDE.md`、`STATUS.md`、`context.md`、`glossary.md`、当前模块 brief、`07-dialogue.md` | 模块选择 S（如已指定） | 用户原话 | 未指定模块只列清单，不开始 |
+| 会话开始 | `CLAUDE.md`、`STATUS.md`、`00-vision.md`、`context.md`、`glossary.md`、当前模块 brief、`07-dialogue.md` | 模块选择 S（如已指定） | 用户原话 | 未指定模块只列清单，不开始 |
 | 1.0 边界 | `00-vision.md`、`context.md`、`glossary.md`、`02-backlog.md`、`07-dialogue.md` | S（模块选择）、范围 Q 或引用已有 Q | S + 缺失文档 | 边界不清停止；不做 brief/扫描 |
 | 1a brief | `platform-candidates.md`、`sources/INDEX.md`、模块 brief、`07-dialogue.md` | `research/<模块>.md`、Q、`DSN-` | P | 只用已批准/部分验证；六段 + 完整性检查 |
 | 1b 扫描 | `coverage-scan.md`、`coverage.md`、`02-backlog.md`、`07-dialogue.md`、`context.md`、`glossary.md`、`03-nfr.md`、`00-vision.md`、模块 brief | `coverage-scan.md`、`coverage.md`、Q | 显式引用 / D-覆盖扫描 / P | 27 项；无引用即未覆盖；只出 Q |
@@ -42,17 +42,17 @@
 | 知识回填 | S/Q | `context.md`、`glossary.md` | S | 只写已确认事实 |
 | 状态 | `STATUS.md` | `STATUS.md` | 人的 D | 阶段 / 下一步 / 模块状态变化时；AI 提议，对话成员确认后写 |
 | 会话结束 | `STATUS.md`、当前模块 Q | `STATUS.md` | 人的 D | 只在阶段 / 下一步 / 模块状态变化时写；不改需求、不建 CR |
-| 基线变更 | `00-vision.md`、`01-personas.md`、`CLAUDE.md`、`06-changes.md` | 基线文档、D、CR | S/D | 两人一致同意；AI 不自行修改 |
+| 基线变更 | `00-vision.md`、`01-personas.md`、`CLAUDE.md`、`06-changes.md` | 基线文档、D、CR | S/D | 对话成员确认；记 D+CR；临时一人；AI 不自行修改 |
 
 ## 文件明细
 
 | 文件 | 读时机 / 内容 | 写时机 / 内容 | 来源 | 写法 |
 |---|---|---|---|---|
-| `CLAUDE.md` | 每次会话自动 | 基线变更时 | D | 两人一致同意；记 D + `06-changes.md` |
+| `CLAUDE.md` | 每次会话自动 | 基线变更时 | D | 对话成员确认；记 D + `06-changes.md`；临时一人 |
 | `STATUS.md` | 会话开始 | 阶段 / 下一步 / 模块状态变化 | D | AI 提议，对话成员确认后更新；不改需求、不建 CR |
-| `00-vision.md` | 会话开始、1.0、冲突 | 范围 / 目标 / 非目标确认后 | S/D/R | 基线变更需两人一致；记 D + CR |
+| `00-vision.md` | 会话开始、1.0、冲突、基线变更前 | 范围 / 目标 / 非目标确认后 | S/D/R | 按 `vision-guide.md` 六节填写；AI 只起草；基线变更由对话成员确认；记 D + CR；临时一人 |
 | `context.md` | 会话开始、1b、1c、冲突 | Q 确认后 | S | 追加 / 更新事实，标来源 |
-| `01-personas.md` | 1c、冲突 | 角色确认后 | S/D/R | 基线变更需两人一致；记 D + CR |
+| `01-personas.md` | 1c、冲突 | 角色确认后 | S/D/R | 基线变更由对话成员确认；记 D + CR；临时一人 |
 | `02-backlog.md` | 会话开始、1b、1c、成形、冲突 | 故事卡、优先级、评审、确认、状态 | S/D/R | 追加 / 更新行；字段见模板 |
 | `03-nfr.md` | 1b、冲突 | NFR 确认后 | S/D/R | 追加指标；无来源写 Q；评审 + 确认后写确认人/日期 |
 | `04-hypotheses.md` | 1b、成形 | 假设卡创建 | S/D/R | P 只帮助设计；指标/方式/失败判据缺一不写；评审 + 确认 |
