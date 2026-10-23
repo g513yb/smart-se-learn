@@ -69,6 +69,8 @@ description: Use when creating, modifying, reviewing, or handing off requirement
 
 每一关只认显式引用；没有引用就是缺口。模板只规定结构和可写内容，不预填答案；“待确认”是合法状态。
 
+各文件的读取、写入、来源和写法见 `references/file-io.md`。
+
 ## 七步流程
 
 1. **采集**：
@@ -133,8 +135,12 @@ description: Use when creating, modifying, reviewing, or handing off requirement
 ## 状态流转
 
 候选 → 已确认 → 开发中 → 已验收 → 已废弃
+候选 → 已拒绝
+已确认 / 开发中 → 变更中 → 已确认 / 开发中 / 已废弃
 
-进入“已确认”：来源为 S/D/R + 五查通过 + 确认人签字（姓名、日期）。进入“开发中”之后由开发流程维护。
+进入“已确认”：来源为 S/D/R + 五查通过 + backlog 的评审结果/日期 + 确认人/日期。
+“已拒绝”由人决定并记 D；“变更中”表示已确认或开发中的需求正在变更，重新评审和确认后回到原状态或废弃。
+AI 只能把需求写入“候选”；已确认、已拒绝、变更中由人决定并记录。
 
 ## DoR / DoD
 
@@ -163,6 +169,7 @@ description: Use when creating, modifying, reviewing, or handing off requirement
 - NFR 清单：`references/nfr-checklist.md`
 - 评审清单：`references/review-checklist.md`
 - 对话记录：`references/dialogue-log.md`
+- 文件读写：`references/file-io.md`
 - 建模指南：`references/modeling-guide.md`
 - 提问手册：`references/elicitation-playbook.md`
 - 缺口检查：`references/gap-check.md`
