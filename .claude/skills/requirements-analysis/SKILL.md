@@ -16,16 +16,16 @@ description: Use when creating, modifying, reviewing, or handing off requirement
 
 ## 硬规则
 
-1. **来源五标签**：每条需求必须有来源，只能是 `Q-`（问答记录）、`D-`（明确决策）、`R-`（既有文档）、`P-`（实践参考）、`I-`（推断）。`P` 只能生成 Q，引用 P 的需求必须另有 Q/D/R；`I` 不得进入“已确认”。
+1. **来源与问题标签**：每条需求必须有来源，只能是 `S-`（用户陈述/原话）、`D-`（明确决策）、`R-`（既有文档）。`Q-` 是缺口问题，不是来源；`P-` 是实践参考，只能生成 Q；`I-` 是推断，不得进入“已确认”。引用 P 的需求必须另有 S/D/R。
 2. **先提问后动笔**：成形前先列缺口；缺口未确认，不写完整需求。
-3. **未知入清单**：不确定项写入 `docs/requirements/07-questions.md`，编号并指派确认人，不留在正文里当假设。
+3. **未知入清单**：不确定项写入 `docs/requirements/07-dialogue.md` 的 Q 表，编号并指派确认人，不留在正文里当假设。
 4. **示例保护**：出现“比如 / 例如 / 类似”时，先确认是举例还是真实需求；举例不得直接升级为需求。
 5. **禁止越界**：不自行添加未提及的角色、字段、业务规则、非功能指标、技术方案。
 6. **确认权在人**：AI 不得把需求标为“已确认”。与 AI 对话的成员可确认，任一成员也可确认任意需求；记录确认人和日期。确认不等于评审，评审由另一人执行。
 7. **设计隔离**：需求只写“做什么、为什么”；技术方案、算法、架构、库选型写入 `docs/design-notes.md`（`DSN-`），不进入需求文档。
-8. **主动发现必有依据**：AI 主动提出的需求候选必须引用 `P/Q/D/R`，并在提问中写明依据；没有依据的只能作为开放问题，不得写成需求候选。
+8. **主动发现必有依据**：AI 主动提出的需求候选必须引用 `P/S/D/R`，并关联对应的 Q；没有依据的只能作为开放问题，不得写成需求候选。
 9. **整理不等于补全**：把用户原话整理成故事卡时，只能重述、拆分、归一化用语；不得补充原话中没有的角色、字段、规则、指标。缺的字段写成 Q 或“未决问题”，不写成内容。
-10. **知识回填**：Q 确认后，稳定的业务事实写入 `context.md`，术语写入 `glossary.md`；回答不得只停留在问答记录里。
+10. **知识回填**：Q 被回答后，把回答记为 S-xxx；稳定的业务事实写入 `context.md`，术语写入 `glossary.md`。回答不得只停留在问答记录里。
 11. **冲突检查必做**：新增需求、变更需求、转为“已确认”前，按 `references/conflict-check.md` 检查并记录结论；不得把“未发现”写成“没有冲突”。
 
 违反字面规则即违反规则本意。
@@ -48,16 +48,16 @@ description: Use when creating, modifying, reviewing, or handing off requirement
 
 ## 会话开始
 
-读 `docs/STATUS.md`、`context.md`、`glossary.md`、当前模块 brief 和 `07-questions.md`，用 3～5 行复述当前理解，再开始对话。
+读 `docs/STATUS.md`、`context.md`、`glossary.md`、当前模块 brief 和 `07-dialogue.md`（S 与 Q），用 3～5 行复述当前理解，再开始对话。
 
 ## 七步流程
 
 1. **采集**：
    - **1a 对标调研**（模块进入分析时）：按 `references/research-guide.md` 选 1～2 个平台，产出 brief；brief 是主动提问的依据，只提取用户可见行为，设计细节进 `docs/design-notes.md`
    - **1b 模块首访**：按 `references/coverage-scan.md` 的 27 个子提问逐项判断，产出 `docs/requirements/coverage-scan.md` 记录并更新 `coverage.md`；扫描只产出问题，不产出需求
-   - **1c 缺口提问**：读 `context.md`、`01-personas.md`、`glossary.md`；把缺口写成 Q，进 `07-questions.md`
+   - **1c 缺口提问**：按 `references/gap-check.md` 对当前单位逐项检查；原话先记 S，只对“未覆盖 / 部分覆盖 / 无法判断 / 缺依据”生成 Q，进 `07-dialogue.md`；已有待答 Q 不重复
    - 文档缺失或为空时先报告，不凭记忆补全
-2. **成形**：用故事卡（`references/story-card.md`）；先过冲突检查（`references/conflict-check.md`）并记录结论；过 DoR；写 Given-When-Then；来源填 `Q-/D-/R-`。
+2. **成形**：用故事卡（`references/story-card.md`）；先过冲突检查（`references/conflict-check.md`）并记录结论；过 DoR；写 Given-When-Then；来源填 `S-/D-/R-`。
 3. **排序**：MoSCoW 或价值-成本；给出建议，优先级由人决定并记录。
 4. **建模**：按需，查 `references/modeling-guide.md`；只画能回答当前问题的图。
 5. **评审**：另一人执行五查（`references/review-checklist.md`）：完整、一致、可测、可追踪、有据。
@@ -66,7 +66,7 @@ description: Use when creating, modifying, reviewing, or handing off requirement
 
 ## 成形四问
 
-每条故事必须回答，答案进问答记录：
+每条故事必须回答；问题进 Q，回答记为 S：
 1. 角色：还有谁做这件事？
 2. 触发：什么条件下发生？前置是什么？
 3. 异常：失败、越权、边界时怎样？
@@ -77,21 +77,21 @@ description: Use when creating, modifying, reviewing, or handing off requirement
 ## 需求诊断输出
 
 接到需求描述后，先分三栏，再动笔：
-- **能确认的**：有 Q/D/R 来源
+- **能确认的**：有 S/D/R 来源
 - **需要问的**：编号 Q，指派确认人
 - **不能写的**：无来源的推断、设计细节、范围外内容，写明原因
 
 ## 需求的两个来源
 
-1. **用户描述**：用成形四问诊断缺口，问题引用用户原话（Q）与缺口维度。
-2. **AI 主动发现**：必须基于已登记来源（P/Q/D/R），问题中写明依据；没有依据的只能作为开放问题，不得写成需求候选。
+1. **用户描述**：用成形四问诊断缺口，问题引用用户原话（S）与缺口维度。
+2. **AI 主动发现**：必须基于已登记来源（P/S/D/R），问题中写明依据；没有依据的只能作为开放问题，不得写成需求候选。
 
 ## 对话循环
 
 1. 用户用自然语言描述需求，允许不符合故事卡格式。
-2. AI 先诊断缺口，输出“能确认的 / 需要问的 / 不能写的”。
+2. AI 按 `gap-check.md` 诊断缺口，输出“能确认的 / 需要问的 / 不能写的”。
 3. AI 基于本模块 brief 主动补充遗漏，必须带 `P` 依据。
-4. 用户回答 Q；AI 回填 `context.md` / `glossary.md`。
+4. 用户回答 Q；把回答记为 S-xxx，并回填 `context.md` / `glossary.md`。
 5. AI 把用户原话整理成故事卡：只重述、拆分、归一化用语，不新增内容。
 6. 另一人评审，与 AI 对话的成员最终确认。
 7. 进入下一个模块或下一组问题。
@@ -114,7 +114,7 @@ description: Use when creating, modifying, reviewing, or handing off requirement
 
 候选 → 已确认 → 开发中 → 已验收 → 已废弃
 
-进入“已确认”：来源为 Q/D/R + 五查通过 + 确认人签字（姓名、日期）。进入“开发中”之后由开发流程维护。
+进入“已确认”：来源为 S/D/R + 五查通过 + 确认人签字（姓名、日期）。进入“开发中”之后由开发流程维护。
 
 ## DoR / DoD
 
@@ -142,9 +142,10 @@ description: Use when creating, modifying, reviewing, or handing off requirement
 - 假设卡：`references/hypothesis-card.md`
 - NFR 清单：`references/nfr-checklist.md`
 - 评审清单：`references/review-checklist.md`
-- 问答记录：`references/question-log.md`
+- 对话记录：`references/dialogue-log.md`
 - 建模指南：`references/modeling-guide.md`
 - 提问手册：`references/elicitation-playbook.md`
+- 缺口检查：`references/gap-check.md`
 - 覆盖扫描：`references/coverage-scan.md`
 - 调研指南：`references/research-guide.md`
 - 冲突检查：`references/conflict-check.md`
