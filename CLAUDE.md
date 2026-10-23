@@ -42,6 +42,7 @@
 | `docs/requirements/01-personas.md` | 角色、目标、场景 | 讨论用户相关需求前 |
 | `docs/requirements/02-backlog.md` | 需求故事池 | 新增、修改或领取需求前 |
 | `docs/requirements/coverage.md` | 模块覆盖矩阵 | 模块首访、模块评审前 |
+| `docs/requirements/coverage-scan.md` | 模块六维扫描记录 | 模块首访、模块评审前 |
 | `docs/requirements/03-nfr.md` | 非功能需求 | 涉及性能、安全、可用性时 |
 | `docs/requirements/04-hypotheses.md` | 研究假设卡 | 涉及 5E 智能体、数字孪生或 AI 能力前 |
 | `docs/requirements/05-traceability.md` | 需求追踪矩阵 | 改动需求或提交代码前 |
