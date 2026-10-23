@@ -27,6 +27,7 @@ description: Use when creating, modifying, reviewing, or handing off requirement
 9. **整理不等于补全**：把用户原话整理成故事卡时，只能重述、拆分、归一化用语；不得补充原话中没有的角色、字段、规则、指标。缺的字段写成 Q 或“未决问题”，不写成内容。
 10. **知识回填**：Q 被回答后，把回答记为 S-xxx；稳定的业务事实写入 `context.md`，术语写入 `glossary.md`。回答不得只停留在问答记录里。
 11. **冲突检查必做**：新增需求、变更需求、转为“已确认”前，按 `references/conflict-check.md` 检查并记录结论；不得把“未发现”写成“没有冲突”。
+12. **基线变更需两人一致**：愿景、范围、非目标、角色、`CLAUDE.md` 的修改，必须两人明确同意；记录 `D`（两人姓名、日期）和 `06-changes.md` 的 CR；AI 不得自行修改。
 
 违反字面规则即违反规则本意。
 
@@ -70,6 +71,15 @@ description: Use when creating, modifying, reviewing, or handing off requirement
 每一关只认显式引用；没有引用就是缺口。模板只规定结构和可写内容，不预填答案；“待确认”是合法状态。
 
 各文件的读取、写入、来源和写法见 `references/file-io.md`。
+
+## 会话结束
+
+如阶段、下一步或模块状态发生变化：
+
+1. AI 提议更新 `STATUS.md`，列出改什么、为什么。
+2. 与 AI 对话的成员确认。
+3. AI 写入 `STATUS.md`，来源记 `D`。
+4. 不改需求、不建 CR。
 
 ## 七步流程
 

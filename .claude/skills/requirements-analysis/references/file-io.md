@@ -37,23 +37,25 @@
 | 交接 | `02-backlog.md`、`05-traceability.md` | traceability 交接 | 人的确认 | AC 可执行后移交 |
 | 变更 | 目标需求、`06-changes.md`、`05-traceability.md`、`02-backlog.md`、`conflict-check.md`、`03-nfr.md`、`00-vision.md`、`glossary.md`、`context.md` | CR、backlog 状态 / 字段、traceability、D | S/D + 影响 / 冲突 | 前后、影响、决策；旧版本保留 |
 | 冲突 | `conflict-check.md`、`02-backlog.md`、`03-nfr.md`、`00-vision.md`、`glossary.md`、`context.md`、`05-traceability.md` | 冲突记录、Q、CR、D | S/Q/REQ/P | 不选边；确定冲突停止 |
-| NFR | `nfr-checklist.md`、`02-backlog.md` | `03-nfr.md`、Q | S/D/R | 无来源写 Q |
-| 假设 | `hypothesis-card.md`、brief | `04-hypotheses.md`、Q | S/D/R/P | 指标 / 失败判据 |
+| NFR | `nfr-checklist.md`、`02-backlog.md` | `03-nfr.md`、Q | S/D/R | 无来源写 Q；另一人评审 + 用户确认后写确认人/日期 |
+| 假设 | `hypothesis-card.md`、brief | `04-hypotheses.md`、Q | S/D/R | P 只帮助设计；指标/方式/失败判据缺一不写；评审 + 确认 |
 | 知识回填 | S/Q | `context.md`、`glossary.md` | S | 只写已确认事实 |
-| 状态 | `STATUS.md` | `STATUS.md` | 人的 D | 阶段 / 下一步变化时更新 |
+| 状态 | `STATUS.md` | `STATUS.md` | 人的 D | 阶段 / 下一步 / 模块状态变化时；AI 提议，对话成员确认后写 |
+| 会话结束 | `STATUS.md`、当前模块 Q | `STATUS.md` | 人的 D | 只在阶段 / 下一步 / 模块状态变化时写；不改需求、不建 CR |
+| 基线变更 | `00-vision.md`、`01-personas.md`、`CLAUDE.md`、`06-changes.md` | 基线文档、D、CR | S/D | 两人一致同意；AI 不自行修改 |
 
 ## 文件明细
 
 | 文件 | 读时机 / 内容 | 写时机 / 内容 | 来源 | 写法 |
 |---|---|---|---|---|
-| `CLAUDE.md` | 每次会话自动 | 基线变更时 | D | 修改前确认；记 `06-changes.md` |
-| `STATUS.md` | 会话开始 | 阶段 / 下一步变化 | D | 更新条目 |
-| `00-vision.md` | 会话开始、1.0、冲突 | 范围 / 目标 / 非目标确认后 | S/D/R | 更新章节；基线变更记 CR |
+| `CLAUDE.md` | 每次会话自动 | 基线变更时 | D | 两人一致同意；记 D + `06-changes.md` |
+| `STATUS.md` | 会话开始 | 阶段 / 下一步 / 模块状态变化 | D | AI 提议，对话成员确认后更新；不改需求、不建 CR |
+| `00-vision.md` | 会话开始、1.0、冲突 | 范围 / 目标 / 非目标确认后 | S/D/R | 基线变更需两人一致；记 D + CR |
 | `context.md` | 会话开始、1b、1c、冲突 | Q 确认后 | S | 追加 / 更新事实，标来源 |
-| `01-personas.md` | 1c、冲突 | 角色确认后 | S/D/R | 更新角色表 |
+| `01-personas.md` | 1c、冲突 | 角色确认后 | S/D/R | 基线变更需两人一致；记 D + CR |
 | `02-backlog.md` | 会话开始、1b、1c、成形、冲突 | 故事卡、优先级、评审、确认、状态 | S/D/R | 追加 / 更新行；字段见模板 |
-| `03-nfr.md` | 1b、冲突 | NFR 确认后 | S/D/R | 追加指标；无来源写 Q |
-| `04-hypotheses.md` | 1b、成形 | 假设卡创建 | S/D/R/P | 追加卡片 |
+| `03-nfr.md` | 1b、冲突 | NFR 确认后 | S/D/R | 追加指标；无来源写 Q；评审 + 确认后写确认人/日期 |
+| `04-hypotheses.md` | 1b、成形 | 假设卡创建 | S/D/R | P 只帮助设计；指标/方式/失败判据缺一不写；评审 + 确认 |
 | `05-traceability.md` | 冲突、变更、评审、交接 | 确认 / 设计 / 提交 / 测试 / 交接 | backlog / design / commits / tests | 追加 / 更新行 |
 | `06-changes.md` | 变更、冲突 | 变更 / 冲突决策 | S/D | 追加 CR；前后 / 影响 / 决策 |
 | `07-dialogue.md` | 会话开始、1.0、1b、1c、成形 | S / Q / 回答 | 用户 / AI | 追加；回答记 S |
@@ -82,8 +84,8 @@
 - 优先级依据写 `02-backlog.md` 的“优先级依据”，引用 D/S/Q。
 - 变更决策写 `06-changes.md` 的“决策”，引用 D。
 
-## 剩余待补
+## 维护规则
 
-- `STATUS.md` 的更新负责人没有规定，目前只有“阶段 / 下一步变化时”规则。
-- 基线变更的“两人一致同意”规则尚未写入 `CLAUDE.md`，需要用户确认。
-- NFR 和假设卡只有来源规则，写入确认流程仍较简。
+- 新增文件、字段或状态时，先更新本文件，再改模板。
+- 本文件与 `SKILL.md` 冲突时，以 `SKILL.md` 的硬规则为准，并修正本文件。
+- 本文件不记录具体需求；只记录读写规则。
