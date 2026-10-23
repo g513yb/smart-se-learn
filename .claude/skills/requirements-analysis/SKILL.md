@@ -91,7 +91,7 @@ description: Use when creating, modifying, reviewing, or handing off requirement
    - 文档缺失或为空时先报告，不凭记忆补全
 2. **成形**：用故事卡（`references/story-card.md`）；先过冲突检查（`references/conflict-check.md`）并记录结论；过 DoR；写 Given-When-Then；来源填 `S-/D-/R-`。
 3. **排序**：MoSCoW 或价值-成本；给出建议，优先级由人决定并记录。
-4. **建模**：按需，查 `references/modeling-guide.md`；只画能回答当前问题的图。
+4. **建模**：只在文字说不清流程、状态、规则、交互或边界时画；查 `references/modeling-guide.md` 选最小图型。每个图元素必须有 `S/D/R/REQ` 来源；未回答的 Q、P、I 不作来源；设计进 `DSN-`。保存到 `models/<模块>-<主题>.mmd`，文件头写问题、来源、状态；另一人评审。
 5. **评审**：另一人执行五查（`references/review-checklist.md`）：完整、一致、可测、可追踪、有据。
 6. **验收标准确认**：标准可执行、无歧义后，需求可移交设计；到此为止。
 7. **变更**：冲突检查 → 影响分析 → `06-changes.md` → 回填 `05-traceability.md`；冲突处理见 `references/conflict-check.md`。
