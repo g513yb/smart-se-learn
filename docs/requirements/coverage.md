@@ -1,8 +1,6 @@
 # 模块覆盖矩阵
 
-状态：未问 / 已问待答 / 已确认 / 不适用 / 有需求 / 已调研 / 无法判断
-
-扫描记录见 `coverage-scan.md`。“部分覆盖”在矩阵中记为“已问待答”。没有 `coverage-scan.md` 记录的模块，状态只表示预扫描，不得视为已覆盖。
+填写规则和状态定义见 `.claude/skills/requirements-analysis/references/coverage-scan.md`。
 
 | 模块 | 角色 | 旅程 | 对象 | 规则 | 横切 | 质量 | 对标调研 |
 |---|---|---|---|---|---|---|---|

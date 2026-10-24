@@ -1,6 +1,6 @@
 # 术语表
 
-定义未确认前不填写，避免把推测当成共识。
+填写规则见 `.claude/skills/requirements-analysis/references/file-io.md`。
 
 | 术语 | 定义 | 来源 |
 |---|---|---|

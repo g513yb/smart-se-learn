@@ -27,7 +27,7 @@ description: Use when creating, modifying, reviewing, or handing off requirement
 9. **整理不等于补全**：把用户原话整理成故事卡时，只能重述、拆分、归一化用语；不得补充原话中没有的角色、字段、规则、指标。缺的字段写成 Q 或“未决问题”，不写成内容。
 10. **知识回填**：Q 被回答后，把回答记为 S-xxx；稳定的业务事实写入 `context.md`，术语写入 `glossary.md`。回答不得只停留在问答记录里。
 11. **冲突检查必做**：新增需求、变更需求、转为“已确认”前，按 `references/conflict-check.md` 检查并记录结论；不得把“未发现”写成“没有冲突”。
-12. **基线变更由人确认**：愿景、范围、非目标、角色、`CLAUDE.md` 的修改，由与 AI 对话的成员确认；记录 `D`（确认人姓名、日期）和 `06-changes.md` 的 CR；另一人可评审；AI 不得自行修改。临时规则：当前文件存储无应用层，暂不要求两人会签。愿景细则见 `references/vision-guide.md`。
+12. **基线变更由人确认**：项目基线（愿景、范围、非目标、角色）的修改，由任一成员一人确认；记录 `D`（确认人姓名、日期）和 `06-changes.md` 的 CR；另一人可评审；AI 不得自行修改。`CLAUDE.md` 和 skill 的管理/流程规则变更记录在文件本身，不写项目 D/CR。临时规则：当前文件存储无应用层，暂不要求两人会签。愿景细则见 `references/vision-guide.md`。
 
 违反字面规则即违反规则本意。
 
@@ -181,6 +181,7 @@ AI 只能把需求写入“候选”；已确认、已拒绝、变更中由人�
 - 对话记录：`references/dialogue-log.md`
 - 提取规则：`references/extraction-guide.md`
 - 愿景规则：`references/vision-guide.md`
+- 决策记录：`references/decision-log.md`
 - 文件读写：`references/file-io.md`
 - 建模指南：`references/modeling-guide.md`
 - 提问手册：`references/elicitation-playbook.md`

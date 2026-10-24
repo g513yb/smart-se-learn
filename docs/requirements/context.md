@@ -1,6 +1,6 @@
 # 业务上下文
 
-只记录已确认的事实，每条注明来源。未确认的写入 `07-dialogue.md` 的 Q 表。每次问答确认后更新本文件；术语写入 `glossary.md`。
+填写规则见 `.claude/skills/requirements-analysis/references/file-io.md`。
 
 ## 项目与教学场景
 
