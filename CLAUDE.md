@@ -14,7 +14,7 @@
 | `docs/team.md` | 团队成员与负责范围 | 需要分配负责人时 |
 | `docs/STATUS.md` | 当前阶段与待决事项 | 会话开始、不确定进度时 |
 | `docs/requirements/00-vision.md` | 愿景、范围、目标与非目标 | 开始任何需求讨论前 |
-| `docs/requirements/context.md` | 业务上下文（已确认的流程、角色、对象、规则） | 开始分析前、每次问答后 |
+| `docs/requirements/context.md` | 业务上下文（其他文件不收录的已确认稳定事实） | 开始分析前、每次问答后 |
 | `docs/requirements/01-personas.md` | 角色、目标、场景 | 讨论用户相关需求前 |
 | `docs/requirements/02-backlog.md` | 需求故事池 | 新增、修改或领取需求前 |
 | `docs/requirements/coverage.md` | 模块覆盖矩阵 | 模块首访、模块状态变化时 |

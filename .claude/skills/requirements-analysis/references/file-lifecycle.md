@@ -4,11 +4,12 @@
 
 ## 一、通用规则
 
-- AI 可以生成、起草、归纳、提议和写入内容。有 `S/D/R`、项目文件或人的回答作依据的内容优先使用；依据用来提高可信度和可追溯性，不是禁止 AI 生成的门槛。`P` 只生成 Q；`Q` 不是来源。
+- AI 可以生成、起草、归纳、提议和写入内容。有 `S/D`、项目文件或人的回答作依据的内容优先使用；依据用来提高可信度和可追溯性，不是禁止 AI 生成的门槛。`P` 只生成 Q；`Q` 不是来源。
 - AI 可以生成候选；候选必须标为“AI 提议”或“候选”，人确认后才能成为最终内容。
 - AI 写入任何文件前，必须把最终内容交人确认；有依据不等于可以写入。人确认的内容记为 `S`。
 - AI 在对话中输出内容时标明依据；文件内容不标来源。
 - 已经写入文件且经人确认的内容可作为可靠依据；其来源记为 `S`。
+- 事实候选提取和冲突检查是持续过程，不是单独阶段；提取不写入，写入必须人确认。
 - 缺输入就停下提问，不推测没有依据的事实；无法判断时写 Q。
 - AI 不自行决定 `D`、优先级、状态和范围归属；这些由人决定。AI 可以提议、记录或在人明确授权后写入。
 - 不记录确认人、确认日期；确认在对话中完成。不记录评审人、评审结果、评审日期；评审规则已删除。
@@ -45,25 +46,25 @@
 |---|---|---|---|---|
 | 初始化 | `CLAUDE.md`、skill references、`file-templates.md` | `docs/team.md`、`STATUS.md`、`07-dialogue.md`、`08-decisions.md`（按需） | S | 从零建立；只建结构，不写需求 |
 | 会话开始 | `CLAUDE.md`、`docs/team.md`、`STATUS.md`、`00-vision.md`、`context.md`、`glossary.md`、当前模块 brief、`07-dialogue.md`、`08-decisions.md` | 模块选择 S（如已指定） | 用户原话 | 未指定模块只列清单，不开始 |
-| 愿景初次建立 | `00-vision.md`、`context.md`、`07-dialogue.md`、`08-decisions.md` | `00-vision.md`（六节、版本表）、`07-dialogue.md`（S）、`08-decisions.md`（D） | S/D/R | AI 起草；人逐节确认；初次记 D、不建 CR |
+| 愿景初次建立 | `00-vision.md`、`context.md`、`07-dialogue.md`、`08-decisions.md` | `00-vision.md`（六节、版本表）、`07-dialogue.md`（S）、`08-decisions.md`（D） | S/D | AI 起草；人逐节确认；初次记 D、不建 CR |
 | 1.0 边界 | `00-vision.md`、`context.md`、`glossary.md`、`02-backlog.md`、`07-dialogue.md` | S（模块选择）、范围 Q 或引用已有 Q | S + 缺失文档 | 边界不清停止；不做 brief/扫描 |
-| 角色初次建立 | `00-vision.md`、`context.md`、`01-personas.md`、`07-dialogue.md` | `01-personas.md`（角色清单、角色卡、版本表）、`07-dialogue.md`（S） | S/R | AI 起草；人逐角色确认；初次写 v1 |
+| 角色初次建立 | `00-vision.md`、`context.md`、`01-personas.md`、`07-dialogue.md` | `01-personas.md`（角色清单、角色卡、版本表）、`07-dialogue.md`（S） | S | AI 起草；人逐角色确认；初次写 v1 |
 | 1a brief | `platform-candidates.md`、`sources/INDEX.md`、模块 brief、`07-dialogue.md` | `research/<模块>.md`、Q、`DSN-` | P | 只用已批准/部分验证；六段 + 完整性检查 |
 | 1b 扫描 | `coverage-scan.md`、`coverage.md`、`02-backlog.md`、`07-dialogue.md`、`context.md`、`glossary.md`、`03-nfr.md`、`00-vision.md`、模块 brief | `coverage-scan.md`、`coverage.md`、Q | 显式引用 / 固定提问（coverage-scan.md） / P | 27 项；无引用即未覆盖；只出 Q |
 | 1c 缺口 | S/Q、`02-backlog.md`、`context.md`、`glossary.md`、`03-nfr.md`、`00-vision.md`、`01-personas.md`、`story-card.md` | S、Q、`context.md`、`glossary.md` | 用户/S + 检查项 | 先记 S；无引用即缺口；不重复 Q |
-| 成形 | S/Q、`story-card.md`、`conflict-check.md`、`02-backlog.md`、`03-nfr.md`、`00-vision.md`、`glossary.md`、`context.md`、`05-traceability.md`、`design-notes.md` | backlog 故事卡、冲突检查、Q、`DSN-` | S/D/R + 冲突证据 | 只重述不新增；DoR；冲突检查 |
+| 成形 | S/Q、`story-card.md`、`conflict-check.md`、`02-backlog.md`、`03-nfr.md`、`00-vision.md`、`glossary.md`、`context.md`、`05-traceability.md`、`design-notes.md` | backlog 故事卡、冲突检查、Q、`DSN-` | S/D + 冲突证据 | 只重述不新增；DoR；冲突检查 |
 | 排序 | `02-backlog.md`、`08-decisions.md` | 优先级、优先级依据、D | 人的 S/D | 人决定；AI 不决定 |
 | 建模 | `modeling-guide.md` | `models/*.mmd` | 需求 / 上下文 | 一图一文件；按需 |
 | 确认 | `02-backlog.md`、`05-traceability.md` | backlog 状态、traceability；最终内容由人在对话中确认 | S | AI 不能标已确认；不记录确认人/日期；无评审 |
 | 交接 | `02-backlog.md`、`05-traceability.md` | traceability 交接 | 人的确认 | AC 可执行后移交 |
 | 变更 | 目标需求、`06-changes.md`、`05-traceability.md`、`02-backlog.md`、`conflict-check.md`、`03-nfr.md`、`00-vision.md`、`glossary.md`、`context.md`、`07-dialogue.md` | CR、backlog 状态 / 字段、traceability、D、`07-dialogue.md`（S） | S/D + 影响 / 冲突 | 前后、影响、决策；旧版本保留 |
 | 冲突 | `conflict-check.md`、`02-backlog.md`、`03-nfr.md`、`00-vision.md`、`glossary.md`、`context.md`、`05-traceability.md` | 冲突记录、Q、CR、D | S/Q/REQ/P | 不选边；确定冲突停止 |
-| NFR | `nfr-checklist.md`、`02-backlog.md` | `03-nfr.md`、Q | S/D/R | 无来源写 Q；人确认后写入；不记录评审/确认字段 |
-| 假设 | `hypothesis-card.md`、brief | `04-hypotheses.md`、Q | S/D/R | P 只帮助设计；指标/方式/失败判据缺一不写；人确认后写入 |
-| 知识回填 | S/Q | `context.md`、`glossary.md` | S | 只写已确认事实 |
+| NFR | `nfr-checklist.md`、`02-backlog.md` | `03-nfr.md`、Q | S/D | 无来源写 Q；人确认后写入；不记录评审/确认字段 |
+| 假设 | `hypothesis-card.md`、brief | `04-hypotheses.md`、Q | S/D | P 只帮助设计；指标/方式/失败判据缺一不写；人确认后写入 |
+| 知识回填 | S/Q | `context.md`、`glossary.md` | S | 只写其他文件不收录的已确认事实 |
 | 状态 | `STATUS.md` | `STATUS.md` | `S` | 阶段 / 下一步 / 模块状态变化时；AI 提议，人在对话中确认后写 |
 | 会话结束 | `STATUS.md`、当前模块 Q | `STATUS.md` | `S` | 只在阶段 / 下一步 / 模块状态变化时写；不改需求、不建 CR |
-| 项目基线变更 | `00-vision.md`、`01-personas.md`、`07-dialogue.md`、`05-traceability.md` | 基线文档、`07-dialogue.md`（S）、`05-traceability.md` | S/D/R | 按 `vision-guide.md` / `persona-guide.md` 的规则；AI 不自行修改 |
+| 项目基线变更 | `00-vision.md`、`01-personas.md`、`07-dialogue.md`、`05-traceability.md` | 基线文档、`07-dialogue.md`（S）、`05-traceability.md` | S/D | 按 `vision-guide.md` / `persona-guide.md` 的规则；AI 不自行修改 |
 | 管理规则变更 | `CLAUDE.md`、skill references | 规则文件 | D | 记录在文件本身；不写项目 D/CR |
 
 ## 三、文件明细
@@ -73,16 +74,16 @@
 | `CLAUDE.md` | 每次会话自动 | 管理/流程规则变更时 | D | 记录在本文件/skill；不写项目 D/CR；AI 不自行修改 |
 | `docs/team.md` | 会话开始、分配负责人前 | 团队或分工变化时；人在对话中确认后 | `S` | 成员与负责范围；不写需求 |
 | `STATUS.md` | 会话开始、不确定进度时 | 阶段 / 下一步 / 模块状态变化；人在对话中确认后 | `S` | AI 提议；不改需求、不建 CR；不记录确认人/日期 |
-| `00-vision.md` | 会话开始、1.0、愿景初次建立、冲突、基线变更前 | 愿景初次建立、基线变更后 | S/D/R | 按 `vision-guide.md` 六节填写；更新版本表；AI 起草；变更记 D + CR；初次建立记 D、不建 CR；不记录评审/确认字段 |
-| `context.md` | 会话开始、1b、1c、冲突 | Q 确认后 | S | 追加 / 更新事实，标来源 |
-| `01-personas.md` | 1c、冲突 | 角色初次建立、角色确认后 | S/R | 按 `persona-guide.md` 五节角色卡；角色清单只列已确认角色；变更递增版本；初次写 v1；不记录评审/确认字段 |
-| `02-backlog.md` | 会话开始、1b、1c、成形、冲突 | 故事卡、优先级、状态 | S/D/R | 追加 / 更新行；字段见模板；不记录评审/确认字段 |
-| `03-nfr.md` | 1b、冲突 | NFR 确认后 | S/D/R | 追加指标；无来源写 Q；人确认后写入；不记录评审/确认字段 |
-| `04-hypotheses.md` | 1b、成形 | 假设卡创建 | S/D/R | P 只帮助设计；指标/方式/失败判据缺一不写；人确认后写入；不记录评审/确认字段 |
+| `00-vision.md` | 会话开始、1.0、愿景初次建立、冲突、基线变更前 | 愿景初次建立、基线变更后 | S/D | 按 `vision-guide.md` 六节填写；更新版本表；AI 起草；变更记 D + CR；初次建立记 D、不建 CR；不记录评审/确认字段 |
+| `context.md` | 会话开始、1b、1c、冲突 | 人确认稳定事实后 | S | 追加 / 更新事实；文件不标来源 |
+| `01-personas.md` | 1c、冲突 | 角色初次建立、角色确认后 | S | 按 `persona-guide.md` 五节角色卡；角色清单只列已确认角色；变更递增版本；初次写 v1；不记录评审/确认字段 |
+| `02-backlog.md` | 会话开始、1b、1c、成形、冲突 | 故事卡、优先级、状态 | S/D | 追加 / 更新行；字段见模板；不记录评审/确认字段 |
+| `03-nfr.md` | 1b、冲突 | NFR 确认后 | S/D | 追加指标；无来源写 Q；人确认后写入；不记录评审/确认字段 |
+| `04-hypotheses.md` | 1b、成形 | 假设卡创建 | S/D | P 只帮助设计；指标/方式/失败判据缺一不写；人确认后写入；不记录评审/确认字段 |
 | `05-traceability.md` | 冲突、变更、评审、交接 | 确认 / 设计 / 提交 / 测试 / 交接 / 基线变更 | backlog / design / commits / tests | 追加 / 更新行 |
 | `06-changes.md` | 变更、冲突 | 变更 / 冲突决策 | S/D | 追加 CR；前后 / 影响 / 决策 |
 | `07-dialogue.md` | 会话开始、1.0、愿景初次建立、角色初次建立、1b、1c、成形、基线变更 | S / Q / 回答（含愿景初次建立、角色初次建立、基线变更） | 用户 / AI | 追加；回答记 S |
-| `08-decisions.md` | 冲突、排序、愿景初次建立、其他明确决策 | 人做决定时 | S/Q/REQ/R/P | 追加 D；AI 只记录；规则见 `decision-log.md` |
+| `08-decisions.md` | 冲突、排序、愿景初次建立、其他明确决策 | 人做决定时 | S/Q/REQ/P | 追加 D；AI 只记录；规则见 `decision-log.md` |
 | `coverage.md` | 1b、会话开始 | 扫描后 | 扫描记录 | 更新六维 |
 | `coverage-scan.md` | 1b | 扫描后 | 27 项判断 | 填表 / 聚合 |
 | `glossary.md` | 会话开始、1b、1c | Q 确认后 | S | 更新术语 |
@@ -191,24 +192,26 @@
 
 ### 5. `context.md`
 
-- **定位**：记录已确认的稳定业务事实（背景、角色职责、对象、规则），供 1b/1c/冲突检查使用。不写需求、假设、设计。
+- **定位**：记录其他文件不收录的已确认稳定业务事实，供 1b/1c/冲突检查使用。不写需求、假设、设计。
 - **建立**：第一次知识回填。
 - **读取**：会话开始、1b、1c、冲突检查。
-- **写入**：Q 被回答且回答稳定后；每条标来源。
-- **结构**：业务背景、角色与职责、关键业务对象、业务规则与政策、术语指针。
+- **写入**：人确认稳定事实后；文件不标来源。
+- **结构**：事实、说明。
 - **AI 如何完成**：
-  1. 从 S 中找稳定事实。
-  2. 按下方判定判断是否稳定。
-  3. 追加或更新对应小节；每条标 S 编号。
+  0. 持续提取：每次用户实质性陈述后扫描事实候选，不等待用户说“更新上下文”；候选标“AI 提议”，人确认后写入。
+  1. 从 S 和已写入文件中找稳定事实；AI 可以提出事实候选，标“AI 提议”。
+  2. 按下方判定判断是否稳定、是否应由本文件收录。
+  3. 人确认后追加或更新；文件不标来源。
   4. 与已确认内容冲突时先展示两边原文，等人选择。
 - **判定规则**：
-  - 稳定事实 = 由 S/D/R 明确确认，不依赖某个具体功能实现，且没有未决 Q。
+  - 稳定事实 = 由 S 或已写入文件明确确认，不依赖某个具体功能实现，没有未决 Q，且其他文件未收录。
   - 描述“系统要做什么” → 不进 context，进 backlog 或 Q。
   - 描述“术语含义” → 进 glossary。
   - 描述“怎么实现” → 进 `design-notes.md`。
+  - 愿景、角色、术语、需求或设计已收录的 → 不进 context。
   - 无法判断 → Q。
-- **禁止**：把推断、P、未回答 Q 写成事实；写需求或设计。
-- **确认**：来源为 S；重大事实变更按冲突检查处理。
+- **禁止**：把推断、P、未回答 Q、未确认的 AI 提议写成事实；写需求或设计。
+- **确认**：人确认后写入；重大事实变更按冲突检查处理。
 
 ### 6. `glossary.md`
 
@@ -238,7 +241,7 @@
 - **结构**：表头见 `file-templates.md`，字段定义见 `story-card.md`。
 - **各部分作用**：ID/标题/故事/原文摘录/来源保证可追溯；验收标准保证可测；优先级及依据由人决定；负责人/评审人来自分工；评审/确认记录人的结论；冲突检查记录筛查结果；依赖/未决问题标边界；状态表示生命周期。
 - **AI 如何完成**：
-  1. 从 S/D/R 提取；原文摘录逐字复制。
+  1. 从 S/D 提取；已写入文件可直接引用；原文摘录逐字复制。
   2. 只重述、拆分、归一化；不新增角色、字段、规则、指标。
   3. 写 Given-When-Then；写不出 Then → Q。
   4. 冲突检查并记录结论。
@@ -256,7 +259,7 @@
   - 状态：AI 只能写候选；已确认、已拒绝、变更中、开发中、已验收、已废弃由人决定并记录。
 - **DoR 可执行检查**：
   - 故事卡字段齐全。
-  - 有来源（S/D/R）或人的确认；原文摘录非空；AI 提议可写“AI 生成，待确认”。
+  - 有来源（S/D）或人的确认；原文摘录非空；AI 提议可写“AI 生成，待确认”。
   - 验收标准至少一条主流程，异常流已列或写明待确认。
   - 依赖无未确认项；有未确认 Q 依赖 → 不通过。
   - 负责人确认可在一个迭代内完成；没有负责人或没有确认 → 不通过。
@@ -317,7 +320,7 @@
   - 代码提交或测试只有在提交信息、测试名或工件明确含 REQ ID 时才能关联；否则问人，不猜。
   - 设计文档必须明确引用 REQ ID；否则不填。
   - 变更记录必须引用 CR ID。
-  - 模型必须引用 REQ ID 或 S/D/R 来源。
+  - 模型必须引用 REQ ID 或 S/D 来源。
 - **禁止**：凭文件名、目录或提交时间推测关联；把“相关”写成“已覆盖”。
 - **确认**：人的确认或交接记录。
 
@@ -433,7 +436,7 @@
 - **AI 如何完成**：
   1. 先写图要回答的问题。
   2. 按 `modeling-guide.md` 选最小图型。
-  3. 每个元素标 S/D/R/REQ；没有来源不画。
+  3. 每个元素标 S/D/REQ；没有来源不画。
   4. 未回答 Q、P、I 不作来源；设计进 `DSN-`。
   5. 保存；另一人评审。
 - **判定规则**：
@@ -510,7 +513,7 @@
 - 候选 → 已拒绝。
 - 已确认或开发中 → 变更中 → 已确认、开发中或已废弃。
 - AI 只能写“候选”；其他状态由人决定并记录。
-- 进入“已确认”必须同时具备：来源 S/D/R、五查通过、backlog 评审结果/日期、确认人/日期。
+- 进入“已确认”必须同时具备：来源 S/D、五查通过、backlog 评审结果/日期、确认人/日期。
 - 进入“变更中”必须先有 CR。
 - 状态变更缺少任一字段 → 不升级，写 Q 或停在原状态。
 

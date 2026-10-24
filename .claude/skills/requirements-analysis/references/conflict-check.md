@@ -30,7 +30,7 @@
 - `03-nfr.md`：同质量属性、同约束
 - `00-vision.md`：目标、非目标、成功标准
 - `glossary.md`：术语定义
-- `context.md`：业务规则、角色职责、对象生命周期
+- `context.md`：其他文件不收录的稳定业务事实
 - `05-traceability.md`：依赖与受影响项
 
 ## 3. 逐项比对
