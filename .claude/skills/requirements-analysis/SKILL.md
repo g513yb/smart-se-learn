@@ -16,7 +16,7 @@ description: Use when creating, modifying, confirming, or handing off requiremen
 
 ## 硬规则
 
-1. **来源与问题标签**：最终写入的需求必须能追溯：来源为 `S-`（用户陈述/原话，含人对 AI 生成内容的确认）、`D-`（明确决策）、`R-`（既有文档）。AI 生成的候选可以暂时没有来源，但必须标为“AI 提议”或“候选”，写入前需人确认。`Q-` 是缺口问题，不是来源；`P-` 是实践参考，只能生成 Q；`I-` 是推断，不得进入“已确认”。引用 P 的最终需求必须另有 S/D/R 或人的确认 S。
+1. **来源与问题标签**：最终写入的需求必须能追溯：来源为 `S-`（用户陈述/原话，含人对 AI 生成内容的确认）、`D-`（明确决策）、`R-`（既有文档）。AI 生成的候选可以暂时没有来源，但必须标为“AI 提议”或“候选”，写入前需人确认。`Q-` 是缺口问题，不是来源；`P-` 是实践参考，只能生成 Q；`I-` 是推断，不得进入“已确认”。引用 P 的最终需求必须另有 S/D/R 或人的确认 S。AI 在对话中输出内容时标明依据；文件内容不标来源；追溯以对话记录和 S 记录为准。
 2. **先提问后动笔**：成形前先列缺口；缺口未确认，可以写候选草稿，但不得写成已确认需求。
 3. **未知入清单**：不确定项写入 `docs/requirements/07-dialogue.md` 的 Q 表，编号并记录回答人，不留在正文里当假设。
 4. **示例保护**：出现“比如 / 例如 / 类似”时，先确认是举例还是真实需求；举例不得直接升级为需求。
@@ -125,7 +125,7 @@ description: Use when creating, modifying, confirming, or handing off requiremen
    - **1b 模块首访**：按 `references/coverage-scan.md` 的 27 个子提问逐项判断，产出 `docs/requirements/coverage-scan.md` 记录并更新 `coverage.md`；扫描只产出问题，不产出需求
    - **1c 缺口提问**：按 `references/gap-check.md` 对当前单位逐项检查；原话先记 S，只对“未覆盖 / 部分覆盖 / 无法判断 / 缺依据”生成 Q，进 `07-dialogue.md`；已有待答 Q 不重复。角色相关分析前，如果 `01-personas.md` 尚未建立，先按 `references/persona-guide.md` 初次建立
    - 文档缺失或为空时先报告，不凭记忆补全
-2. **成形**：按 `references/extraction-guide.md` 提取；用故事卡（`references/story-card.md`），“原文摘录”必填；先过冲突检查（`references/conflict-check.md`）并记录结论；过 DoR；写 Given-When-Then；来源填 `S-/D-/R-`。
+2. **成形**：按 `references/extraction-guide.md` 提取；用故事卡（`references/story-card.md`），“原文摘录”必填；先过冲突检查（`references/conflict-check.md`）并记录结论；过 DoR；写 Given-When-Then；AI 在对话中输出时标明依据，文件内容不标来源。
 3. **排序**：MoSCoW 或价值-成本；AI 可给建议，建议必须标“建议”，不得写成 D；优先级由人决定并记录。
 4. **建模**：只在文字说不清流程、状态、规则、交互或边界时画；查 `references/modeling-guide.md` 选最小图型。每个图元素必须有 `S/D/R/REQ` 来源；未回答的 Q、P、I 不作来源；设计进 `DSN-`。保存到 `models/<模块>-<主题>.mmd`，文件头写问题、来源、状态；人确认后写入。
 5. **确认**：AI 提交最终内容、验收标准和依据（有/无来源、哪些是 AI 生成）；人确认后写入；无评审环节；标准可执行、无歧义后，需求可移交设计。
