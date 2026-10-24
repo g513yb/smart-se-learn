@@ -8,6 +8,7 @@
 
 - 只读当前阶段需要的文件；不凭记忆补。
 - 缺失或为空先报告；不把空文件当已知。
+- 项目文件缺失且尚未初始化时，按 `SKILL.md` 的“初始化”顺序建立；只建结构，不预填内容。
 - 读到的内容必须能引用 `S/Q/D/R/P/REQ`；没有引用不算已知。
 - `P` 只帮助提问，不作答案。
 
@@ -26,7 +27,8 @@
 
 | 阶段 | 读 | 写 | 来源 | 关键规则 |
 |---|---|---|---|---|
-| 会话开始 | `CLAUDE.md`、`STATUS.md`、`00-vision.md`、`context.md`、`glossary.md`、当前模块 brief、`07-dialogue.md`、`08-decisions.md` | 模块选择 S（如已指定） | 用户原话 | 未指定模块只列清单，不开始 |
+| 初始化 | `CLAUDE.md`、skill references、`file-templates.md` | `docs/team.md`、`STATUS.md`、`07-dialogue.md`、`08-decisions.md`（按需） | S / 人的确认 | 从零建立；只建结构，不写需求 |
+| 会话开始 | `CLAUDE.md`、`docs/team.md`、`STATUS.md`、`00-vision.md`、`context.md`、`glossary.md`、当前模块 brief、`07-dialogue.md`、`08-decisions.md` | 模块选择 S（如已指定） | 用户原话 | 未指定模块只列清单，不开始 |
 | 愿景初次建立 | `00-vision.md`、`context.md`、`07-dialogue.md`、`08-decisions.md` | `00-vision.md`（六节、章节确认、版本表）、`07-dialogue.md`（S）、`08-decisions.md`（D） | S/D/R | AI 起草；任一成员逐节确认；另一人评审；初次记 D、不建 CR |
 | 1.0 边界 | `00-vision.md`、`context.md`、`glossary.md`、`02-backlog.md`、`07-dialogue.md` | S（模块选择）、范围 Q 或引用已有 Q | S + 缺失文档 | 边界不清停止；不做 brief/扫描 |
 | 角色初次建立 | `00-vision.md`、`context.md`、`01-personas.md`、`07-dialogue.md`、`08-decisions.md` | `01-personas.md`（角色清单、角色卡、版本表）、`07-dialogue.md`（S）、`08-decisions.md`（D） | S/D/R | AI 起草；任一成员逐角色确认；另一人评审；初次记 D、不建 CR |
@@ -44,8 +46,8 @@
 | NFR | `nfr-checklist.md`、`02-backlog.md` | `03-nfr.md`、Q | S/D/R | 无来源写 Q；另一人评审 + 任一成员确认后写评审/确认字段 |
 | 假设 | `hypothesis-card.md`、brief | `04-hypotheses.md`、Q | S/D/R | P 只帮助设计；指标/方式/失败判据缺一不写；评审 + 确认 |
 | 知识回填 | S/Q | `context.md`、`glossary.md` | S | 只写已确认事实 |
-| 状态 | `STATUS.md` | `STATUS.md` | 人的 D | 阶段 / 下一步 / 模块状态变化时；AI 提议，任一成员确认后写 |
-| 会话结束 | `STATUS.md`、当前模块 Q | `STATUS.md` | 人的 D | 只在阶段 / 下一步 / 模块状态变化时写；不改需求、不建 CR |
+| 状态 | `STATUS.md` | `STATUS.md` | 人的确认 | 阶段 / 下一步 / 模块状态变化时；AI 提议，任一成员确认后写 |
+| 会话结束 | `STATUS.md`、当前模块 Q | `STATUS.md` | 人的确认 | 只在阶段 / 下一步 / 模块状态变化时写；不改需求、不建 CR |
 | 项目基线变更 | `00-vision.md`、`01-personas.md`、`06-changes.md`、`07-dialogue.md`、`05-traceability.md` | 基线文档、`07-dialogue.md`（S）、`08-decisions.md`（D）、`06-changes.md`（CR）、`05-traceability.md` | S/D | 任一成员一人确认；变更记 D+CR；初次建立记 D、不建 CR；临时一人；AI 不自行修改 |
 | 管理规则变更 | `CLAUDE.md`、skill references | 规则文件 | D | 记录在文件本身；不写项目 D/CR |
 
@@ -54,7 +56,8 @@
 | 文件 | 读时机 / 内容 | 写时机 / 内容 | 来源 | 写法 |
 |---|---|---|---|---|
 | `CLAUDE.md` | 每次会话自动 | 管理/流程规则变更时 | D | 记录在本文件/skill；不写项目 D/CR；AI 不自行修改 |
-| `STATUS.md` | 会话开始 | 阶段 / 下一步 / 模块状态变化 | D | AI 提议，任一成员确认后更新；不改需求、不建 CR |
+| `docs/team.md` | 会话开始、确认/评审前 | 团队或分工变化时 | 人的确认 | 成员与负责范围；不写需求 |
+| `STATUS.md` | 会话开始 | 阶段 / 下一步 / 模块状态变化 | 人的确认 | AI 提议，任一成员确认后更新；不改需求、不建 CR |
 | `00-vision.md` | 会话开始、1.0、愿景初次建立、冲突、基线变更前 | 愿景初次建立、基线变更后 | S/D/R | 按 `vision-guide.md` 六节填写；更新章节确认和版本表；AI 只起草；变更记 D + CR；初次建立记 D、不建 CR；另一人评审；临时一人 |
 | `context.md` | 会话开始、1b、1c、冲突 | Q 确认后 | S | 追加 / 更新事实，标来源 |
 | `01-personas.md` | 1c、冲突 | 角色初次建立、角色确认后 | S/D/R | 按 `persona-guide.md` 五节角色卡；角色清单含状态/确认；变更记 D + CR；初次建立记 D、不建 CR；另一人评审；临时一人 |
@@ -92,6 +95,6 @@
 
 ## 维护规则
 
-- 新增文件、字段或状态时，先更新本文件，再改模板。
+- 新增文件、字段或状态时，先更新本文件和 `file-templates.md`，再改模板。
 - 本文件与 `SKILL.md` 冲突时，以 `SKILL.md` 的硬规则为准，并修正本文件。
 - 本文件不记录具体需求；只记录读写规则。

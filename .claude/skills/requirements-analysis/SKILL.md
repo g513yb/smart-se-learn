@@ -1,6 +1,6 @@
 ---
 name: requirements-analysis
-description: Use when creating, modifying, reviewing, or handing off requirements for the intelligent software engineering learning platform — 新建需求、修改需求、评审需求、编写验收标准、讨论 backlog、处理需求来源或变更时使用。
+description: Use when creating, modifying, reviewing, or handing off requirements — 新建需求、修改需求、评审需求、编写验收标准、讨论 backlog、处理需求来源或变更时使用。
 ---
 
 # 需求分析
@@ -29,6 +29,7 @@ description: Use when creating, modifying, reviewing, or handing off requirement
 11. **冲突检查必做**：新增需求、变更需求、转为“已确认”前，按 `references/conflict-check.md` 检查并记录结论；不得把“未发现”写成“没有冲突”。
 12. **基线变更由人确认**：项目基线（愿景、范围、非目标、角色）的修改，由任一成员一人确认；记录 `D`（确认人姓名、日期）和 `06-changes.md` 的 CR；初次建立记 D、不建 CR；另一人评审；AI 不得自行修改。`CLAUDE.md` 和 skill 的管理/流程规则变更记录在文件本身，不写项目 D/CR。临时规则：当前文件存储无应用层，暂不要求两人会签。愿景细则见 `references/vision-guide.md`。
 13. **文档边界**：需求文档只放标题、指针、表头和项目内容；流程、管理、确认、评审规则只放 `CLAUDE.md` 和 skill references。需求文档里出现规则文字，视为缺陷：移到 skill，不在原处新增。
+14. **管理文件边界**：管理文件只写结构、字段、含义、规则和通用示例；项目概念、事实、需求和具体角色只写项目文件。示例必须通用，或明确标注“非本项目”。
 
 违反字面规则即违反规则本意。
 
@@ -50,10 +51,42 @@ description: Use when creating, modifying, reviewing, or handing off requirement
 
 ## 会话开始
 
-读 `docs/STATUS.md`、`00-vision.md`、`context.md`、`glossary.md`、当前模块 brief、`07-dialogue.md`（S 与 Q）和 `08-decisions.md`（D），用 3～5 行复述当前理解。
+读 `CLAUDE.md`、`docs/team.md`、`docs/STATUS.md`、`00-vision.md`、`context.md`、`glossary.md`、当前模块 brief、`07-dialogue.md`（S 与 Q）和 `08-decisions.md`（D），用 3～5 行复述当前理解。
 
-- 未指定模块：列出 `CLAUDE.md` 第 1 节的模块清单，参考 `STATUS.md` 的下一步，请用户选择；不得自行开始。
+- 项目文件缺失时：先按下一节“初始化”建立，不凭记忆补，不跳到模块选择。
+- 未指定模块：列出 `00-vision.md` 中已确认的模块清单，参考 `STATUS.md` 的下一步，请用户选择；不得自行开始。
 - 已指定模块：把模块选择记为 `S-xxx`，进入 1.0。
+
+## 初始化：从零建立
+
+适用：会话开始时项目文件缺失，或用户要求从零建立。初始化只建立结构、团队信息和项目状态，不写需求、假设、NFR 或验收标准。
+
+1. **检查**：按 `references/file-templates.md` 的文件清单逐项检查，列出存在与缺失；不把缺失当已知，不预建空文件。
+2. **团队与分工**：问清成员、各自负责范围、确认与评审关系。AI 起草 `docs/team.md`，任一成员确认后写入，确认人和日期写在文件内；不写项目 D/CR，不记需求 S。
+3. **项目状态**：AI 根据已存在文件提议当前阶段（全新项目默认“需求分析尚未开始”）、下一步、迭代节奏和待决事项；任一成员确认后，按 `file-templates.md` 创建或更新 `docs/STATUS.md`，确认人和日期写在文件内；不写项目 D/CR。
+4. **愿景**：按 `references/vision-guide.md` 第 4 节初次建立。回答先记 `S`；第一次需要 `S` 时按 `file-templates.md` 创建 `07-dialogue.md`，第一次需要 `D` 时创建 `08-decisions.md`。
+5. **角色**：按 `references/persona-guide.md` 第 4 节初次建立。
+6. **后续文件**：不预建；到达对应阶段时按 `file-templates.md` 创建。任何一步缺输入就停下提问，不跳到下一步。
+
+文件建立时机：
+
+| 文件 | 建立时机 |
+|---|---|
+| `docs/team.md` | 初始化步骤 2 |
+| `docs/STATUS.md` | 初始化步骤 3 |
+| `07-dialogue.md` | 第一次记录 `S` |
+| `08-decisions.md` | 第一次记录 `D` |
+| `00-vision.md` | 初始化步骤 4 |
+| `01-personas.md` | 初始化步骤 5 |
+| `context.md`、`glossary.md` | 第一次知识回填 |
+| `02-backlog.md` | 第一条故事卡 |
+| `03-nfr.md` | 第一条 NFR |
+| `04-hypotheses.md` | 第一张假设卡 |
+| `05-traceability.md` | 第一次确认或交接 |
+| `06-changes.md` | 第一个 CR |
+| `coverage.md`、`coverage-scan.md` | 1b 首次扫描 |
+| `models/` | 第一次建模 |
+| `design-notes.md` | 第一条 `DSN-` |
 
 ## 信息充足性判断
 
@@ -79,7 +112,7 @@ description: Use when creating, modifying, reviewing, or handing off requirement
 
 1. AI 提议更新 `STATUS.md`，列出改什么、为什么。
 2. 任一成员确认。
-3. AI 写入 `STATUS.md`，来源记 `D`。
+3. AI 写入 `STATUS.md`；确认人和日期写在文件内；不写项目 D/CR。
 4. 不改需求、不建 CR。
 
 ## 七步流程
@@ -170,12 +203,13 @@ AI 只能把需求写入“候选”；已确认、已拒绝、变更中由人�
 | 用“合理补全”填空 | 红旗；改写成问题 |
 | 需求里写心跳、死信队列、幂等 | 技术方案不属于需求，移交设计 |
 | 把“比如登录”写成登录需求 | 先确认是举例还是真实需求 |
-| 故事写“以便支撑诊断/画像”，但来源只说了记录 | 价值也必须有来源，否则写 Q |
+| 故事写“以便支撑后续分析”，但来源只说了记录 | 价值也必须有来源，否则写 Q |
 | 竞品有这个功能，所以我们也要 | P 只生成 Q，竞品有 ≠ 我们要 |
 | 需求里写知识追踪、缓存、微服务 | 设计细节进 `DSN-`，不进需求 |
 
 ## 模板
 
+- 文件模板：`references/file-templates.md`
 - 故事卡：`references/story-card.md`
 - 假设卡：`references/hypothesis-card.md`
 - NFR 清单：`references/nfr-checklist.md`
