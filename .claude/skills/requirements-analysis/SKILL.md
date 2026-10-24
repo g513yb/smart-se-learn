@@ -54,7 +54,7 @@ description: Use when creating, modifying, reviewing, or handing off requirement
 读 `CLAUDE.md`、`docs/team.md`、`docs/STATUS.md`、`00-vision.md`、`context.md`、`glossary.md`、当前模块 brief、`07-dialogue.md`（S 与 Q）和 `08-decisions.md`（D），用 3～5 行复述当前理解。
 
 - 项目文件缺失时：先按下一节“初始化”建立，不凭记忆补，不跳到模块选择。
-- 未指定模块：列出 `00-vision.md` 中已确认的模块清单，参考 `STATUS.md` 的下一步，请用户选择；不得自行开始。
+- 未指定模块：列出 `00-vision.md` 范围节中明确列出的模块/能力；没有明确列出则先补范围 Q，不自行归纳。参考 `STATUS.md` 的下一步，请用户选择；不得自行开始。
 - 已指定模块：把模块选择记为 `S-xxx`，进入 1.0。
 
 ## 初始化：从零建立
@@ -63,7 +63,7 @@ description: Use when creating, modifying, reviewing, or handing off requirement
 
 1. **检查**：按 `references/file-templates.md` 的文件清单逐项检查，列出存在与缺失；不把缺失当已知，不预建空文件。
 2. **团队与分工**：问清成员、各自负责范围、确认与评审关系。AI 起草 `docs/team.md`，任一成员确认后写入，确认人和日期写在文件内；不写项目 D/CR，不记需求 S。
-3. **项目状态**：AI 根据已存在文件提议当前阶段（全新项目默认“需求分析尚未开始”）、下一步、迭代节奏和待决事项；任一成员确认后，按 `file-templates.md` 创建或更新 `docs/STATUS.md`，确认人和日期写在文件内；不写项目 D/CR。
+3. **项目状态**：AI 按 `file-lifecycle.md` 的 STATUS 阶段判定表，从已有文件推导当前阶段（全新项目默认“需求分析尚未开始”）、下一步、迭代节奏和待决事项；任一成员确认后，按 `file-templates.md` 创建或更新 `docs/STATUS.md`，确认人和日期写在文件内；不写项目 D/CR。
 4. **愿景**：按 `references/vision-guide.md` 第 4 节初次建立。回答先记 `S`；第一次需要 `S` 时按 `file-templates.md` 创建 `07-dialogue.md`，第一次需要 `D` 时创建 `08-decisions.md`。
 5. **角色**：按 `references/persona-guide.md` 第 4 节初次建立。
 6. **后续文件**：不预建；到达对应阶段时按 `file-templates.md` 创建。任何一步缺输入就停下提问，不跳到下一步。
@@ -88,6 +88,8 @@ description: Use when creating, modifying, reviewing, or handing off requirement
 | `models/` | 第一次建模 |
 | `design-notes.md` | 第一条 `DSN-` |
 
+各时机的输入、判定和确认方式见 `file-lifecycle.md` 对应文件节。
+
 ## 信息充足性判断
 
 不做整体“信息够了”的判断，按关卡逐项判断：
@@ -104,7 +106,7 @@ description: Use when creating, modifying, reviewing, or handing off requirement
 
 每一关只认显式引用；没有引用就是缺口。模板只规定结构和可写内容，不预填答案；“待确认”是合法状态。
 
-各文件的读取、写入、来源和写法见 `references/file-io.md`。
+各文件的定位、结构、AI 填充步骤和判定规则见 `references/file-lifecycle.md`；阶段读写见 `references/file-io.md`。
 
 ## 会话结束
 
@@ -118,13 +120,13 @@ description: Use when creating, modifying, reviewing, or handing off requirement
 ## 七步流程
 
 1. **采集**：
-   - **1.0 模块边界确认**：从 `00-vision.md`、`context.md`、`glossary.md`、`02-backlog.md` 确认模块边界。不明确时，记 S（用户选择的模块），先查 `07-dialogue.md` 是否已有范围 Q；有则引用原 Q，没有则生成一个范围 Q。无论哪种都停止；不做 brief、不做 27 项扫描、不生成功能问题。明确后进入 1a。如果 `00-vision.md` 尚未建立，先按 `references/vision-guide.md` 初次建立，再判断模块边界。
+   - **1.0 模块边界确认**：从 `00-vision.md`、`context.md`、`glossary.md`、`02-backlog.md` 确认模块边界。边界明确 = 范围明确列出本期包含的模块/能力，且明确不包含什么；只有模块名不算明确。不明确时，记 S（用户选择的模块），先查 `07-dialogue.md` 是否已有范围 Q；有则引用原 Q，没有则生成一个范围 Q。无论哪种都停止；不做 brief、不做 27 项扫描、不生成功能问题。明确后进入 1a。如果 `00-vision.md` 尚未建立，先按 `references/vision-guide.md` 初次建立，再判断模块边界。模块缩写由用户在边界确认时指定，记入 `glossary.md`；未指定则问，不自行缩写。
    - **1a 对标调研**（边界明确后）：按 `references/research-guide.md` 选 1～2 个平台，产出 brief；brief 是主动提问的依据，只提取用户可见行为，设计细节进 `docs/design-notes.md`
    - **1b 模块首访**：按 `references/coverage-scan.md` 的 27 个子提问逐项判断，产出 `docs/requirements/coverage-scan.md` 记录并更新 `coverage.md`；扫描只产出问题，不产出需求
    - **1c 缺口提问**：按 `references/gap-check.md` 对当前单位逐项检查；原话先记 S，只对“未覆盖 / 部分覆盖 / 无法判断 / 缺依据”生成 Q，进 `07-dialogue.md`；已有待答 Q 不重复。角色相关分析前，如果 `01-personas.md` 尚未建立，先按 `references/persona-guide.md` 初次建立
    - 文档缺失或为空时先报告，不凭记忆补全
 2. **成形**：按 `references/extraction-guide.md` 提取；用故事卡（`references/story-card.md`），“原文摘录”必填；先过冲突检查（`references/conflict-check.md`）并记录结论；过 DoR；写 Given-When-Then；来源填 `S-/D-/R-`。
-3. **排序**：MoSCoW 或价值-成本；给出建议，优先级由人决定并记录。
+3. **排序**：MoSCoW 或价值-成本；AI 可给建议，建议必须标“建议”，不得写成 D；优先级由人决定并记录。
 4. **建模**：只在文字说不清流程、状态、规则、交互或边界时画；查 `references/modeling-guide.md` 选最小图型。每个图元素必须有 `S/D/R/REQ` 来源；未回答的 Q、P、I 不作来源；设计进 `DSN-`。保存到 `models/<模块>-<主题>.mmd`，文件头写问题、来源、状态；另一人评审。
 5. **评审**：另一人执行五查（`references/review-checklist.md`）：完整、一致、可测、可追踪、有据。
 6. **验收标准确认**：标准可执行、无歧义后，需求可移交设计；到此为止。
@@ -189,7 +191,7 @@ AI 只能把需求写入“候选”；已确认、已拒绝、变更中由人�
 
 ## DoR / DoD
 
-**DoR**：故事卡字段齐全；有角色与价值、有来源、有可测验收标准、无未决依赖、一个迭代内可完成。
+**DoR**：故事卡字段齐全；有角色与价值、有来源、有可测验收标准、无未决依赖、一个迭代内可完成。可执行检查见 `references/file-lifecycle.md` 的 `02-backlog.md` 节。
 **DoD（需求侧）**：验收标准通过、五查通过、追踪矩阵已回填。
 **模块门禁**：模块进入评审前，`coverage.md` 中该模块适用的六维不得为“未问”。
 
@@ -209,6 +211,7 @@ AI 只能把需求写入“候选”；已确认、已拒绝、变更中由人�
 
 ## 模板
 
+- 文件生命周期：`references/file-lifecycle.md`
 - 文件模板：`references/file-templates.md`
 - 故事卡：`references/story-card.md`
 - 假设卡：`references/hypothesis-card.md`
