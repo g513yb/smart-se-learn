@@ -4,21 +4,21 @@
 
 ## 1. 开发方式
 
-敏捷开发，按周迭代。需求何时算准备好、何时算完成，以及评审与变更的具体做法，见 requirements skill。
+敏捷开发，按周迭代。需求何时算准备好、何时算完成，以及确认与变更的具体做法，见 requirements skill。
 
 ## 2. 文档地图
 
 | 路径 | 用途 | 何时读 |
 |---|---|---|
 | `.claude/skills/requirements-analysis/SKILL.md` | 需求分析流程 | 执行需求流程时 |
-| `docs/team.md` | 团队成员与负责范围 | 需要确认负责人、评审人时 |
+| `docs/team.md` | 团队成员与负责范围 | 需要分配负责人时 |
 | `docs/STATUS.md` | 当前阶段与待决事项 | 会话开始、不确定进度时 |
 | `docs/requirements/00-vision.md` | 愿景、范围、目标与非目标 | 开始任何需求讨论前 |
 | `docs/requirements/context.md` | 业务上下文（已确认的流程、角色、对象、规则） | 开始分析前、每次问答后 |
 | `docs/requirements/01-personas.md` | 角色、目标、场景 | 讨论用户相关需求前 |
 | `docs/requirements/02-backlog.md` | 需求故事池 | 新增、修改或领取需求前 |
-| `docs/requirements/coverage.md` | 模块覆盖矩阵 | 模块首访、模块评审前 |
-| `docs/requirements/coverage-scan.md` | 模块六维扫描记录 | 模块首访、模块评审前 |
+| `docs/requirements/coverage.md` | 模块覆盖矩阵 | 模块首访、模块状态变化时 |
+| `docs/requirements/coverage-scan.md` | 模块六维扫描记录 | 模块首访、模块状态变化时 |
 | `docs/requirements/03-nfr.md` | 非功能需求 | 涉及性能、安全、可用性时 |
 | `docs/requirements/04-hypotheses.md` | 研究假设卡 | 涉及探索型模块或 AI 能力前 |
 | `docs/requirements/05-traceability.md` | 需求追踪矩阵 | 改动需求或提交代码前 |
@@ -41,11 +41,12 @@
 
 ## 4. 协作工作原则
 
-- 团队名单与负责范围见 `docs/team.md`；每条需求设一名负责人和一名评审人，交叉评审，不得自审。任一成员可确认任意需求，记录确认人和日期；确认不等于评审。
+- 团队名单与负责范围见 `docs/team.md`；每条需求设一名负责人。
+- AI 可以生成、起草和提议内容；最终写入文件前必须由人确认，有依据不等于可以写入。确认在对话中完成，不记录确认人/日期；无评审环节。
 - 不臆造需求：没有来源的内容标记为待确认，不直接写成需求。
 - 每条需求可溯源到明确来源（访谈、场景走查、既有文档或明确决策）。
 - 修改已确认的需求或基线文档前先确认，再记录变更。
-- 项目基线（`00-vision.md`、`01-personas.md`）的变更由任一成员一人确认，记 `D` 和变更记录；另一人评审。本文件及 skill 的管理/流程规则变更记录在文件本身，不写项目 D/CR。临时规则：当前文件存储无应用层，暂不要求两人会签。
-- 需求文档只放标题、指针、表头和项目内容；流程、管理、确认、评审规则只放本文件和 skill references。需求文档里出现规则文字，视为缺陷：移到 skill，不在原处新增。
+- 项目基线（`00-vision.md`、`01-personas.md`）的变更由人确认，记 `D` 和变更记录。本文件及 skill 的管理/流程规则变更记录在文件本身，不写项目 D/CR。
+- 需求文档只放标题、指针、表头和项目内容；流程、管理、确认规则只放本文件和 skill references。需求文档里出现规则文字，视为缺陷：移到 skill，不在原处新增。
 - 管理文件（本文件、skill references）只写结构、字段、含义、规则和通用示例；项目概念、事实、需求和具体角色只写项目文件。示例必须通用，或明确标注“非本项目”。
 - 本文件不记录会过期的信息；进度与待决事项一律看 `docs/STATUS.md`。
