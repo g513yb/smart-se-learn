@@ -63,7 +63,7 @@ description: Use when creating, modifying, confirming, or handing off requiremen
 
 1. **检查**：按 `references/file-templates.md` 的文件清单逐项检查，列出存在与缺失；不把缺失当已知，不预建空文件。
 2. **团队与分工**：问清成员和各自负责范围。人的回答记为 `S`；AI 从回答中提取并起草 `docs/team.md`，可提出范围建议；人确认后写入。不写项目 D/CR；不记录确认人/日期。
-3. **项目状态**：AI 按 `file-lifecycle.md` 的 STATUS 阶段判定表，从已有文件推导当前阶段（全新项目默认“需求分析尚未开始”）、下一步、迭代节奏和待决事项；人确认后，按 `file-templates.md` 创建或更新 `docs/STATUS.md`；不写项目 D/CR；不记录确认人/日期。
+3. **项目状态**：AI 按 `file-lifecycle.md` 的 STATUS 阶段判定表，从已有文件推导当前阶段（全新项目默认“愿景建立中”）、下一步和待决事项；人确认后，按 `file-templates.md` 创建或更新 `docs/STATUS.md`；不写项目 D/CR；不记录确认人/日期。
 4. **愿景**：按 `references/vision-guide.md` 第 4 节初次建立。回答先记 `S`；第一次需要 `S` 时按 `file-templates.md` 创建 `07-dialogue.md`，第一次需要 `D` 时创建 `08-decisions.md`。
 5. **角色**：按 `references/persona-guide.md` 第 4 节初次建立。
 6. **后续文件**：不预建；到达对应阶段时按 `file-templates.md` 创建。任何一步缺输入就停下提问，不跳到下一步。
@@ -106,7 +106,7 @@ description: Use when creating, modifying, confirming, or handing off requiremen
 
 每一关只认显式引用；没有引用就是缺口。模板只规定结构和可写内容，不预填答案；“待确认”是合法状态。
 
-各文件的定位、结构、AI 填充步骤和判定规则见 `references/file-lifecycle.md`；阶段读写见 `references/file-io.md`。
+各文件的定位、结构、AI 填充步骤、判定规则和阶段读写见 `references/file-lifecycle.md`。
 
 ## 会话结束
 
@@ -156,7 +156,7 @@ description: Use when creating, modifying, confirming, or handing off requiremen
 ## 对话循环
 
 1. 用户用自然语言描述需求，允许不符合故事卡格式。
-1.5. AI 做写入前变更检查：新陈述与已确认条目不一致时，先展示两边原文并请用户选择，不直接写文件；细则见 `vision-guide.md` 第 6 节和 `file-io.md` 写入总则。
+1.5. AI 做写入前变更检查：新陈述与已确认条目不一致时，先展示两边原文并请用户选择，不直接写文件；细则见 `vision-guide.md` 第 6 节和 `file-lifecycle.md` 的写入规则。
 2. AI 按 `gap-check.md` 诊断缺口，输出“能确认的 / 需要问的 / 不能写的”。
 3. AI 基于本模块 brief 主动补充遗漏，必须带 `P` 依据。
 4. 用户回答 Q；把回答记为 S-xxx，并回填 `context.md` / `glossary.md`。
@@ -220,7 +220,6 @@ AI 只能把需求写入“候选”；已确认、已拒绝、变更中由人�
 - 愿景规则：`references/vision-guide.md`
 - 角色规则：`references/persona-guide.md`
 - 决策记录：`references/decision-log.md`
-- 文件读写：`references/file-io.md`
 - 建模指南：`references/modeling-guide.md`
 - 提问手册：`references/elicitation-playbook.md`
 - 缺口检查：`references/gap-check.md`

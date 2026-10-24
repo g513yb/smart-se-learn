@@ -132,7 +132,7 @@ AI 不能因为用户没说“修改”，就把新说法当成新角色或直�
 
 - `S` / `Q`：`docs/requirements/07-dialogue.md`；格式见 `dialogue-log.md`
 - `D`：`docs/requirements/08-decisions.md`；格式见 `decision-log.md`
-- `CR`：`docs/requirements/06-changes.md`；表头见该文件，填写规则见 `file-io.md`
+- `CR`：`docs/requirements/06-changes.md`；表头见该文件，填写规则见 `file-lifecycle.md`
 - 角色确认：`01-personas.md` 的角色清单表
 - AI 只能记录，不能替人填确认人、决策人、评审人、日期
 

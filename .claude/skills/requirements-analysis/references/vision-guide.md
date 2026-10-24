@@ -133,7 +133,7 @@ AI 不能因为用户没说“修改”，就把新说法当成新需求或直�
 
 - `S` / `Q`：`docs/requirements/07-dialogue.md`；格式见 `dialogue-log.md`
 - `D`：`docs/requirements/08-decisions.md`；格式见 `decision-log.md`
-- `CR`：`docs/requirements/06-changes.md`；表头见该文件，填写规则见 `file-io.md`
+- `CR`：`docs/requirements/06-changes.md`；表头见该文件，填写规则见 `file-lifecycle.md`
 - 逐节确认：`00-vision.md` 的“章节确认”表
 - AI 只能记录，不能替人填确认人、决策人、评审人、日期
 
