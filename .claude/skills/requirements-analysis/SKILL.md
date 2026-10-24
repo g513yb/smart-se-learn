@@ -21,13 +21,13 @@ description: Use when creating, modifying, reviewing, or handing off requirement
 3. **未知入清单**：不确定项写入 `docs/requirements/07-dialogue.md` 的 Q 表，编号并指派确认人，不留在正文里当假设。
 4. **示例保护**：出现“比如 / 例如 / 类似”时，先确认是举例还是真实需求；举例不得直接升级为需求。
 5. **禁止越界**：不自行添加未提及的角色、字段、业务规则、非功能指标、技术方案。
-6. **确认权在人**：AI 不得把需求标为“已确认”。与 AI 对话的成员可确认，任一成员也可确认任意需求；记录确认人和日期。确认不等于评审，评审由另一人执行。
+6. **确认权在人**：AI 不得把需求标为“已确认”。任一成员可确认任意需求；记录确认人和日期。确认不等于评审，评审由另一人执行。
 7. **设计隔离**：需求只写“做什么、为什么”；技术方案、算法、架构、库选型写入 `docs/design-notes.md`（`DSN-`），不进入需求文档。
 8. **主动发现必有依据**：AI 主动提出的需求候选必须引用 `P/S/D/R`，并关联对应的 Q；没有依据的只能作为开放问题，不得写成需求候选。
 9. **整理不等于补全**：把用户原话整理成故事卡时，只能重述、拆分、归一化用语；不得补充原话中没有的角色、字段、规则、指标。缺的字段写成 Q 或“未决问题”，不写成内容。
 10. **知识回填**：Q 被回答后，把回答记为 S-xxx；稳定的业务事实写入 `context.md`，术语写入 `glossary.md`。回答不得只停留在问答记录里。
 11. **冲突检查必做**：新增需求、变更需求、转为“已确认”前，按 `references/conflict-check.md` 检查并记录结论；不得把“未发现”写成“没有冲突”。
-12. **基线变更由人确认**：项目基线（愿景、范围、非目标、角色）的修改，由任一成员一人确认；记录 `D`（确认人姓名、日期）和 `06-changes.md` 的 CR；另一人可评审；AI 不得自行修改。`CLAUDE.md` 和 skill 的管理/流程规则变更记录在文件本身，不写项目 D/CR。临时规则：当前文件存储无应用层，暂不要求两人会签。愿景细则见 `references/vision-guide.md`。
+12. **基线变更由人确认**：项目基线（愿景、范围、非目标、角色）的修改，由任一成员一人确认；记录 `D`（确认人姓名、日期）和 `06-changes.md` 的 CR；初次建立记 D、不建 CR；另一人评审；AI 不得自行修改。`CLAUDE.md` 和 skill 的管理/流程规则变更记录在文件本身，不写项目 D/CR。临时规则：当前文件存储无应用层，暂不要求两人会签。愿景细则见 `references/vision-guide.md`。
 13. **文档边界**：需求文档只放标题、指针、表头和项目内容；流程、管理、确认、评审规则只放 `CLAUDE.md` 和 skill references。需求文档里出现规则文字，视为缺陷：移到 skill，不在原处新增。
 
 违反字面规则即违反规则本意。
@@ -50,7 +50,7 @@ description: Use when creating, modifying, reviewing, or handing off requirement
 
 ## 会话开始
 
-读 `docs/STATUS.md`、`00-vision.md`、`context.md`、`glossary.md`、当前模块 brief 和 `07-dialogue.md`（S 与 Q），用 3～5 行复述当前理解。
+读 `docs/STATUS.md`、`00-vision.md`、`context.md`、`glossary.md`、当前模块 brief、`07-dialogue.md`（S 与 Q）和 `08-decisions.md`（D），用 3～5 行复述当前理解。
 
 - 未指定模块：列出 `CLAUDE.md` 第 1 节的模块清单，参考 `STATUS.md` 的下一步，请用户选择；不得自行开始。
 - 已指定模块：把模块选择记为 `S-xxx`，进入 1.0。
@@ -67,7 +67,7 @@ description: Use when creating, modifying, reviewing, or handing off requirement
 | 1b | 27 个子提问是否各有显式引用 | 无引用即未覆盖，生成 Q |
 | 1c | 四问和故事卡字段是否各有显式引用 | 无引用即缺口，生成 Q |
 | 成形 | DoR 是否通过 | 留在候选 |
-| 评审 | 五查 + 用户确认 | 退回或保持候选 |
+| 评审 | 五查 + 任一成员确认 | 退回或保持候选 |
 
 每一关只认显式引用；没有引用就是缺口。模板只规定结构和可写内容，不预填答案；“待确认”是合法状态。
 
@@ -78,14 +78,14 @@ description: Use when creating, modifying, reviewing, or handing off requirement
 如阶段、下一步或模块状态发生变化：
 
 1. AI 提议更新 `STATUS.md`，列出改什么、为什么。
-2. 与 AI 对话的成员确认。
+2. 任一成员确认。
 3. AI 写入 `STATUS.md`，来源记 `D`。
 4. 不改需求、不建 CR。
 
 ## 七步流程
 
 1. **采集**：
-   - **1.0 模块边界确认**：从 `00-vision.md`、`context.md`、`glossary.md`、`02-backlog.md` 确认模块边界。不明确时，记 S（用户选择的模块），先查 `07-dialogue.md` 是否已有范围 Q；有则引用原 Q，没有则生成一个范围 Q。无论哪种都停止；不做 brief、不做 27 项扫描、不生成功能问题。明确后进入 1a。
+   - **1.0 模块边界确认**：从 `00-vision.md`、`context.md`、`glossary.md`、`02-backlog.md` 确认模块边界。不明确时，记 S（用户选择的模块），先查 `07-dialogue.md` 是否已有范围 Q；有则引用原 Q，没有则生成一个范围 Q。无论哪种都停止；不做 brief、不做 27 项扫描、不生成功能问题。明确后进入 1a。如果 `00-vision.md` 尚未建立，先按 `references/vision-guide.md` 初次建立，再判断模块边界。
    - **1a 对标调研**（边界明确后）：按 `references/research-guide.md` 选 1～2 个平台，产出 brief；brief 是主动提问的依据，只提取用户可见行为，设计细节进 `docs/design-notes.md`
    - **1b 模块首访**：按 `references/coverage-scan.md` 的 27 个子提问逐项判断，产出 `docs/requirements/coverage-scan.md` 记录并更新 `coverage.md`；扫描只产出问题，不产出需求
    - **1c 缺口提问**：按 `references/gap-check.md` 对当前单位逐项检查；原话先记 S，只对“未覆盖 / 部分覆盖 / 无法判断 / 缺依据”生成 Q，进 `07-dialogue.md`；已有待答 Q 不重复
@@ -122,11 +122,12 @@ description: Use when creating, modifying, reviewing, or handing off requirement
 ## 对话循环
 
 1. 用户用自然语言描述需求，允许不符合故事卡格式。
+1.5. AI 做写入前变更检查：新陈述与已确认条目不一致时，先展示两边原文并请用户选择，不直接写文件；细则见 `vision-guide.md` 第 6 节和 `file-io.md` 写入总则。
 2. AI 按 `gap-check.md` 诊断缺口，输出“能确认的 / 需要问的 / 不能写的”。
 3. AI 基于本模块 brief 主动补充遗漏，必须带 `P` 依据。
 4. 用户回答 Q；把回答记为 S-xxx，并回填 `context.md` / `glossary.md`。
 5. AI 把用户原话整理成故事卡：只重述、拆分、归一化用语，不新增内容。
-6. 另一人评审，与 AI 对话的成员最终确认。
+6. 另一人评审，任一成员最终确认。
 7. 进入下一个模块或下一组问题。
 
 一次只处理一个模块或一组问题，不一次性生成整份需求文档。
