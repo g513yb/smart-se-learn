@@ -47,7 +47,7 @@
 | 会话开始 | `CLAUDE.md`、`docs/team.md`、`STATUS.md`、`00-vision.md`、`context.md`、`glossary.md`、当前模块 brief、`07-dialogue.md`、`08-decisions.md` | 模块选择 S（如已指定） | 用户原话 | 未指定模块只列清单，不开始 |
 | 愿景初次建立 | `00-vision.md`、`context.md`、`07-dialogue.md`、`08-decisions.md` | `00-vision.md`（六节、版本表）、`07-dialogue.md`（S）、`08-decisions.md`（D） | S/D/R | AI 起草；人逐节确认；初次记 D、不建 CR |
 | 1.0 边界 | `00-vision.md`、`context.md`、`glossary.md`、`02-backlog.md`、`07-dialogue.md` | S（模块选择）、范围 Q 或引用已有 Q | S + 缺失文档 | 边界不清停止；不做 brief/扫描 |
-| 角色初次建立 | `00-vision.md`、`context.md`、`01-personas.md`、`07-dialogue.md`、`08-decisions.md` | `01-personas.md`（角色清单、角色卡、版本表）、`07-dialogue.md`（S）、`08-decisions.md`（D） | S/D/R | AI 起草；人逐角色确认；初次记 D、不建 CR |
+| 角色初次建立 | `00-vision.md`、`context.md`、`01-personas.md`、`07-dialogue.md` | `01-personas.md`（角色清单、角色卡、版本表）、`07-dialogue.md`（S） | S/R | AI 起草；人逐角色确认；初次写 v1 |
 | 1a brief | `platform-candidates.md`、`sources/INDEX.md`、模块 brief、`07-dialogue.md` | `research/<模块>.md`、Q、`DSN-` | P | 只用已批准/部分验证；六段 + 完整性检查 |
 | 1b 扫描 | `coverage-scan.md`、`coverage.md`、`02-backlog.md`、`07-dialogue.md`、`context.md`、`glossary.md`、`03-nfr.md`、`00-vision.md`、模块 brief | `coverage-scan.md`、`coverage.md`、Q | 显式引用 / 固定提问（coverage-scan.md） / P | 27 项；无引用即未覆盖；只出 Q |
 | 1c 缺口 | S/Q、`02-backlog.md`、`context.md`、`glossary.md`、`03-nfr.md`、`00-vision.md`、`01-personas.md`、`story-card.md` | S、Q、`context.md`、`glossary.md` | 用户/S + 检查项 | 先记 S；无引用即缺口；不重复 Q |
@@ -63,7 +63,7 @@
 | 知识回填 | S/Q | `context.md`、`glossary.md` | S | 只写已确认事实 |
 | 状态 | `STATUS.md` | `STATUS.md` | `S` | 阶段 / 下一步 / 模块状态变化时；AI 提议，人在对话中确认后写 |
 | 会话结束 | `STATUS.md`、当前模块 Q | `STATUS.md` | `S` | 只在阶段 / 下一步 / 模块状态变化时写；不改需求、不建 CR |
-| 项目基线变更 | `00-vision.md`、`01-personas.md`、`06-changes.md`、`07-dialogue.md`、`05-traceability.md` | 基线文档、`07-dialogue.md`（S）、`08-decisions.md`（D）、`06-changes.md`（CR）、`05-traceability.md` | S/D | 任一成员确认；变更记 D+CR；初次建立记 D、不建 CR；AI 不自行修改 |
+| 项目基线变更 | `00-vision.md`、`01-personas.md`、`07-dialogue.md`、`05-traceability.md` | 基线文档、`07-dialogue.md`（S）、`05-traceability.md` | S/D/R | 按 `vision-guide.md` / `persona-guide.md` 的规则；AI 不自行修改 |
 | 管理规则变更 | `CLAUDE.md`、skill references | 规则文件 | D | 记录在文件本身；不写项目 D/CR |
 
 ## 三、文件明细
@@ -75,14 +75,14 @@
 | `STATUS.md` | 会话开始、不确定进度时 | 阶段 / 下一步 / 模块状态变化；人在对话中确认后 | `S` | AI 提议；不改需求、不建 CR；不记录确认人/日期 |
 | `00-vision.md` | 会话开始、1.0、愿景初次建立、冲突、基线变更前 | 愿景初次建立、基线变更后 | S/D/R | 按 `vision-guide.md` 六节填写；更新版本表；AI 起草；变更记 D + CR；初次建立记 D、不建 CR；不记录评审/确认字段 |
 | `context.md` | 会话开始、1b、1c、冲突 | Q 确认后 | S | 追加 / 更新事实，标来源 |
-| `01-personas.md` | 1c、冲突 | 角色初次建立、角色确认后 | S/D/R | 按 `persona-guide.md` 五节角色卡；角色清单含状态；变更记 D + CR；初次建立记 D、不建 CR；不记录评审/确认字段 |
+| `01-personas.md` | 1c、冲突 | 角色初次建立、角色确认后 | S/R | 按 `persona-guide.md` 五节角色卡；角色清单只列已确认角色；变更递增版本；初次写 v1；不记录评审/确认字段 |
 | `02-backlog.md` | 会话开始、1b、1c、成形、冲突 | 故事卡、优先级、状态 | S/D/R | 追加 / 更新行；字段见模板；不记录评审/确认字段 |
 | `03-nfr.md` | 1b、冲突 | NFR 确认后 | S/D/R | 追加指标；无来源写 Q；人确认后写入；不记录评审/确认字段 |
 | `04-hypotheses.md` | 1b、成形 | 假设卡创建 | S/D/R | P 只帮助设计；指标/方式/失败判据缺一不写；人确认后写入；不记录评审/确认字段 |
 | `05-traceability.md` | 冲突、变更、评审、交接 | 确认 / 设计 / 提交 / 测试 / 交接 / 基线变更 | backlog / design / commits / tests | 追加 / 更新行 |
 | `06-changes.md` | 变更、冲突 | 变更 / 冲突决策 | S/D | 追加 CR；前后 / 影响 / 决策 |
 | `07-dialogue.md` | 会话开始、1.0、愿景初次建立、角色初次建立、1b、1c、成形、基线变更 | S / Q / 回答（含愿景初次建立、角色初次建立、基线变更） | 用户 / AI | 追加；回答记 S |
-| `08-decisions.md` | 冲突、排序、愿景初次建立、角色初次建立、基线变更 | 人做决定时（含愿景初次建立、角色初次建立、基线变更） | S/Q/REQ/R/P | 追加 D；AI 只记录；规则见 `decision-log.md` |
+| `08-decisions.md` | 冲突、排序、愿景初次建立、其他明确决策 | 人做决定时 | S/Q/REQ/R/P | 追加 D；AI 只记录；规则见 `decision-log.md` |
 | `coverage.md` | 1b、会话开始 | 扫描后 | 扫描记录 | 更新六维 |
 | `coverage-scan.md` | 1b | 扫描后 | 27 项判断 | 填表 / 聚合 |
 | `glossary.md` | 会话开始、1b、1c | Q 确认后 | S | 更新术语 |
@@ -171,22 +171,23 @@
 
 - **定位**：定义平台有哪些角色、各自目标、场景、痛点和关系。不写功能、流程步骤、权限矩阵、界面、指标。
 - **建立**：初始化步骤 5；按 `persona-guide.md` 第 4 节初次建立；变更按第 5 节。
-- **读取**：1c 角色相关检查、冲突检查、评审。
-- **写入**：初次建立或变更后；AI 只起草。
-- **结构**：基线元数据、角色清单、角色卡（定义、目标、典型场景、痛点与约束、与其他角色的关系）。
-- **各部分作用**：角色清单说明谁在内、谁不在、谁待确认；角色卡逐角色记录五节内容。
+- **读取**：1c 角色相关检查、冲突检查。
+- **写入**：初次建立或变更后；人确认后 AI 写入。
+- **结构**：基线版本、角色清单、角色卡（定义、目标、典型场景、痛点与约束、与其他角色的关系）。
+- **各部分作用**：角色清单列出已确认角色；角色卡逐角色记录五节内容。
 - **AI 如何完成**：
-  1. 先问角色清单：谁在内、谁不在、谁待确认。
+  1. 先问角色清单：平台有哪些角色？
   2. 每个角色按五节固定问题逐项问。
-  3. 回答记 S；只按 S/D/R 起草，不补内容。
-  4. 人逐角色确认；另一人评审；评审通过记 D。
+  3. 回答记 S；起草时在对话中输出依据；可提出“AI 提议”；文件内容不标来源。
+  4. 人逐角色确认；未确认的角色不写入。
+  5. 全部角色确认后写基线版本 v1。
 - **判定规则**：
   - 角色 vs 外部系统：人会使用或被影响才是角色；系统或组织外部接口写 Q。
   - 角色 vs 权限：角色卡不写权限矩阵；权限进需求或横切问题。
   - 用户提到新角色但未确认：写 Q，不新增角色卡。
   - 场景四分：首次、日常、结束、异常；缺哪条写 Q。
-- **禁止**：编角色、目标、场景、痛点、关系；写功能或解决方案。
-- **确认**：逐角色确认 + 另一人评审 + D；初次不建 CR。
+- **禁止**：把 AI 提议写成已确认内容；写功能或解决方案；未确认就写入。
+- **确认**：人在对话中确认；初次写 v1；变更递增版本；不记录评审/确认字段。
 
 ### 5. `context.md`
 
@@ -367,7 +368,7 @@
 
 - **定位**：记录人的明确决策 D。不写讨论、建议或 AI 判断。
 - **建立**：第一次记录 D。
-- **读取**：冲突检查、排序、愿景/角色初次建立、基线变更。
+- **读取**：冲突检查、排序、愿景初次建立、其他明确决策。
 - **写入**：人做决定时。
 - **结构**：D-ID、日期、决策、依据、决策人、影响需求/文档、状态。
 - **AI 如何完成**：

@@ -27,7 +27,7 @@ description: Use when creating, modifying, confirming, or handing off requiremen
 9. **整理不等于补全**：把用户原话整理成故事卡时，只重述、拆分、归一化用语；原话中没有的角色、字段、规则、指标不得直接写成已确认内容。AI 可以提出补充建议，标为“AI 提议”，写入前由人确认；无法确认的写 Q。
 10. **知识回填**：Q 被回答后，把回答记为 S-xxx；稳定的业务事实写入 `context.md`，术语写入 `glossary.md`。回答不得只停留在问答记录里。
 11. **冲突检查必做**：新增需求、变更需求、转为“已确认”前，按 `references/conflict-check.md` 检查并记录结论；不得把“未发现”写成“没有冲突”。
-12. **基线变更由人确认**：项目基线（愿景、范围、非目标、角色）的修改，由人确认；记录 `D`（决策人姓名、日期）和 `06-changes.md` 的 CR；初次建立记 D、不建 CR；AI 不得自行修改。`CLAUDE.md` 和 skill 的管理/流程规则变更记录在文件本身，不写项目 D/CR。愿景细则见 `references/vision-guide.md`。
+12. **基线变更由人确认**：项目基线（愿景、范围、非目标、角色）的修改，由人确认；具体记录方式见 `references/vision-guide.md` 和 `references/persona-guide.md`；AI 不得自行修改。`CLAUDE.md` 和 skill 的管理/流程规则变更记录在文件本身，不写项目 D/CR。
 13. **文档边界**：需求文档只放标题、指针、表头和项目内容；流程、管理、确认规则只放 `CLAUDE.md` 和 skill references。需求文档里出现规则文字，视为缺陷：移到 skill，不在原处新增。
 14. **管理文件边界**：管理文件只写结构、字段、含义、规则和通用示例；项目概念、事实、需求和具体角色只写项目文件。示例必须通用，或明确标注“非本项目”。
 
