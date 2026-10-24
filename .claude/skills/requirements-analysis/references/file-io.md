@@ -29,6 +29,7 @@
 | 会话开始 | `CLAUDE.md`、`STATUS.md`、`00-vision.md`、`context.md`、`glossary.md`、当前模块 brief、`07-dialogue.md`、`08-decisions.md` | 模块选择 S（如已指定） | 用户原话 | 未指定模块只列清单，不开始 |
 | 愿景初次建立 | `00-vision.md`、`context.md`、`07-dialogue.md`、`08-decisions.md` | `00-vision.md`（六节、章节确认、版本表）、`07-dialogue.md`（S）、`08-decisions.md`（D） | S/D/R | AI 起草；任一成员逐节确认；另一人评审；初次记 D、不建 CR |
 | 1.0 边界 | `00-vision.md`、`context.md`、`glossary.md`、`02-backlog.md`、`07-dialogue.md` | S（模块选择）、范围 Q 或引用已有 Q | S + 缺失文档 | 边界不清停止；不做 brief/扫描 |
+| 角色初次建立 | `00-vision.md`、`context.md`、`01-personas.md`、`07-dialogue.md`、`08-decisions.md` | `01-personas.md`（角色清单、角色卡、版本表）、`07-dialogue.md`（S）、`08-decisions.md`（D） | S/D/R | AI 起草；任一成员逐角色确认；另一人评审；初次记 D、不建 CR |
 | 1a brief | `platform-candidates.md`、`sources/INDEX.md`、模块 brief、`07-dialogue.md` | `research/<模块>.md`、Q、`DSN-` | P | 只用已批准/部分验证；六段 + 完整性检查 |
 | 1b 扫描 | `coverage-scan.md`、`coverage.md`、`02-backlog.md`、`07-dialogue.md`、`context.md`、`glossary.md`、`03-nfr.md`、`00-vision.md`、模块 brief | `coverage-scan.md`、`coverage.md`、Q | 显式引用 / 固定提问（coverage-scan.md） / P | 27 项；无引用即未覆盖；只出 Q |
 | 1c 缺口 | S/Q、`02-backlog.md`、`context.md`、`glossary.md`、`03-nfr.md`、`00-vision.md`、`01-personas.md`、`story-card.md` | S、Q、`context.md`、`glossary.md` | 用户/S + 检查项 | 先记 S；无引用即缺口；不重复 Q |
@@ -56,14 +57,14 @@
 | `STATUS.md` | 会话开始 | 阶段 / 下一步 / 模块状态变化 | D | AI 提议，任一成员确认后更新；不改需求、不建 CR |
 | `00-vision.md` | 会话开始、1.0、愿景初次建立、冲突、基线变更前 | 愿景初次建立、基线变更后 | S/D/R | 按 `vision-guide.md` 六节填写；更新章节确认和版本表；AI 只起草；变更记 D + CR；初次建立记 D、不建 CR；另一人评审；临时一人 |
 | `context.md` | 会话开始、1b、1c、冲突 | Q 确认后 | S | 追加 / 更新事实，标来源 |
-| `01-personas.md` | 1c、冲突 | 角色确认后 | S/D/R | 项目基线变更由任一成员一人确认；变更记 D + CR；初次建立记 D、不建 CR；临时一人 |
+| `01-personas.md` | 1c、冲突 | 角色初次建立、角色确认后 | S/D/R | 按 `persona-guide.md` 五节角色卡；角色清单含状态/确认；变更记 D + CR；初次建立记 D、不建 CR；另一人评审；临时一人 |
 | `02-backlog.md` | 会话开始、1b、1c、成形、冲突 | 故事卡、优先级、评审、确认、状态 | S/D/R | 追加 / 更新行；字段见模板 |
 | `03-nfr.md` | 1b、冲突 | NFR 确认后 | S/D/R | 追加指标；无来源写 Q；评审 + 确认后写评审人/日期、确认人/日期 |
 | `04-hypotheses.md` | 1b、成形 | 假设卡创建 | S/D/R | P 只帮助设计；指标/方式/失败判据缺一不写；评审 + 确认 |
 | `05-traceability.md` | 冲突、变更、评审、交接 | 确认 / 设计 / 提交 / 测试 / 交接 / 基线变更 | backlog / design / commits / tests | 追加 / 更新行 |
 | `06-changes.md` | 变更、冲突 | 变更 / 冲突决策 | S/D | 追加 CR；前后 / 影响 / 决策 |
-| `07-dialogue.md` | 会话开始、1.0、愿景初次建立、1b、1c、成形、基线变更 | S / Q / 回答（含愿景初次建立、基线变更） | 用户 / AI | 追加；回答记 S |
-| `08-decisions.md` | 冲突、排序、愿景初次建立、基线变更 | 人做决定时（含愿景初次建立、基线变更） | S/Q/REQ/R/P | 追加 D；AI 只记录；规则见 `decision-log.md` |
+| `07-dialogue.md` | 会话开始、1.0、愿景初次建立、角色初次建立、1b、1c、成形、基线变更 | S / Q / 回答（含愿景初次建立、角色初次建立、基线变更） | 用户 / AI | 追加；回答记 S |
+| `08-decisions.md` | 冲突、排序、愿景初次建立、角色初次建立、基线变更 | 人做决定时（含愿景初次建立、角色初次建立、基线变更） | S/Q/REQ/R/P | 追加 D；AI 只记录；规则见 `decision-log.md` |
 | `coverage.md` | 1b、会话开始 | 扫描后 | 扫描记录 | 更新六维 |
 | `coverage-scan.md` | 1b | 扫描后 | 27 项判断 | 填表 / 聚合 |
 | `glossary.md` | 会话开始、1b、1c | Q 确认后 | S | 更新术语 |
