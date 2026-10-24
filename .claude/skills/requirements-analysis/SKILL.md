@@ -28,6 +28,7 @@ description: Use when creating, modifying, reviewing, or handing off requirement
 10. **知识回填**：Q 被回答后，把回答记为 S-xxx；稳定的业务事实写入 `context.md`，术语写入 `glossary.md`。回答不得只停留在问答记录里。
 11. **冲突检查必做**：新增需求、变更需求、转为“已确认”前，按 `references/conflict-check.md` 检查并记录结论；不得把“未发现”写成“没有冲突”。
 12. **基线变更由人确认**：项目基线（愿景、范围、非目标、角色）的修改，由任一成员一人确认；记录 `D`（确认人姓名、日期）和 `06-changes.md` 的 CR；另一人可评审；AI 不得自行修改。`CLAUDE.md` 和 skill 的管理/流程规则变更记录在文件本身，不写项目 D/CR。临时规则：当前文件存储无应用层，暂不要求两人会签。愿景细则见 `references/vision-guide.md`。
+13. **文档边界**：需求文档只放标题、指针、表头和项目内容；流程、管理、确认、评审规则只放 `CLAUDE.md` 和 skill references。需求文档里出现规则文字，视为缺陷：移到 skill，不在原处新增。
 
 违反字面规则即违反规则本意。
 
