@@ -21,7 +21,7 @@
 | `docs/requirements/coverage-scan.md` | 模块六维扫描记录 | 模块首访、模块状态变化时 |
 | `docs/requirements/03-nfr.md` | 非功能需求 | 涉及性能、安全、可用性时 |
 | `docs/requirements/07-dialogue.md` | 对话记录：用户原话 S 与缺口问题 Q | 写需求前、遇到任何缺口时 |
-| `docs/requirements/08-decisions.md` | 决策记录（D） | 排序、冲突、基线变更时 |
+| `docs/requirements/08-decisions.md` | 决策记录（D） | 冲突、基线变更、需要决策时 |
 | `docs/requirements/glossary.md` | 术语表 | 需求讨论、命名、接口设计前 |
 | `docs/requirements/models/` | 模型图源（Mermaid） | 需要出图或引用模型前 |
 | `docs/requirements/research/` | 对标调研 brief | 进入新模块、需要参考时 |
