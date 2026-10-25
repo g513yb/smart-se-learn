@@ -20,7 +20,6 @@
 | `docs/requirements/coverage.md` | 模块覆盖矩阵 | 模块首访、模块状态变化时 |
 | `docs/requirements/coverage-scan.md` | 模块六维扫描记录 | 模块首访、模块状态变化时 |
 | `docs/requirements/03-nfr.md` | 非功能需求 | 涉及性能、安全、可用性时 |
-| `docs/requirements/06-changes.md` | 变更记录 | 修改已确认需求前 |
 | `docs/requirements/07-dialogue.md` | 对话记录：用户原话 S 与缺口问题 Q | 写需求前、遇到任何缺口时 |
 | `docs/requirements/08-decisions.md` | 决策记录（D） | 排序、冲突、基线变更时 |
 | `docs/requirements/glossary.md` | 术语表 | 需求讨论、命名、接口设计前 |
@@ -44,7 +43,7 @@
 - 不臆造需求：没有来源的内容标记为待确认，不直接写成需求。
 - 每条需求可溯源到明确来源（访谈、场景走查、既有文档或明确决策）。
 - 修改已确认的需求或基线文档前先确认，再记录变更。
-- 项目基线（`00-vision.md`、`01-personas.md`）的变更由人确认；具体记录方式见对应 skill 规则。本文件及 skill 的管理/流程规则变更记录在文件本身，不写项目 D/CR。
+- 项目基线（`00-vision.md`、`01-personas.md`）的变更由人确认；具体记录方式见对应 skill 规则。本文件及 skill 的管理/流程规则变更记录在文件本身，不写项目 D。
 - 需求文档只放标题、指针、表头和项目内容；流程、管理、确认规则只放本文件和 skill references。需求文档里出现规则文字，视为缺陷：移到 skill，不在原处新增。
 - 管理文件（本文件、skill references）只写结构、字段、含义、规则和通用示例；项目概念、事实、需求和具体角色只写项目文件。示例必须通用，或明确标注“非本项目”。
 - 本文件不记录会过期的信息；进度与待决事项一律看 `docs/STATUS.md`。

@@ -65,17 +65,6 @@
 
 字段与提问见 `nfr-checklist.md`。
 
-## 变更记录 `docs/requirements/06-changes.md`
-
-```markdown
-# 变更记录
-
-| CR-ID | 日期 | 类型 | 目标需求 | 变更前 | 变更后 | 原因 / 依据 | 影响范围 | 冲突检查 | 决策 | 状态 |
-|---|---|---|---|---|---|---|---|---|---|---|
-```
-
-类型与状态见 `file-lifecycle.md`。
-
 ## 对话记录 `docs/requirements/07-dialogue.md`
 
 结构见 `dialogue-log.md`。

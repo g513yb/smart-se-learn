@@ -27,7 +27,7 @@ description: Use when creating, modifying, confirming, or handing off requiremen
 9. **整理不等于补全**：把用户原话整理成故事卡时，只重述、拆分、归一化用语；原话中没有的角色、字段、规则、指标不得直接写成已确认内容。AI 可以提出补充建议，标为“AI 提议”，写入前由人确认；无法确认的写 Q。
 10. **知识回填**：Q 被回答后，把回答记为 S-xxx；其他文件不收录的稳定业务事实写入 `context.md`，术语写入 `glossary.md`；文件内容不标来源。回答不得只停留在问答记录里。
 11. **冲突检查必做**：新增需求、变更需求、转为“已确认”前，按 `references/conflict-check.md` 检查并记录结论；不得把“未发现”写成“没有冲突”。
-12. **基线变更由人确认**：项目基线（愿景、范围、非目标、角色）的修改，由人确认；具体记录方式见 `references/vision-guide.md` 和 `references/persona-guide.md`；AI 不得自行修改。`CLAUDE.md` 和 skill 的管理/流程规则变更记录在文件本身，不写项目 D/CR。
+12. **基线变更由人确认**：项目基线（愿景、范围、非目标、角色）的修改，由人确认；具体记录方式见 `references/vision-guide.md` 和 `references/persona-guide.md`；AI 不得自行修改。`CLAUDE.md` 和 skill 的管理/流程规则变更记录在文件本身，不写项目 D。
 13. **文档边界**：需求文档只放标题、指针、表头和项目内容；流程、管理、确认规则只放 `CLAUDE.md` 和 skill references。需求文档里出现规则文字，视为缺陷：移到 skill，不在原处新增。
 14. **管理文件边界**：管理文件只写结构、字段、含义、规则和通用示例；项目概念、事实、需求和具体角色只写项目文件。示例必须通用，或明确标注“非本项目”。
 
@@ -62,8 +62,8 @@ description: Use when creating, modifying, confirming, or handing off requiremen
 适用：会话开始时项目文件缺失，或用户要求从零建立。初始化只建立结构、团队信息和项目状态，不写需求、假设、NFR 或验收标准。
 
 1. **检查**：按 `references/file-templates.md` 的文件清单逐项检查，列出存在与缺失；不把缺失当已知，不预建空文件。
-2. **团队与分工**：问清成员和各自负责范围。人的回答记为 `S`；AI 从回答中提取并起草 `docs/team.md`，可提出范围建议；人确认后写入。不写项目 D/CR；不记录确认人/日期。
-3. **项目状态**：AI 按 `file-lifecycle.md` 的 STATUS 阶段判定表，从已有文件推导当前阶段（全新项目默认“愿景建立中”）、下一步和待决事项；人确认后，按 `file-templates.md` 创建或更新 `docs/STATUS.md`；不写项目 D/CR；不记录确认人/日期。
+2. **团队与分工**：问清成员和各自负责范围。人的回答记为 `S`；AI 从回答中提取并起草 `docs/team.md`，可提出范围建议；人确认后写入。不写项目 D；不记录确认人/日期。
+3. **项目状态**：AI 按 `file-lifecycle.md` 的 STATUS 阶段判定表，从已有文件推导当前阶段（全新项目默认“愿景建立中”）、下一步和待决事项；人确认后，按 `file-templates.md` 创建或更新 `docs/STATUS.md`；不写项目 D；不记录确认人/日期。
 4. **愿景**：按 `references/vision-guide.md` 第 4 节初次建立。回答先记 `S`；第一次需要 `S` 时按 `file-templates.md` 创建 `07-dialogue.md`，第一次需要 `D` 时创建 `08-decisions.md`。
 5. **角色**：按 `references/persona-guide.md` 第 4 节初次建立。
 6. **后续文件**：不预建；到达对应阶段时按 `file-templates.md` 创建。任何一步缺输入就停下提问，不跳到下一步。
@@ -81,7 +81,6 @@ description: Use when creating, modifying, confirming, or handing off requiremen
 | `context.md`、`glossary.md` | 第一次知识回填 |
 | `02-backlog.md` | 第一条故事卡 |
 | `03-nfr.md` | 第一条 NFR |
-| `06-changes.md` | 第一个 CR |
 | `coverage.md`、`coverage-scan.md` | 1b 首次扫描 |
 | `models/` | 第一次建模 |
 | `design-notes.md` | 第一条 `DSN-` |
@@ -112,8 +111,8 @@ description: Use when creating, modifying, confirming, or handing off requiremen
 
 1. AI 提议更新 `STATUS.md`，列出改什么、为什么。
 2. 任一成员确认。
-3. AI 写入 `STATUS.md`；不写项目 D/CR；不记录确认人/日期。
-4. 不改需求、不建 CR。
+3. AI 写入 `STATUS.md`；不写项目 D；不记录确认人/日期。
+4. 不改需求。
 
 ## 六步流程
 
@@ -128,7 +127,7 @@ description: Use when creating, modifying, confirming, or handing off requiremen
 3. **排序**：MoSCoW 或价值-成本；AI 可给建议，建议必须标“建议”；优先级由人决定；backlog 不记录依据或 D。
 4. **建模**：只在文字说不清流程、状态、规则、交互或边界时画；查 `references/modeling-guide.md` 选最小图型。每个图元素必须有 `S/D/REQ` 来源；未回答的 Q、P、I 不作来源；设计进 `DSN-`。保存到 `models/<模块>-<主题>.mmd`，文件头写问题、来源、状态；人确认后写入。
 5. **确认**：AI 提交最终内容、验收标准和依据（有/无来源、哪些是 AI 生成）；人确认后写入；无评审环节；标准可执行、无歧义后，需求可移交设计。
-6. **变更**：冲突检查 → 影响分析 → `06-changes.md` → 更新目标文件；冲突处理见 `references/conflict-check.md`。
+6. **变更**：冲突检查 → 影响分析 → 更新目标文件；冲突处理见 `references/conflict-check.md`。
 
 ## 成形四问
 
@@ -180,7 +179,7 @@ description: Use when creating, modifying, confirming, or handing off requiremen
 
 ## 写入与更新
 
-AI 只写人确认后的内容；更新故事前先确认。不设状态字段，不记录评审/确认/D/CR。
+AI 只写人确认后的内容；更新故事前先确认。不设状态字段，不记录评审/确认/D。
 
 ## DoR / DoD
 
