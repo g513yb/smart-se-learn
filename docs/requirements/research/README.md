@@ -10,4 +10,6 @@
 
 Brief 固定六段：检索问题、来源清单、需求观察、设计线索、与本项目的差异、生成的 Q。
 
-规则见 `.claude/skills/requirements-analysis/references/research-guide.md`。`P-` 只生成 Q，设计细节进 `docs/design-notes.md`。
+规则见 `.claude/skills/requirements-analysis/references/research-guide.md`。`P` 可以生成 Q，也可以支撑 AI 草案；草案需人确认，设计细节进 `docs/design-notes.md`。
+
+快速调研不写正式 brief，输出 P 观察 + Q + 可选 AI 草案；草案标“AI 提议”，人确认后写入。
