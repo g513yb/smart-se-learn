@@ -65,17 +65,6 @@
 
 字段与提问见 `nfr-checklist.md`。
 
-## 假设 `docs/requirements/04-hypotheses.md`
-
-```markdown
-# 研究假设
-
-| ID | 假设 | 来源 | 验证指标 | 验证方式 | 失败判据 | 决策 | 关联需求 | 状态 |
-|---|---|---|---|---|---|---|---|---|
-```
-
-字段定义见 `hypothesis-card.md`。
-
 ## 追踪矩阵 `docs/requirements/05-traceability.md`
 
 ```markdown

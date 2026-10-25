@@ -81,7 +81,6 @@ description: Use when creating, modifying, confirming, or handing off requiremen
 | `context.md`、`glossary.md` | 第一次知识回填 |
 | `02-backlog.md` | 第一条故事卡 |
 | `03-nfr.md` | 第一条 NFR |
-| `04-hypotheses.md` | 第一张假设卡 |
 | `05-traceability.md` | 第一次确认或交接 |
 | `06-changes.md` | 第一个 CR |
 | `coverage.md`、`coverage-scan.md` | 1b 首次扫描 |
@@ -209,7 +208,6 @@ AI 只写人确认后的内容；更新故事前先确认。不设状态字段�
 - 文件生命周期：`references/file-lifecycle.md`
 - 文件模板：`references/file-templates.md`
 - 故事卡：`references/story-card.md`
-- 假设卡：`references/hypothesis-card.md`
 - NFR 清单：`references/nfr-checklist.md`
 - 对话记录：`references/dialogue-log.md`
 - 提取规则：`references/extraction-guide.md`
