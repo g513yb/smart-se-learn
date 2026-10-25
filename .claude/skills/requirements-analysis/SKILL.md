@@ -126,7 +126,7 @@ description: Use when creating, modifying, confirming, or handing off requiremen
    - 文档缺失或为空时先报告，不凭记忆补全
 2. **成形**：按 `references/extraction-guide.md` 提取；用故事卡（`references/story-card.md`）；先过冲突检查（`references/conflict-check.md`）并记录结论；过 DoR；写 Given-When-Then；AI 在对话中输出时标明依据，文件内容不标来源。
 3. **排序**：MoSCoW 或价值-成本；AI 可给建议，建议必须标“建议”；优先级由人决定；backlog 不记录依据或 D。
-4. **建模**：只在文字说不清流程、状态、规则、交互或边界时画；查 `references/modeling-guide.md` 选最小图型。每个图元素必须有 `S/D/REQ` 来源；未回答的 Q、P、I 不作来源；设计进 `DSN-`。保存到 `models/<模块>-<主题>.mmd`，文件头写问题、来源、状态；人确认后写入。
+4. **建模**：只在文字说不清流程、状态、规则、交互或边界时画；查 `references/modeling-guide.md` 选最小图型。每个图元素必须有 `S/D/REQ` 来源；未回答的 Q、P、I 不作来源；设计进 `DSN-`。保存到 `models/<模块>-<主题>.mmd`，文件头写问题、来源；人确认后写入。
 5. **确认**：AI 提交最终内容、验收标准和依据（有/无来源、哪些是 AI 生成）；人确认后写入；无评审环节；标准可执行、无歧义后，需求可移交设计。
 6. **变更**：冲突检查 → 影响分析 → 更新目标文件；冲突处理见 `references/conflict-check.md`。
 
