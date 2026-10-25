@@ -124,6 +124,7 @@ description: Use when creating, modifying, confirming, or handing off requiremen
    - **1a 对标调研**（边界明确后）：按 `references/research-guide.md` 选 1～2 个平台，产出 brief；brief 是主动提问的依据，只提取用户可见行为，设计细节进 `docs/design-notes.md`
    - **1b 模块首访**：按 `references/coverage-scan.md` 的 27 个子提问逐项判断，产出 `docs/requirements/coverage-scan.md` 记录并更新 `coverage.md`；扫描只产出问题，不产出需求
    - **1c 缺口提问**：按 `references/gap-check.md` 对当前单位逐项检查；原话先记 S，只对“未覆盖 / 部分覆盖 / 无法判断 / 缺依据”生成 Q，进 `07-dialogue.md`；已有待答 Q 不重复。角色相关分析前，如果 `01-personas.md` 尚未建立，先按 `references/persona-guide.md` 初次建立
+   - **NFR**：与 backlog 并行；模块边界明确后，1b 质量维度或用户提出质量要求时即可进入 NFR；不等待 backlog 完成；写 NFR 前检查相关 backlog 故事
    - 文档缺失或为空时先报告，不凭记忆补全
 2. **成形**：按 `references/extraction-guide.md` 提取；用故事卡（`references/story-card.md`）；先过冲突检查（`references/conflict-check.md`）并记录结论；过 DoR；写 Given-When-Then；AI 在对话中输出时标明依据，文件内容不标来源。
 3. **排序**：MoSCoW 或价值-成本；AI 可给建议，建议必须标“建议”；优先级由人决定；backlog 不记录依据或 D。
