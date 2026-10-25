@@ -20,7 +20,7 @@
 
 ## 一个模块：六维扫描
 
-进入模块前按 `coverage-scan.md` 执行。本表是维度摘要；每个维度拆成 27 个固定子提问，逐项判断。扫描记录写入 `docs/requirements/coverage-scan.md`，状态写入 `coverage.md`。六维清单是闭集，不得自行增加清单外问题。
+进入模块前按 `coverage-scan.md` 执行。本表是维度摘要；每个维度拆成 27 个固定子提问，逐项判断。扫描记录和状态都写入 `docs/requirements/coverage-scan.md` 的模块覆盖总览。六维清单是闭集，不得自行增加清单外问题。
 
 | 维度 | 扫描问题 |
 |---|---|

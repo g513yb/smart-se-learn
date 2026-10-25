@@ -73,18 +73,17 @@
 
 结构见 `decision-log.md`。
 
-## 覆盖矩阵 `docs/requirements/coverage.md`
+## 覆盖扫描 `docs/requirements/coverage-scan.md`
+
+### 模块覆盖总览
 
 ```markdown
-# 模块覆盖矩阵
-
 | 模块 | 角色 | 旅程 | 对象 | 规则 | 横切 | 质量 | 对标调研 |
 |---|---|---|---|---|---|---|---|
+| | | | | | | | |
 ```
 
-状态定义见 `coverage-scan.md` 第 7 节。
-
-## 覆盖扫描 `docs/requirements/coverage-scan.md`
+状态定义见 `coverage-scan.md` 第 7 节；“对标调研”列的“已调研”只表示有 brief。
 
 每个模块一节：
 
@@ -118,7 +117,7 @@
 
 - 新增 S（如有用户原话）：
 - 新增 Q：
-- 更新 `coverage.md`：
+- 更新模块覆盖总览：
 ```
 
 ## 术语表 `docs/requirements/glossary.md`

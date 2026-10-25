@@ -50,14 +50,14 @@
 | 1.0 边界 | `00-vision.md`、`context.md`、`glossary.md`、`02-backlog.md`、`07-dialogue.md` | S（模块选择）、范围 Q 或引用已有 Q | S + 缺失文档 | 边界不清停止；不做 brief/扫描 |
 | 角色初次建立 | `00-vision.md`、`context.md`、`01-personas.md`、`07-dialogue.md` | `01-personas.md`（角色清单、角色卡、版本表）、`07-dialogue.md`（S） | S | AI 起草；人逐角色确认；初次写 v1 |
 | 1a brief | `platform-candidates.md`、`sources/INDEX.md`、模块 brief、`07-dialogue.md` | `research/<模块>.md`、Q、`DSN-` | P | 只用已批准/部分验证；六段 + 完整性检查 |
-| 1b 扫描 | `coverage-scan.md`、`coverage.md`、`02-backlog.md`、`07-dialogue.md`、`context.md`、`glossary.md`、`03-nfr.md`、`00-vision.md`、模块 brief | `coverage-scan.md`、`coverage.md`、Q | 显式引用 / 固定提问（coverage-scan.md） / P | 27 项；无引用即未覆盖；只出 Q |
+| 1b 扫描 | `coverage-scan.md`、`02-backlog.md`、`07-dialogue.md`、`context.md`、`glossary.md`、`03-nfr.md`、`00-vision.md`、模块 brief | `coverage-scan.md`、Q | 显式引用 / 固定提问（coverage-scan.md） / P | 27 项；无引用即未覆盖；只出 Q |
 | 1c 缺口 | S/Q、`02-backlog.md`、`context.md`、`glossary.md`、`03-nfr.md`、`00-vision.md`、`01-personas.md`、`story-card.md` | S、Q、`context.md`、`glossary.md` | 用户/S + 检查项 | 先记 S；无引用即缺口；不重复 Q |
 | 成形 | S/Q、`story-card.md`、`conflict-check.md`、`02-backlog.md`、`03-nfr.md`、`00-vision.md`、`glossary.md`、`context.md`、`design-notes.md` | backlog 故事卡、冲突检查、Q、`DSN-` | S/D + 冲突证据 | 只重述不新增；DoR；冲突检查 |
 | 排序 | `02-backlog.md` | 优先级 | 人的决定 | 人决定；AI 不决定 |
 | 建模 | `modeling-guide.md` | `models/*.mmd` | 需求 / 上下文 | 一图一文件；按需 |
 | 确认 | `02-backlog.md` | backlog 内容；最终内容由人在对话中确认 | S | AI 不能标已确认；不记录确认人/日期；无评审 |
 | 变更 | 目标需求、`02-backlog.md`、`conflict-check.md`、`03-nfr.md`、`00-vision.md`、`glossary.md`、`context.md`、`07-dialogue.md` | backlog 字段、D、`07-dialogue.md`（S） | S/D + 影响 / 冲突 | 冲突检查、影响分析、人确认后更新目标文件；需要决策时记 D；旧版本保留 |
-| 冲突 | `conflict-check.md`、`02-backlog.md`、`03-nfr.md`、`00-vision.md`、`glossary.md`、`context.md` | 冲突记录、Q、CR、D | S/Q/REQ/P | 不选边；确定冲突停止 |
+| 冲突 | `conflict-check.md`、`02-backlog.md`、`03-nfr.md`、`00-vision.md`、`glossary.md`、`context.md` | 冲突记录、Q、D | S/Q/REQ/P | 不选边；确定冲突停止 |
 | NFR | `nfr-checklist.md`、`02-backlog.md` | `03-nfr.md`、Q | S/D | 可与成形并行；写前检查相关 backlog 故事；无依据写 Q；人确认后写入；文件不标来源；不记录状态/评审/确认/D字段 |
 | 知识回填 | S/Q | `context.md`、`glossary.md` | S | 只写其他文件不收录的已确认事实 |
 | 状态 | `STATUS.md` | `STATUS.md` | `S` | 阶段 / 下一步 / 模块状态变化时；AI 提议，人在对话中确认后写 |
@@ -79,8 +79,7 @@
 | `03-nfr.md` | 1b、冲突 | 人确认 NFR 后 | S/D | 追加类别/指标/场景与边界；无依据写 Q；文件不标来源；不记录状态/评审/确认/D字段 |
 | `07-dialogue.md` | 会话开始、1.0、愿景初次建立、角色初次建立、1b、1c、成形、基线变更 | S / Q / 回答（含愿景初次建立、角色初次建立、基线变更） | 用户 / AI | 追加；回答记 S |
 | `08-decisions.md` | 冲突、愿景初次建立、其他明确决策 | 人做决定时 | S/Q/REQ/P | 追加 D；AI 只记录；规则见 `decision-log.md` |
-| `coverage.md` | 1b、会话开始 | 扫描后 | 扫描记录 | 更新六维 |
-| `coverage-scan.md` | 1b | 扫描后 | 27 项判断 | 填表 / 聚合 |
+| `coverage-scan.md` | 会话开始（总览）、1b、模块确认前 | 扫描后 | 27 项判断 | 填表 / 更新模块覆盖总览 |
 | `glossary.md` | 会话开始、1b、1c | 人确认术语后 | S | 更新术语；文件不标来源 |
 | `models/` | 建模 | 需要出图 | 需求 / 上下文 | Mermaid 一图一文件 |
 | `research/<模块>.md` | 1a、1b | 1a brief | P | 六段 + 完整性检查 |
@@ -321,7 +320,7 @@
 - **S 矛盾处理**：
   - 发现 S 前后矛盾时，暂停提取、提问和写入，先处理矛盾。
   - 同一主体、同一属性、不同结论 → 矛盾候选；展示双方，人选择。
-  - 修改 S 前做影响分析：按 `dialogue-log.md` 的影响分析清单逐文件检查（vision、personas、context、glossary、backlog、NFR、models、design-notes、decisions、coverage、dialogue、research），每个文件给出受影响/不受影响/无相关条目/无法判断；无法判断写 Q；只有人确认的条目才更新。
+  - 修改 S 前做影响分析：按 `dialogue-log.md` 的影响分析清单逐文件检查（vision、personas、context、glossary、backlog、NFR、models、design-notes、decisions、coverage-scan、dialogue、research），每个文件给出受影响/不受影响/无相关条目/无法判断；无法判断写 Q；只有人确认的条目才更新。
   - 只有人确认的条目才更新；AI 不自行判定谁取代谁。
   - 详细规则见 `dialogue-log.md`“S 矛盾处理”。
 - **禁止**：把 Q 当来源；改写原话；编原话或回答。
@@ -345,48 +344,27 @@
 - **禁止**：AI 替人决定；把 AI 建议写成 D。
 - **确认**：状态“已决定/已废弃”。
 
-### 11. `coverage.md`
-
-- **定位**：记录模块六维覆盖状态。不写需求。
-- **建立**：1b 首次扫描。
-- **读取**：会话开始、1b、模块评审前。
-- **写入**：1b 扫描后。
-- **结构**：模块、角色、旅程、对象、规则、横切、质量、对标调研。
-- **AI 如何完成**：
-  1. 模块清单来自 `00-vision.md` 的范围；愿景缺失先建立。
-  2. 按 `coverage-scan.md` 第 7 节计算每维状态。
-  3. 只写状态，不写需求。
-- **判定规则**：
-  - 任一子提问未覆盖 → 该维“未问”；建 Q 后“已问待答”。
-  - 全部适用项由确认需求覆盖 → “有需求”。
-  - 全部适用项已覆盖（需求或已确认知识） → “已确认”。
-  - 任一无法判断 → “无法判断”。
-  - 全部不适用 → “不适用”。
-  - “对标调研”列“已调研”只表示有 brief，不表示覆盖。
-- **禁止**：用 P 证明覆盖；把“未问”写成“已问待答”。
-- **确认**：扫描人记录；模块评审前检查。
-
-### 12. `coverage-scan.md`
+### 11. `coverage-scan.md`
 
 - **定位**：记录 27 项扫描的逐项证据和缺口。不写需求。
 - **建立**：1b 首次扫描。
-- **读取**：1b。
+- **读取**：会话开始（只读模块覆盖总览）、1b、模块确认前。
 - **写入**：扫描后。
-- **结构**：模块头、输入清单、扫描记录、维度聚合、清单外建议、输出。
+- **结构**：模块覆盖总览、模块头、输入清单、扫描记录、维度聚合、清单外建议、输出。
 - **AI 如何完成**：
   1. 前置检查：1.0 通过、边界明确、输入可用；不通过则停止。
-  2. 逐项查显式引用：S、REQ、R、NFR、context、glossary、Q；P 只帮助提问。
+  2. 逐项查显式引用：S、REQ、NFR、D、context、glossary、已写入文件、Q；P 只帮助提问。
   3. 分类；无引用即未覆盖；生成 Q。
-  4. 聚合到 `coverage.md`。
+  4. 聚合到本文件的模块覆盖总览。
 - **判定规则**：
   - 每个非“未覆盖”结论必须有显式编号；没有就是未覆盖。
   - 部分覆盖或未覆盖 → 生成 Q；已问待答 → 不重复。
   - 不适用必须有明确排除声明；AI 自判不算。
   - 27 项是闭集；清单外建议需用户批准。
 - **禁止**：写需求或故事卡；把 P 当覆盖依据；用“行业常见”补。
-- **确认**：扫描人；模块评审前检查。
+- **确认**：扫描人记录；模块确认前检查。
 
-### 13. `models/`
+### 12. `models/`
 
 - **定位**：用图回答文字说不清的问题。不写设计或架构。
 - **建立**：第一次建模；满足 `modeling-guide.md` 的触发条件时。
@@ -411,7 +389,7 @@
 - **禁止**：画未确认内容；把设计图画进需求模型。
 - **确认**：另一人评审。
 
-### 14. `design-notes.md`
+### 13. `design-notes.md`
 
 - **定位**：记录设计线索（怎么做），供设计阶段参考。不进入需求。
 - **建立**：第一条 DSN。
@@ -429,7 +407,7 @@
 - **禁止**：把 DSN 写成需求；把需求写进设计线索。
 - **确认**：设计阶段参考；不要求需求评审。
 
-### 15. `research/<模块>.md`
+### 14. `research/<模块>.md`
 
 - **定位**：记录 P 来源的用户可见行为观察，用于生成 Q。不是需求。
 - **建立**：1.0 通过后的 1a。
@@ -449,7 +427,7 @@
 - **禁止**：把 P 写成需求、验收标准或优先级；整段复制。
 - **确认**：brief 不是需求，不要求需求确认。
 
-### 16. `research/sources/INDEX.md`、`research/platform-candidates.md`
+### 15. `research/sources/INDEX.md`、`research/platform-candidates.md`
 
 - **定位**：登记 P 来源及验证状态。不写需求。
 - **建立**：调研前或调研时。
@@ -467,7 +445,7 @@
 - **禁止**：把候选或排除来源写进 brief；伪造可达性。
 - **确认**：用户批准候选来源。
 
-### 17. 写入与更新（跨文件）
+### 16. 写入与更新（跨文件）
 
 - AI 只写人确认后的内容；更新故事前先确认。
 - 不设状态字段，不记录评审/确认/D。

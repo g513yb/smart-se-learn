@@ -17,8 +17,7 @@
 | `docs/requirements/context.md` | 业务上下文（其他文件不收录的已确认稳定事实） | 开始分析前、每次问答后 |
 | `docs/requirements/01-personas.md` | 角色、目标、场景 | 讨论用户相关需求前 |
 | `docs/requirements/02-backlog.md` | 需求故事池 | 新增、修改或领取需求前 |
-| `docs/requirements/coverage.md` | 模块覆盖矩阵 | 模块首访、模块状态变化时 |
-| `docs/requirements/coverage-scan.md` | 模块六维扫描记录 | 模块首访、模块状态变化时 |
+| `docs/requirements/coverage-scan.md` | 模块六维扫描记录与覆盖总览 | 模块首访、模块状态变化时 |
 | `docs/requirements/03-nfr.md` | 非功能需求 | 涉及性能、安全、可用性时 |
 | `docs/requirements/07-dialogue.md` | 对话记录：用户原话 S 与缺口问题 Q | 写需求前、遇到任何缺口时 |
 | `docs/requirements/08-decisions.md` | 决策记录（D） | 冲突、基线变更、需要决策时 |

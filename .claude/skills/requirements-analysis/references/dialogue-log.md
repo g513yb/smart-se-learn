@@ -86,7 +86,7 @@ AI 不替人选择。
 | `models/` | 图元素、状态、流程、模型来源 |
 | `design-notes.md` | DSN 的假设、适用阶段、备注 |
 | `08-decisions.md` | 基于旧 S 的决策 D |
-| `coverage.md`、`coverage-scan.md` | 覆盖状态、关联 Q |
+| `coverage-scan.md` | 覆盖状态、关联 Q |
 | `07-dialogue.md` | 其他 S/Q、关联列 |
 | `research/` | 外部证据不修改；与 S 冲突时写 Q |
 
