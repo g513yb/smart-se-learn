@@ -125,8 +125,8 @@ description: Use when creating, modifying, confirming, or handing off requiremen
    - **1b 模块首访**：按 `references/coverage-scan.md` 的 27 个子提问逐项判断，产出 `docs/requirements/coverage-scan.md` 记录并更新 `coverage.md`；扫描只产出问题，不产出需求
    - **1c 缺口提问**：按 `references/gap-check.md` 对当前单位逐项检查；原话先记 S，只对“未覆盖 / 部分覆盖 / 无法判断 / 缺依据”生成 Q，进 `07-dialogue.md`；已有待答 Q 不重复。角色相关分析前，如果 `01-personas.md` 尚未建立，先按 `references/persona-guide.md` 初次建立
    - 文档缺失或为空时先报告，不凭记忆补全
-2. **成形**：按 `references/extraction-guide.md` 提取；用故事卡（`references/story-card.md`），“原文摘录”必填；先过冲突检查（`references/conflict-check.md`）并记录结论；过 DoR；写 Given-When-Then；AI 在对话中输出时标明依据，文件内容不标来源。
-3. **排序**：MoSCoW 或价值-成本；AI 可给建议，建议必须标“建议”，不得写成 D；优先级由人决定并记录。
+2. **成形**：按 `references/extraction-guide.md` 提取；用故事卡（`references/story-card.md`）；先过冲突检查（`references/conflict-check.md`）并记录结论；过 DoR；写 Given-When-Then；AI 在对话中输出时标明依据，文件内容不标来源。
+3. **排序**：MoSCoW 或价值-成本；AI 可给建议，建议必须标“建议”；优先级由人决定；backlog 不记录依据或 D。
 4. **建模**：只在文字说不清流程、状态、规则、交互或边界时画；查 `references/modeling-guide.md` 选最小图型。每个图元素必须有 `S/D/REQ` 来源；未回答的 Q、P、I 不作来源；设计进 `DSN-`。保存到 `models/<模块>-<主题>.mmd`，文件头写问题、来源、状态；人确认后写入。
 5. **确认**：AI 提交最终内容、验收标准和依据（有/无来源、哪些是 AI 生成）；人确认后写入；无评审环节；标准可执行、无歧义后，需求可移交设计。
 6. **变更**：冲突检查 → 影响分析 → `06-changes.md` → 回填 `05-traceability.md`；冲突处理见 `references/conflict-check.md`。
@@ -179,19 +179,13 @@ description: Use when creating, modifying, confirming, or handing off requiremen
 
 详细清单与记录格式见 `references/conflict-check.md`。
 
-## 状态流转
+## 写入与更新
 
-候选 → 已确认 → 开发中 → 已验收 → 已废弃
-候选 → 已拒绝
-已确认 / 开发中 → 变更中 → 已确认 / 开发中 / 已废弃
-
-进入“已确认”：最终内容经人确认，确认记为 S；状态由人更新；不记录评审/确认字段。
-“已拒绝”由人决定并记 D；“变更中”表示已确认或开发中的需求正在变更，重新确认后回到原状态或废弃。
-AI 只能把需求写入“候选”；已确认、已拒绝、变更中由人决定并记录。
+AI 只写人确认后的内容；更新故事前先确认。不设状态字段，不记录评审/确认/D/CR。
 
 ## DoR / DoD
 
-**DoR**：故事卡字段齐全；有角色与价值、有依据（`S/D` 或人的确认）、有可测验收标准、无未决依赖、一个迭代内可完成。可执行检查见 `references/file-lifecycle.md` 的 `02-backlog.md` 节。
+**DoR**：故事卡字段齐全；有角色与价值、有依据（`S/D` 或人的确认）、有可测验收标准、一个迭代内可完成。可执行检查见 `references/file-lifecycle.md` 的 `02-backlog.md` 节。
 **DoD（需求侧）**：验收标准经人确认、追踪矩阵已回填。
 **模块门禁**：模块进入确认前，`coverage.md` 中该模块适用的六维不得为“未问”。
 
