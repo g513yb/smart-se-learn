@@ -52,18 +52,17 @@
 | 1a brief | `platform-candidates.md`、`sources/INDEX.md`、模块 brief、`07-dialogue.md` | `research/<模块>.md`、Q、`DSN-` | P | 只用已批准/部分验证；六段 + 完整性检查 |
 | 1b 扫描 | `coverage-scan.md`、`coverage.md`、`02-backlog.md`、`07-dialogue.md`、`context.md`、`glossary.md`、`03-nfr.md`、`00-vision.md`、模块 brief | `coverage-scan.md`、`coverage.md`、Q | 显式引用 / 固定提问（coverage-scan.md） / P | 27 项；无引用即未覆盖；只出 Q |
 | 1c 缺口 | S/Q、`02-backlog.md`、`context.md`、`glossary.md`、`03-nfr.md`、`00-vision.md`、`01-personas.md`、`story-card.md` | S、Q、`context.md`、`glossary.md` | 用户/S + 检查项 | 先记 S；无引用即缺口；不重复 Q |
-| 成形 | S/Q、`story-card.md`、`conflict-check.md`、`02-backlog.md`、`03-nfr.md`、`00-vision.md`、`glossary.md`、`context.md`、`05-traceability.md`、`design-notes.md` | backlog 故事卡、冲突检查、Q、`DSN-` | S/D + 冲突证据 | 只重述不新增；DoR；冲突检查 |
+| 成形 | S/Q、`story-card.md`、`conflict-check.md`、`02-backlog.md`、`03-nfr.md`、`00-vision.md`、`glossary.md`、`context.md`、`design-notes.md` | backlog 故事卡、冲突检查、Q、`DSN-` | S/D + 冲突证据 | 只重述不新增；DoR；冲突检查 |
 | 排序 | `02-backlog.md` | 优先级 | 人的决定 | 人决定；AI 不决定 |
 | 建模 | `modeling-guide.md` | `models/*.mmd` | 需求 / 上下文 | 一图一文件；按需 |
-| 确认 | `02-backlog.md`、`05-traceability.md` | backlog 内容、traceability；最终内容由人在对话中确认 | S | AI 不能标已确认；不记录确认人/日期；无评审 |
-| 交接 | `02-backlog.md`、`05-traceability.md` | traceability 交接 | 人的确认 | AC 可执行后移交 |
-| 变更 | 目标需求、`06-changes.md`、`05-traceability.md`、`02-backlog.md`、`conflict-check.md`、`03-nfr.md`、`00-vision.md`、`glossary.md`、`context.md`、`07-dialogue.md` | CR、backlog 字段、traceability、D、`07-dialogue.md`（S） | S/D + 影响 / 冲突 | 前后、影响、决策；旧版本保留 |
-| 冲突 | `conflict-check.md`、`02-backlog.md`、`03-nfr.md`、`00-vision.md`、`glossary.md`、`context.md`、`05-traceability.md` | 冲突记录、Q、CR、D | S/Q/REQ/P | 不选边；确定冲突停止 |
+| 确认 | `02-backlog.md` | backlog 内容；最终内容由人在对话中确认 | S | AI 不能标已确认；不记录确认人/日期；无评审 |
+| 变更 | 目标需求、`06-changes.md`、`02-backlog.md`、`conflict-check.md`、`03-nfr.md`、`00-vision.md`、`glossary.md`、`context.md`、`07-dialogue.md` | CR、backlog 字段、D、`07-dialogue.md`（S） | S/D + 影响 / 冲突 | 前后、影响、决策；旧版本保留 |
+| 冲突 | `conflict-check.md`、`02-backlog.md`、`03-nfr.md`、`00-vision.md`、`glossary.md`、`context.md` | 冲突记录、Q、CR、D | S/Q/REQ/P | 不选边；确定冲突停止 |
 | NFR | `nfr-checklist.md`、`02-backlog.md` | `03-nfr.md`、Q | S/D | 可与成形并行；写前检查相关 backlog 故事；无依据写 Q；人确认后写入；文件不标来源；不记录状态/评审/确认/D/CR字段 |
 | 知识回填 | S/Q | `context.md`、`glossary.md` | S | 只写其他文件不收录的已确认事实 |
 | 状态 | `STATUS.md` | `STATUS.md` | `S` | 阶段 / 下一步 / 模块状态变化时；AI 提议，人在对话中确认后写 |
 | 会话结束 | `STATUS.md`、当前模块 Q | `STATUS.md` | `S` | 只在阶段 / 下一步 / 模块状态变化时写；不改需求、不建 CR |
-| 项目基线变更 | `00-vision.md`、`01-personas.md`、`07-dialogue.md`、`05-traceability.md` | 基线文档、`07-dialogue.md`（S）、`05-traceability.md` | S/D | 按 `vision-guide.md` / `persona-guide.md` 的规则；AI 不自行修改 |
+| 项目基线变更 | `00-vision.md`、`01-personas.md`、`07-dialogue.md` | 基线文档、`07-dialogue.md`（S） | S/D | 按 `vision-guide.md` / `persona-guide.md` 的规则；AI 不自行修改 |
 | 管理规则变更 | `CLAUDE.md`、skill references | 规则文件 | D | 记录在文件本身；不写项目 D/CR |
 
 ## 三、文件明细
@@ -78,7 +77,6 @@
 | `01-personas.md` | 1c、冲突 | 角色初次建立、角色确认后 | S | 按 `persona-guide.md` 五节角色卡；角色清单只列已确认角色；变更递增版本；初次写 v1；不记录评审/确认字段 |
 | `02-backlog.md` | 会话开始、1b、1c、成形、冲突 | 故事卡、优先级、依赖 | S/D | 追加 / 更新行；字段见模板；不记录状态/评审/确认/D/CR字段 |
 | `03-nfr.md` | 1b、冲突 | 人确认 NFR 后 | S/D | 追加类别/指标/场景与边界；无依据写 Q；文件不标来源；不记录状态/评审/确认/D/CR字段 |
-| `05-traceability.md` | 冲突、变更、评审、交接 | 确认 / 设计 / 提交 / 测试 / 交接 / 基线变更 | backlog / design / commits / tests | 追加 / 更新行 |
 | `06-changes.md` | 变更、冲突 | 变更 / 冲突决策 | S/D | 追加 CR；前后 / 影响 / 决策 |
 | `07-dialogue.md` | 会话开始、1.0、愿景初次建立、角色初次建立、1b、1c、成形、基线变更 | S / Q / 回答（含愿景初次建立、角色初次建立、基线变更） | 用户 / AI | 追加；回答记 S |
 | `08-decisions.md` | 冲突、愿景初次建立、其他明确决策 | 人做决定时 | S/Q/REQ/P | 追加 D；AI 只记录；规则见 `decision-log.md` |
@@ -300,26 +298,7 @@
 - **禁止**：编阈值；把设计目标写成需求；把 P 当依据；未确认就写入。
 - **确认**：人确认后写入；变更按对话确认后更新；不记录评审/确认/状态/D/CR 字段。
 
-### 9. `05-traceability.md`
-
-- **定位**：记录需求到验收标准、模型、设计、代码、测试、变更和交接的追踪关系。不写需求内容。
-- **建立**：第一次确认或交接。
-- **读取**：冲突检查、变更、评审、交接。
-- **写入**：确认、设计、提交、测试、交接或基线变更后。
-- **结构**：需求 ID、验收标准、模型、设计、代码提交、测试、变更记录、交接、状态。
-- **AI 如何完成**：
-  1. 只填人能提供或工件中明确写出 REQ ID 的链接。
-  2. 没有链接写“待确认”。
-  3. 状态用本文件的状态词表。
-- **判定规则**：
-  - 代码提交或测试只有在提交信息、测试名或工件明确含 REQ ID 时才能关联；否则问人，不猜。
-  - 设计文档必须明确引用 REQ ID；否则不填。
-  - 变更记录必须引用 CR ID。
-  - 模型必须引用 REQ ID 或 S/D 来源。
-- **禁止**：凭文件名、目录或提交时间推测关联；把“相关”写成“已覆盖”。
-- **确认**：人的确认或交接记录。
-
-### 10. `06-changes.md`
+### 9. `06-changes.md`
 
 - **定位**：记录已确认需求或项目基线的变更。不写新需求。
 - **建立**：第一个 CR。
@@ -328,10 +307,10 @@
 - **结构**：CR-ID、日期、类型、目标需求、变更前、变更后、原因/依据、影响范围、冲突检查、决策、评审人、评审日期、确认人、确认日期、状态。
 - **AI 如何完成**：
   1. 判断是变更还是澄清。
-  2. 影响分析：按 `conflict-check.md` 的画像检索 backlog、NFR、愿景、术语表、上下文和追踪矩阵；逐条记“受影响/不受影响”及依据；未覆盖项写 Q。
+  2. 影响分析：按 `conflict-check.md` 的画像检索 backlog、NFR、愿景、术语表、上下文；逐条记“受影响/不受影响”及依据；未覆盖项写 Q。
   3. 起草变更前/后。
   4. 任一成员确认并记 D；写 CR，状态“提议”。
-  5. 另一人评审；批准后执行；更新目标文件和追踪矩阵。
+  5. 人确认后执行；更新目标文件。
 - **影响范围**：必须列出受影响的 REQ、文档或模块；没有影响也要写“已检查，未发现”，并列出检查维度。
 - **判定规则**：
   - 改变行为、范围、权限、数据、规则或验收标准 → CR。
@@ -341,7 +320,7 @@
 - **禁止**：AI 自行批准或执行 CR；删除旧版本。
 - **确认**：任一成员确认 + 另一人评审；状态按词表。
 
-### 11. `07-dialogue.md`
+### 10. `07-dialogue.md`
 
 - **定位**：记录用户原话 S 和缺口问题 Q，是需求的原始证据。不写需求。
 - **建立**：第一次记录 S。
@@ -362,7 +341,7 @@
 - **禁止**：把 Q 当来源；改写原话；编说话人、日期或回答。
 - **确认**：S 状态“已记录”；Q 状态“待回答/已确认/已废弃”；AI 不替人确认。
 
-### 12. `08-decisions.md`
+### 11. `08-decisions.md`
 
 - **定位**：记录人的明确决策 D。不写讨论、建议或 AI 判断。
 - **建立**：第一次记录 D。
@@ -380,7 +359,7 @@
 - **禁止**：AI 替人决定；编决策人或日期；把 AI 建议写成 D。
 - **确认**：决策人即确认人；状态“已决定/已废弃”。
 
-### 13. `coverage.md`
+### 12. `coverage.md`
 
 - **定位**：记录模块六维覆盖状态。不写需求。
 - **建立**：1b 首次扫描。
@@ -401,7 +380,7 @@
 - **禁止**：用 P 证明覆盖；把“未问”写成“已问待答”。
 - **确认**：扫描人记录；模块评审前检查。
 
-### 14. `coverage-scan.md`
+### 13. `coverage-scan.md`
 
 - **定位**：记录 27 项扫描的逐项证据和缺口。不写需求。
 - **建立**：1b 首次扫描。
@@ -421,7 +400,7 @@
 - **禁止**：写需求或故事卡；把 P 当覆盖依据；用“行业常见”补。
 - **确认**：扫描人；模块评审前检查。
 
-### 15. `models/`
+### 14. `models/`
 
 - **定位**：用图回答文字说不清的问题。不写设计或架构。
 - **建立**：第一次建模；满足 `modeling-guide.md` 的触发条件时。
@@ -446,7 +425,7 @@
 - **禁止**：画未确认内容；把设计图画进需求模型。
 - **确认**：另一人评审。
 
-### 16. `design-notes.md`
+### 15. `design-notes.md`
 
 - **定位**：记录设计线索（怎么做），供设计阶段参考。不进入需求。
 - **建立**：第一条 DSN。
@@ -464,7 +443,7 @@
 - **禁止**：把 DSN 写成需求；把需求写进设计线索。
 - **确认**：设计阶段参考；不要求需求评审。
 
-### 17. `research/<模块>.md`
+### 16. `research/<模块>.md`
 
 - **定位**：记录 P 来源的用户可见行为观察，用于生成 Q。不是需求。
 - **建立**：1.0 通过后的 1a。
@@ -484,7 +463,7 @@
 - **禁止**：把 P 写成需求、验收标准或优先级；整段复制。
 - **确认**：brief 不是需求，不要求需求确认。
 
-### 18. `research/sources/INDEX.md`、`research/platform-candidates.md`
+### 17. `research/sources/INDEX.md`、`research/platform-candidates.md`
 
 - **定位**：登记 P 来源及验证状态。不写需求。
 - **建立**：调研前或调研时。
@@ -502,7 +481,7 @@
 - **禁止**：把候选或排除来源写进 brief；伪造可达性。
 - **确认**：用户批准候选来源。
 
-### 19. 写入与更新（跨文件）
+### 18. 写入与更新（跨文件）
 
 - AI 只写人确认后的内容；更新故事前先确认。
 - 不设状态字段，不记录评审/确认/D/CR。

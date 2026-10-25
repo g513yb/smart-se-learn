@@ -81,7 +81,6 @@ description: Use when creating, modifying, confirming, or handing off requiremen
 | `context.md`、`glossary.md` | 第一次知识回填 |
 | `02-backlog.md` | 第一条故事卡 |
 | `03-nfr.md` | 第一条 NFR |
-| `05-traceability.md` | 第一次确认或交接 |
 | `06-changes.md` | 第一个 CR |
 | `coverage.md`、`coverage-scan.md` | 1b 首次扫描 |
 | `models/` | 第一次建模 |
@@ -129,7 +128,7 @@ description: Use when creating, modifying, confirming, or handing off requiremen
 3. **排序**：MoSCoW 或价值-成本；AI 可给建议，建议必须标“建议”；优先级由人决定；backlog 不记录依据或 D。
 4. **建模**：只在文字说不清流程、状态、规则、交互或边界时画；查 `references/modeling-guide.md` 选最小图型。每个图元素必须有 `S/D/REQ` 来源；未回答的 Q、P、I 不作来源；设计进 `DSN-`。保存到 `models/<模块>-<主题>.mmd`，文件头写问题、来源、状态；人确认后写入。
 5. **确认**：AI 提交最终内容、验收标准和依据（有/无来源、哪些是 AI 生成）；人确认后写入；无评审环节；标准可执行、无歧义后，需求可移交设计。
-6. **变更**：冲突检查 → 影响分析 → `06-changes.md` → 回填 `05-traceability.md`；冲突处理见 `references/conflict-check.md`。
+6. **变更**：冲突检查 → 影响分析 → `06-changes.md` → 更新目标文件；冲突处理见 `references/conflict-check.md`。
 
 ## 成形四问
 
@@ -172,7 +171,7 @@ description: Use when creating, modifying, confirming, or handing off requiremen
 新增、变更或转为“已确认”前执行：
 
 1. 提取冲突画像：角色、对象、行为、条件、结果、权限、规则、生命周期、隐私、依赖、范围、术语
-2. 在 backlog、NFR、愿景、术语表、上下文、追踪矩阵中检索重叠条目
+2. 在 backlog、NFR、愿景、术语表、上下文中检索重叠条目
 3. 按十类冲突逐项比对
 4. 结论：确定冲突 / 可能冲突 / 无冲突 / 无法判断
 5. 记录检查维度、比对条目、依据、未覆盖项
@@ -186,7 +185,7 @@ AI 只写人确认后的内容；更新故事前先确认。不设状态字段�
 ## DoR / DoD
 
 **DoR**：故事卡字段齐全；有角色与价值、有依据（`S/D` 或人的确认）、有可测验收标准、依赖已确认或不存在、一个迭代内可完成。可执行检查见 `references/file-lifecycle.md` 的 `02-backlog.md` 节。
-**DoD（需求侧）**：验收标准经人确认、追踪矩阵已回填。
+**DoD（需求侧）**：验收标准经人确认。
 **模块门禁**：模块进入确认前，`coverage.md` 中该模块适用的六维不得为“未问”。
 
 ## 常见错误

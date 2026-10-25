@@ -65,17 +65,6 @@
 
 字段与提问见 `nfr-checklist.md`。
 
-## 追踪矩阵 `docs/requirements/05-traceability.md`
-
-```markdown
-# 需求追踪矩阵
-
-| 需求 ID | 验收标准 | 模型 | 设计 | 代码提交 | 测试 | 变更记录 | 交接 | 状态 |
-|---|---|---|---|---|---|---|---|---|
-```
-
-“模型、设计、代码提交、测试、变更记录、交接”填对应编号或链接；“状态”用 `file-lifecycle.md` 的状态词表。
-
 ## 变更记录 `docs/requirements/06-changes.md`
 
 ```markdown

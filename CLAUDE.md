@@ -20,7 +20,6 @@
 | `docs/requirements/coverage.md` | 模块覆盖矩阵 | 模块首访、模块状态变化时 |
 | `docs/requirements/coverage-scan.md` | 模块六维扫描记录 | 模块首访、模块状态变化时 |
 | `docs/requirements/03-nfr.md` | 非功能需求 | 涉及性能、安全、可用性时 |
-| `docs/requirements/05-traceability.md` | 需求追踪矩阵 | 改动需求或提交代码前 |
 | `docs/requirements/06-changes.md` | 变更记录 | 修改已确认需求前 |
 | `docs/requirements/07-dialogue.md` | 对话记录：用户原话 S 与缺口问题 Q | 写需求前、遇到任何缺口时 |
 | `docs/requirements/08-decisions.md` | 决策记录（D） | 排序、冲突、基线变更时 |
@@ -34,7 +33,7 @@
 ## 3. 文档与建模约定
 
 - 文件与目录使用小写 kebab-case；正文用中文。
-- 编号：需求 `REQ-<模块缩写>-<三位序号>`，用户原话 `S-<三位序号>`，缺口问题 `Q-<三位序号>`，决策 `D-<三位序号>`，参考来源 `P-<三位序号>`，设计线索 `DSN-<三位序号>`；backlog、追踪矩阵、提交信息中使用同一编号。
+- 编号：需求 `REQ-<模块缩写>-<三位序号>`，用户原话 `S-<三位序号>`，缺口问题 `Q-<三位序号>`，决策 `D-<三位序号>`，参考来源 `P-<三位序号>`，设计线索 `DSN-<三位序号>`；backlog、提交信息中使用同一编号。
 - 图统一用 Mermaid 源码存放，一图一文件，文件名与图题一致。
 - 文档和讨论中引用需求一律使用编号。
 
