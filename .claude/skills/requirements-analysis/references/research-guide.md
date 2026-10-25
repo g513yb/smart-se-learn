@@ -4,7 +4,7 @@
 
 ## Brief 的时机
 
-- 来源登记提前：有哪些、是否官方、是否可达，维护在 `platform-candidates.md` 与 `sources/INDEX.md`
+- 来源登记提前：有哪些、是否官方、是否可达，维护在 `sources/INDEX.md`
 - 正式 brief 在模块进入分析前完成：它是 AI 主动发现需求的依据；没有本模块 brief 或快速调研，不得主动提出 P 驱动的需求候选
 - 不要为所有模块提前写 brief；按模块或迭代做，时间盒 30～60 分钟
 
@@ -28,7 +28,7 @@
 |---|---|---|
 | 模块边界 | 1.0 已通过 | 不写 brief |
 | 检索问题 | 模块 + 六维之一 | 先写问题 |
-| 已批准来源 | `platform-candidates.md`、`sources/INDEX.md` | 报告，不做 P 驱动 |
+| 已批准来源 | `sources/INDEX.md` | 报告，不做 P 驱动 |
 | 范围卡 | 本文件 | 未填不检索 |
 
 ## 选择对标

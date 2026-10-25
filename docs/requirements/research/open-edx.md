@@ -12,7 +12,7 @@
 |---|---|---|---|---|---|---|
 | P-003 | Aspects Overview | Open edX Docs | Redwood | https://docs.openedx.org/projects/openedx-aspects/en/open-release-redwood.master/concepts/aspects_overview.html | 2026-10-23 | 官方文档（检索摘要） |
 
-说明：来源为官方文档，HTTP 200，可直接抓取。验证记录见 `platform-candidates.md`。
+说明：来源为官方文档，HTTP 200，可直接抓取。验证记录见 `sources/INDEX.md`。
 
 ## 3. 需求观察（用户可见行为）
 

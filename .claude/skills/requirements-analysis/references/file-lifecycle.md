@@ -49,7 +49,7 @@
 | 愿景初次建立 | `00-vision.md`、`context.md`、`07-dialogue.md`、`08-decisions.md` | `00-vision.md`（六节、版本表）、`07-dialogue.md`（S）、`08-decisions.md`（D） | S/D | AI 起草；人逐节确认；初次记 D |
 | 1.0 边界 | `00-vision.md`、`context.md`、`glossary.md`、`02-backlog.md`、`07-dialogue.md` | S（模块选择）、范围 Q 或引用已有 Q | S + 缺失文档 | 边界不清停止；不做 brief/扫描 |
 | 角色初次建立 | `00-vision.md`、`context.md`、`01-personas.md`、`07-dialogue.md` | `01-personas.md`（角色清单、角色卡、版本表）、`07-dialogue.md`（S） | S | AI 起草；人逐角色确认；初次写 v1 |
-| 1a brief | `platform-candidates.md`、`sources/INDEX.md`、模块 brief、`07-dialogue.md` | `research/<模块>.md`、Q、`DSN-` | P | 只用已批准/部分验证；六段 + 完整性检查 |
+| 1a brief | `sources/INDEX.md`、模块 brief、`07-dialogue.md` | `research/<模块>.md`、Q、`DSN-` | P | 只用已批准/部分验证；六段 + 完整性检查 |
 | 1b 扫描 | `coverage-scan.md`、`02-backlog.md`、`07-dialogue.md`、`context.md`、`glossary.md`、`03-nfr.md`、`00-vision.md`、模块 brief | `coverage-scan.md`、Q | 显式引用 / 固定提问（coverage-scan.md） / P | 27 项；无引用即未覆盖；只出 Q |
 | 1c 缺口 | S/Q、`02-backlog.md`、`context.md`、`glossary.md`、`03-nfr.md`、`00-vision.md`、`01-personas.md`、`story-card.md` | S、Q、`context.md`、`glossary.md` | 用户/S + 检查项 | 先记 S；无引用即缺口；不重复 Q |
 | 成形 | S/Q、`story-card.md`、`conflict-check.md`、`02-backlog.md`、`03-nfr.md`、`00-vision.md`、`glossary.md`、`context.md`、`design-notes.md` | backlog 故事卡、冲突检查、Q、`DSN-` | S/D + 冲突证据 | 只重述不新增；DoR；冲突检查 |
@@ -83,7 +83,7 @@
 | `glossary.md` | 会话开始、1b、1c | 人确认术语后 | S | 更新术语；文件不标来源 |
 | `models/` | 建模 | 需要出图 | 需求 / 上下文 | Mermaid 一图一文件 |
 | `research/<模块>.md` | 1a、1b | 1a brief | P | 六段 + 完整性检查 |
-| `platform-candidates.md`、`sources/INDEX.md` | 1a | 来源验证 / 新增 | P | 更新状态 / 索引 |
+| `sources/INDEX.md` | 1a | 来源验证 / 新增 | P | 更新状态 / 索引 |
 | `design-notes.md` | 成形、冲突 | 发现设计线索 | P/Q | 追加 `DSN-` |
 
 ## 四、各文件定义
@@ -429,13 +429,13 @@
 - **禁止**：把 P 写成需求、验收标准或优先级；整段复制。
 - **确认**：brief 不是需求；不记录评审/确认/状态/D/CR。
 
-### 15. `research/sources/INDEX.md`、`research/platform-candidates.md`
+### 15. `research/sources/INDEX.md`
 
 - **定位**：登记 P 来源及验证状态。不写需求。
 - **建立**：调研前或调研时。
 - **读取**：1a。
 - **写入**：来源验证或新增。
-- **结构**：P-ID、标题、机构/作者、年份、URL 或文件、访问日期、类型、状态、证据强度。
+- **结构**：P-ID、标题、机构/作者、年份、类型、模块、状态、证据强度、备注；文件/URL 见文件清单，访问日期见文件头。
 - **AI 如何完成**：
   1. 登记来源。
   2. 验证可达性和官方性。

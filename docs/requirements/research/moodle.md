@@ -13,7 +13,7 @@
 | P-001 | Tracking progress | Moodle Docs | 2025 | https://docs.moodle.org/501/en/Tracking_progress | 2026-10-23 | 官方文档（检索摘要） |
 | P-002 | Analytics plugins | Moodle Docs | — | https://docs.moodle.org/en/Analytics_plugins | 2026-10-23 | 官方文档（检索摘要） |
 
-说明：两个来源均为官方域，但直接抓取返回 403；本 brief 基于检索摘要，关键结论需在可访问环境下复核。验证记录见 `platform-candidates.md`。
+说明：两个来源均为官方域，但直接抓取返回 403；本 brief 基于检索摘要，关键结论需在可访问环境下复核。验证记录见 `sources/INDEX.md`。
 
 ## 3. 需求观察（用户可见行为）
 

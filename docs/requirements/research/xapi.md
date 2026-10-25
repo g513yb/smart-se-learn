@@ -12,7 +12,7 @@
 |---|---|---|---|---|---|---|
 | P-006 | xAPI Base Standard for LRSs（IEEE 9274.1.1 / ISO/IEC/IEEE 39274-1-1:2025） | ADL / IEEE / ISO | 2025 | https://opensource.ieee.org/xapi/xapi-base-standard-documentation | 2026-10-23 | 标准（检索摘要） |
 
-说明：来源为标准组织文档，HTTP 200，可直接抓取。验证记录见 `platform-candidates.md`。
+说明：来源为标准组织文档，HTTP 200，可直接抓取。验证记录见 `sources/INDEX.md`。
 
 ## 3. 需求观察（对用户与业务的可见影响）
 
