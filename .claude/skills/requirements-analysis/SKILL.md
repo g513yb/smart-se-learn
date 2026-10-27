@@ -58,7 +58,7 @@ description: Use when creating, modifying, confirming, or handing off requiremen
 
 - 项目文件缺失时：先按下一节“初始化”建立，不凭记忆补，不跳到模块选择。
 - 未指定模块：列出 `00-vision.md` 范围节中明确列出的模块/能力；没有明确列出则先补范围 Q，不自行归纳。参考 `STATUS.md` 的下一步，请用户选择；不得自行开始。
-- 已指定模块：把模块选择记为 `S-xxx`，进入 1.0。
+- 已指定模块：把模块选择写入 `STATUS.md` 和 `glossary.md`，不记 `S`，进入 1.0。
 
 ## 初始化：从零建立
 

@@ -45,9 +45,9 @@
 | 阶段 | 读 | 写 | 来源 | 关键规则 |
 |---|---|---|---|---|
 | 初始化 | `CLAUDE.md`、skill references、`file-templates.md` | `00-vision.md`、`docs/team.md`、`STATUS.md`、`01-personas.md`、`07-dialogue.md`、`08-decisions.md`（按需） | S/D + 用户回答 | 从零建立；只建结构、愿景与角色基线、团队和状态，不写需求 |
-| 会话开始 | `CLAUDE.md`、`docs/team.md`、`STATUS.md`、`00-vision.md`、`context.md`、`glossary.md`、当前模块 brief、`07-dialogue.md`、`08-decisions.md` | 模块选择 S（如已指定） | 用户原话 | 未指定模块只列清单，不开始 |
+| 会话开始 | `CLAUDE.md`、`docs/team.md`、`STATUS.md`、`00-vision.md`、`context.md`、`glossary.md`、当前模块 brief、`07-dialogue.md`、`08-decisions.md` | 模块选择写入 STATUS + glossary（如已指定） | 用户选择 | 未指定模块只列清单，不开始 |
 | 愿景初次建立 | `00-vision.md`、`context.md`、`07-dialogue.md`、`08-decisions.md` | `00-vision.md`（六节、版本表）、`07-dialogue.md`（S）、`08-decisions.md`（D） | S/D | AI 起草；人逐节确认；初次记 D |
-| 1.0 边界 | `00-vision.md`、`context.md`、`glossary.md`、`02-backlog.md`、`07-dialogue.md` | S（模块选择）、范围 Q 或引用已有 Q | S + 缺失文档 | 边界不清停止；不做 brief/扫描 |
+| 1.0 边界 | `00-vision.md`、`context.md`、`glossary.md`、`02-backlog.md`、`07-dialogue.md` | STATUS + glossary（模块选择）、范围 Q 或引用已有 Q | 用户选择 + 缺失文档 | 边界不清停止；不做 brief/扫描 |
 | 角色初次建立 | `00-vision.md`、`context.md`、`01-personas.md` | `01-personas.md`（角色清单、角色卡、版本表） | 用户回答（角色卡） | 角色回答不记 S；AI 起草；人逐角色确认；初次写 v1 |
 | 1a brief | `sources/INDEX.md`、模块 brief、`07-dialogue.md` | `research/<模块>.md`、Q、`DSN-` | P | 只用已批准/部分验证；六段 + 完整性检查 |
 | 1b 扫描 | `coverage-scan.md`、`02-backlog.md`、`07-dialogue.md`、`context.md`、`glossary.md`、`03-nfr.md`、`00-vision.md`、模块 brief | `coverage-scan.md`、Q | 显式引用 / 固定提问（coverage-scan.md） / P | 27 项；无引用即未覆盖；只出 Q |
