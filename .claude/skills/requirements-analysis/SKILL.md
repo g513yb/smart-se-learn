@@ -16,21 +16,23 @@ description: Use when creating, modifying, confirming, or handing off requiremen
 
 ## 硬规则
 
-1. **来源与问题标签**：最终写入的需求应有明确依据：`S-`（用户自己的陈述/原话/回答）、`D-`（项目级决策）、已写入文件，或 AI 提议经人确认。AI 草案经人确认后直接写入目标文件，不记为 `S`。`Q-` 是缺口问题，不是来源；`P-` 是实践参考，可以生成 Q，也可以作为 AI 草案的依据，但不是最终来源；`I-` 是推断，不得进入“已确认”。引用 P 的最终需求必须另有 S/D、已写入文件或人确认。AI 在对话中输出内容时标明依据；文件内容不标来源。
+1. **来源与问题标签**：最终写入的需求应有明确依据：`S-`（用户自己的独立陈述/原话；简短确认和仅依赖问题的答复不记 S，记入 Q 的回答列）、`D-`（项目级决策）、已写入文件，或 AI 提议经人确认。AI 草案经人确认后直接写入目标文件，不记为 `S`。`Q-` 是缺口问题，不是来源；`P-` 是实践参考，可以生成 Q，也可以作为 AI 草案的依据，但不是最终来源；`I-` 是推断，不得进入“已确认”。引用 P 的最终需求必须另有 S/D、已写入文件或人确认。依据写入记录；对话层按 `references/conversation-style.md` 说明依据；文件内容不标来源。
 2. **先提问后动笔**：成形前先列缺口；缺口未确认，可以写候选草稿，但不得写成已确认需求。
 3. **未知入清单**：不确定项写入 `docs/requirements/07-dialogue.md` 的 Q 表，编号并写清依据，不留在正文里当假设。
 4. **示例保护**：出现“比如 / 例如 / 类似”时，先确认是举例还是真实需求；举例不得直接升级为需求。
 5. **禁止越界**：AI 可以提出角色、字段、业务规则、非功能指标的候选，但必须标为“AI 提议”，经人确认后才能写入；技术方案只进 DSN。
-6. **生成与确认**：AI 可以生成、起草、归纳和提议内容；有 `S/D` 或项目文件依据的内容优先使用。AI 写入任何文件前，必须把最终内容交人确认；有依据不等于可以写入。用户自己的陈述/回答记为 `S`；AI 草案经人确认后直接写入目标文件，不记为 `S`。AI 不得把需求标为“已确认”；不记录确认人、确认日期；无评审环节。
+6. **生成与确认**：AI 可以生成、起草、归纳和提议内容；有 `S/D` 或项目文件依据的内容优先使用。AI 写入任何文件前，必须把最终内容交人确认；有依据不等于可以写入。`docs/STATUS.md` 例外：AI 按阶段判定表自行维护，不需要人确认，不在对话中说明。用户自己的独立陈述记为 `S`；简短确认和仅依赖问题的答复记入 Q 的回答列；AI 草案经人确认后直接写入目标文件，不记为 `S`。AI 不得把需求标为“已确认”；不记录确认人、确认日期；无评审环节。
 7. **设计隔离**：需求只写“做什么、为什么”；技术方案、算法、架构、库选型写入 `docs/design-notes.md`（`DSN-`），不进入需求文档。
 8. **主动发现**：AI 可以主动提出需求候选；基于 `P` 的候选必须关联 Q；AI 生成的候选必须标为“AI 提议”，写入前经人确认。AI 准备提出遗漏内容但不确定时，可先做快速调研：查 1～2 个已批准来源，输出 P 观察 + Q + 可选 AI 草案；草案标“AI 提议”，人确认后写入；不写正式 brief。没有依据的可以作为开放问题或候选，但不得写成已确认需求。
 9. **整理不等于补全**：把用户原话整理成故事卡时，只重述、拆分、归一化用语；原话中没有的角色、字段、规则、指标不得直接写成已确认内容。AI 可以提出补充建议，标为“AI 提议”，写入前由人确认；无法确认的写 Q。
-10. **知识回填**：Q 被回答后，把回答记为 S-xxx；其他文件不收录的稳定业务事实写入 `context.md`，术语写入 `glossary.md`；文件内容不标来源。回答不得只停留在问答记录里。
+10. **知识回填**：Q 被回答后，把回答写入 Q 的回答列；回答本身补充了新内容时才另记 S-xxx，简短确认不记 S；其他文件不收录的稳定业务事实写入 `context.md`，术语写入 `glossary.md`；文件内容不标来源。回答不得只停留在问答记录里。
 11. **冲突检查必做**：新增需求、变更需求、转为“已确认”前，按 `references/conflict-check.md` 检查并记录结论；不得把“未发现”写成“没有冲突”。
 12. **基线变更由人确认**：项目基线（愿景、范围、非目标、角色）的修改，由人确认；具体记录方式见 `references/vision-guide.md` 和 `references/persona-guide.md`；AI 不得自行修改。`CLAUDE.md` 和 skill 的管理/流程规则变更记录在文件本身，不写项目 D。
 13. **文档边界**：需求文档只放标题、指针、表头和项目内容；流程、管理、确认规则只放 `CLAUDE.md` 和 skill references。需求文档里出现规则文字，视为缺陷：移到 skill，不在原处新增。
 14. **管理文件边界**：管理文件只写结构、字段、含义、规则和通用示例；项目概念、事实、需求和具体角色只写项目文件。示例必须通用，或明确标注“非本项目”。
-15. **S 与 Q**：S 只收用户自己的陈述、回答；人的提问不进 S；AI 草案的采用/确认不记 S。同一需求可以由多条 S/Q 支持；写入前检查关联 Q 是否全部“已确认/已废弃”。发现 S 前后矛盾时，暂停提取、提问和写入，先按 `references/dialogue-log.md` 的“S 矛盾处理”执行；修改 S 前做影响分析，AI 不自行判定谁取代谁。
+15. **S 与 Q**：S 只收用户自己的独立陈述；人的提问不进 S；简短确认、仅依赖问题的答复和 AI 草案的采用/确认不记 S。同一需求可以由多条 S/Q 支持；写入前检查关联 Q 是否全部“已确认/已废弃”。发现 S 前后矛盾时，暂停提取、提问和写入，先按 `references/dialogue-log.md` 的“S 矛盾处理”执行；修改 S 前做影响分析，AI 不自行判定谁取代谁。
+
+本文件中所有要求“标明依据”“标为 AI 提议”“输出能确认的/需要问的/不能写的”的地方，对话层按 `references/conversation-style.md` 执行；记录层保留原有来源和编号规则。
 
 违反字面规则即违反规则本意。
 
@@ -52,7 +54,7 @@ description: Use when creating, modifying, confirming, or handing off requiremen
 
 ## 会话开始
 
-读 `CLAUDE.md`、`docs/team.md`、`docs/STATUS.md`、`00-vision.md`、`context.md`、`glossary.md`、当前模块 brief、`07-dialogue.md`（S 与 Q）和 `08-decisions.md`（D），用 3～5 行复述当前理解。
+读 `CLAUDE.md`、`docs/team.md`、`docs/STATUS.md`、`00-vision.md`、`context.md`、`glossary.md`、当前模块 brief、`07-dialogue.md`（S 与 Q）和 `08-decisions.md`（D），用 3～5 行自然语言复述当前理解，不播报流程步骤。
 
 - 项目文件缺失时：先按下一节“初始化”建立，不凭记忆补，不跳到模块选择。
 - 未指定模块：列出 `00-vision.md` 范围节中明确列出的模块/能力；没有明确列出则先补范围 Q，不自行归纳。参考 `STATUS.md` 的下一步，请用户选择；不得自行开始。
@@ -60,12 +62,12 @@ description: Use when creating, modifying, confirming, or handing off requiremen
 
 ## 初始化：从零建立
 
-适用：会话开始时项目文件缺失，或用户要求从零建立。初始化只建立结构、团队信息和项目状态，不写需求、假设、NFR 或验收标准。
+适用：会话开始时项目文件缺失，或用户要求从零建立。初始化只建立结构、愿景与角色基线、团队信息和项目状态，不写需求、假设、NFR 或验收标准。
 
 1. **检查**：按 `references/file-templates.md` 的文件清单逐项检查，列出存在与缺失；不把缺失当已知，不预建空文件。
-2. **团队与分工**：问清成员和各自负责范围。人的回答记为 `S`；AI 从回答中提取并起草 `docs/team.md`，可提出范围建议；人确认后写入。不写项目 D；不记录确认人/日期。
-3. **项目状态**：AI 按 `file-lifecycle.md` 的 STATUS 阶段判定表，从已有文件推导当前阶段（全新项目默认“愿景建立中”）、下一步和待决事项；人确认后，按 `file-templates.md` 创建或更新 `docs/STATUS.md`；不写项目 D；不记录确认人/日期。
-4. **愿景**：按 `references/vision-guide.md` 第 4 节初次建立。回答先记 `S`；第一次需要 `S` 时按 `file-templates.md` 创建 `07-dialogue.md`，第一次需要 `D` 时创建 `08-decisions.md`。
+2. **愿景**：按 `references/vision-guide.md` 第 4 节初次建立。回答先记 `S`；第一次需要 `S` 时按 `file-templates.md` 创建 `07-dialogue.md`，第一次需要 `D` 时创建 `08-decisions.md`。愿景的范围节是团队分工和模块选择的依据；范围不明确时停下补 Q。
+3. **团队与分工**：愿景范围确认后，问清成员和各自负责范围。范围名称应能对应愿景范围中的模块/能力；人的回答记为 `S`；AI 从回答和已确认的愿景范围中提取并起草 `docs/team.md`，可提出范围建议；人确认后写入。不写项目 D；不记录确认人/日期。
+4. **项目状态**：AI 按 `file-lifecycle.md` 的 STATUS 阶段判定表，从已有文件推导当前阶段、下一步和待决事项，按 `file-templates.md` 创建或更新 `docs/STATUS.md`；不需要人确认，不在对话中说明；不写项目 D；不记录确认人/日期。
 5. **角色**：按 `references/persona-guide.md` 第 4 节初次建立。
 6. **后续文件**：不预建；到达对应阶段时按 `file-templates.md` 创建。任何一步缺输入就停下提问，不跳到下一步。
 
@@ -73,11 +75,11 @@ description: Use when creating, modifying, confirming, or handing off requiremen
 
 | 文件 | 建立时机 |
 |---|---|
-| `docs/team.md` | 初始化步骤 2 |
-| `docs/STATUS.md` | 初始化步骤 3 |
-| `07-dialogue.md` | 第一次记录 `S` |
-| `08-decisions.md` | 第一次记录 `D` |
-| `00-vision.md` | 初始化步骤 4 |
+| `00-vision.md` | 初始化步骤 2 |
+| `07-dialogue.md` | 第一次记录 `S`（初始化步骤 2 期间） |
+| `08-decisions.md` | 第一次记录 `D`（愿景六节确认后） |
+| `docs/team.md` | 初始化步骤 3 |
+| `docs/STATUS.md` | 初始化步骤 4 |
 | `01-personas.md` | 初始化步骤 5 |
 | `context.md`、`glossary.md` | 第一次知识回填 |
 | `02-backlog.md` | 第一条故事卡 |
@@ -108,12 +110,7 @@ description: Use when creating, modifying, confirming, or handing off requiremen
 
 ## 会话结束
 
-如阶段、下一步或模块状态发生变化：
-
-1. AI 提议更新 `STATUS.md`，列出改什么、为什么。
-2. 任一成员确认。
-3. AI 写入 `STATUS.md`；不写项目 D；不记录确认人/日期。
-4. 不改需求。
+如阶段、下一步或模块状态发生变化，AI 按阶段判定表直接更新 `STATUS.md`；不需要人确认，不在对话中说明；不写项目 D；不记录确认人/日期；不改需求。
 
 ## 六步流程
 
@@ -124,7 +121,7 @@ description: Use when creating, modifying, confirming, or handing off requiremen
    - **1c 缺口提问**：按 `references/gap-check.md` 对当前单位逐项检查；原话先记 S，只对“未覆盖 / 部分覆盖 / 无法判断 / 缺依据”生成 Q，进 `07-dialogue.md`；已有待答 Q 不重复。角色相关分析前，如果 `01-personas.md` 尚未建立，先按 `references/persona-guide.md` 初次建立
    - **NFR**：与 backlog 并行；模块边界明确后，1b 质量维度或用户提出质量要求时即可进入 NFR；不等待 backlog 完成；写 NFR 前检查相关 backlog 故事
    - 文档缺失或为空时先报告，不凭记忆补全
-2. **成形**：按 `references/extraction-guide.md` 提取；用故事卡（`references/story-card.md`）；先过冲突检查（`references/conflict-check.md`）并记录结论；过 DoR；写 Given-When-Then；AI 在对话中输出时标明依据，文件内容不标来源。
+2. **成形**：按 `references/extraction-guide.md` 提取；用故事卡（`references/story-card.md`）；先过冲突检查（`references/conflict-check.md`）并记录结论；过 DoR；写 Given-When-Then；对话层按 `references/conversation-style.md` 说明依据，文件内容不标来源。
 3. **排序**：MoSCoW 或价值-成本；AI 可给建议，建议必须标“建议”；优先级由人决定；backlog 不记录依据或 D。
 4. **建模**：只在文字说不清流程、状态、规则、交互或边界时画；查 `references/modeling-guide.md` 选最小图型。每个图元素必须有 `S/D/REQ` 来源；未回答的 Q、P、I 不作来源；设计进 `DSN-`。保存到 `models/<模块>-<主题>.mmd`，文件头写问题、来源；人确认后写入。
 5. **确认**：AI 提交最终内容、验收标准和依据（有/无来源、哪些是 AI 生成）；人确认后写入；无评审环节；标准可执行、无歧义后，需求可移交设计。
@@ -132,7 +129,7 @@ description: Use when creating, modifying, confirming, or handing off requiremen
 
 ## 成形四问
 
-每条故事必须回答；问题进 Q，回答记为 S：
+每条故事必须回答；逐个问，问题进 Q，回答写入 Q 的回答列，独立陈述才另记 S：
 1. 角色：还有谁做这件事？
 2. 触发：什么条件下发生？前置是什么？
 3. 异常：失败、越权、边界时怎样？
@@ -142,10 +139,12 @@ description: Use when creating, modifying, confirming, or handing off requiremen
 
 ## 需求诊断输出
 
-接到需求描述后，先分三栏，再动笔：
+接到需求描述后，先在内部按三栏检查，再动笔：
 - **能确认的**：有 S/D 来源
 - **需要问的**：编号 Q，写清依据
 - **不能直接写成已确认的**：无来源的推断、设计细节、范围外内容；可标为“AI 提议”或 Q，写明原因
+
+三栏是内部检查，不在对话中逐栏展示。对话层按 `references/conversation-style.md` 输出必要的理解、问题和建议。
 
 ## 需求的两个来源
 
@@ -157,14 +156,14 @@ description: Use when creating, modifying, confirming, or handing off requiremen
 1. 用户用自然语言描述需求，允许不符合故事卡格式。
 1.5. AI 做写入前变更检查：新陈述与已确认条目不一致时，先展示两边原文并请用户选择，不直接写文件；细则见 `vision-guide.md` 第 6 节和 `file-lifecycle.md` 的写入规则。
 1.6. **持续检查**：每次用户实质性陈述后，AI 在后台做两项检查：冲突检查；事实候选提取。事实候选先记为对应的 `S` 原句，分类并标“AI 提议”；不打断当前问题，除非候选直接影响当前结论。同一需求的多条 S/Q 按关联列汇总；写入前检查关联 Q 状态。发现 S 前后矛盾时暂停并先处理；矛盾未解决前不依赖该 S。到话题结束或写文件前，汇总候选请人确认；确认后的稳定事实写入 `context.md`，其他送对应文件。
-2. AI 按 `gap-check.md` 诊断缺口，输出“能确认的 / 需要问的 / 不能写的”。
+2. AI 按 `gap-check.md` 在内部诊断缺口；对话中只输出必要的确认、问题和未定项，不逐栏展示。
 3. AI 基于本模块 brief 主动补充遗漏，必须带 `P` 依据。
-4. 用户用自己的话回答 Q → 记为 S-xxx；人采用 AI 草案 → 不记 S，直接写入目标文件。人不回答时，AI 按规则提出草案和依据，人确认后写入；未确认不写入。
+4. 用户用自己的话回答 Q → 记入 Q 的回答列；回答本身补充了新内容时才另记 S-xxx；人采用 AI 草案 → 不记 S，直接写入目标文件。人不回答时，AI 按规则提出草案和依据，人确认后写入；未确认不写入。
 5. AI 把用户原话整理成故事卡：只重述、拆分、归一化用语，不新增内容。
 6. 人确认最终内容；AI 写入。
-7. 进入下一个模块或下一组问题。
+7. 进入下一个模块或下一个问题。
 
-一次只处理一个模块或一组问题，不一次性生成整份需求文档。
+一次只处理一个模块或一个问题，不一次性生成整份需求文档。
 
 ## 冲突检查
 
@@ -180,7 +179,7 @@ description: Use when creating, modifying, confirming, or handing off requiremen
 
 ## 写入与更新
 
-AI 只写人确认后的内容；更新故事前先确认。不设状态字段，不记录评审/确认/D。
+AI 只写人确认后的需求内容；`docs/STATUS.md` 例外：AI 按阶段判定表自行维护。更新故事前先确认。不设状态字段，不记录评审/确认/D。
 
 ## DoR / DoD
 
@@ -204,6 +203,7 @@ AI 只写人确认后的内容；更新故事前先确认。不设状态字段�
 
 ## 模板
 
+- 对话风格：`references/conversation-style.md`
 - 文件生命周期：`references/file-lifecycle.md`
 - 文件模板：`references/file-templates.md`
 - 故事卡：`references/story-card.md`
