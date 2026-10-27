@@ -126,8 +126,8 @@
 | 无 vision、team、STATUS | 未初始化 |
 | vision 缺失或无版本表/D（其余情况） | 愿景建立中 |
 | vision 有 D，team 或 STATUS 缺失 | 团队与状态建立中 |
-| vision 有 D、team 和 STATUS 已有，personas 缺失或无 D | 角色建立中 |
-| vision、personas 有 D，尚未选模块 | 需求分析准备完成 |
+| vision 有 D、team 和 STATUS 已有，personas 缺失或版本表不是 v1 | 角色建立中 |
+| vision 有 D、personas 有版本表 v1，尚未选模块 | 需求分析准备完成 |
 | 已选模块，1.0 未通过 | 模块边界确认中 |
 | 1.0 通过，1b/1c/成形未完成 | 模块需求分析中 |
 | 本迭代目标需求已确认 | 需求确认完成 |
