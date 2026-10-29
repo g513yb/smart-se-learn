@@ -144,7 +144,7 @@ flowchart LR
 
 ### 4.6 保存
 
-文件：`docs/requirements/models/platform-handout-download.mmd`
+文件：`docs/requirements/models/src/platform-handout-download.mmd`；导出图：`docs/requirements/models/img/platform-handout-download.svg`
 
 ```mermaid
 %% 问题：学生下载讲义的正常流程和失败分支
@@ -215,7 +215,7 @@ AI 提议建模时，要说明“哪个问题文字说不清、建议用哪种�
 3. 检查来源：每个元素必须有 `S/D/REQ`；缺口写 Q
 4. 只画有来源的部分；未回答的 Q、`P`、`I` 不作来源
 5. 人确认元素来源和设计隔离
-6. 保存到 `models/<模块>-<主题>.mmd`，文件头写问题、来源
+6. 源保存到 `models/src/<模块>-<主题>.mmd`（表格为 `.md`），导出到 `models/img/`，更新 `models/README.md`；文件头写问题、来源。目录、格式和拆页规则见 `diagram-delivery.md`
 
 ## 7. 常见错误
 

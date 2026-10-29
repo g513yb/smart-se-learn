@@ -140,7 +140,7 @@
 
 ## 模型目录 `docs/requirements/models/`
 
-一图一文件，规则见 `modeling-guide.md`。
+源在 `src/`，图在 `img/`，目录表为 `README.md`；一图一源一图，同一图只保留一种图像格式。规则见 `modeling-guide.md` 和 `diagram-delivery.md`。
 
 ## 调研目录 `docs/requirements/research/`
 

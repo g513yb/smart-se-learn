@@ -54,7 +54,7 @@
 | 1c 缺口 | S/Q、`02-backlog.md`、`context.md`、`glossary.md`、`03-nfr.md`、`00-vision.md`、`01-personas.md`、`story-card.md` | S、Q、`context.md`、`glossary.md` | 用户/S + 检查项 | 先记 S；无引用即缺口；不重复 Q |
 | 成形 | S/Q、`story-card.md`、`conflict-check.md`、`02-backlog.md`、`03-nfr.md`、`00-vision.md`、`glossary.md`、`context.md`、`design-notes.md` | backlog 故事卡、冲突检查、Q、`DSN-` | S/D + 冲突证据 | 只重述不新增；DoR；冲突检查 |
 | 排序 | `02-backlog.md` | 优先级 | 人的决定 | 人决定；AI 不决定 |
-| 建模 | `modeling-guide.md` | `models/*.mmd` | 需求 / 上下文 | 一图一文件；按需 |
+| 建模 | `modeling-guide.md`、`diagram-delivery.md` | `models/src/*.mmd`、`models/src/*.md`、`models/img/*`、`models/README.md` | 需求 / 上下文 | 源与图分开；一图一格式；按需 |
 | 确认 | `02-backlog.md` | backlog 内容；最终内容由人在对话中确认 | S | AI 不能标已确认；不记录确认人/日期；无评审 |
 | 变更 | 目标需求、`02-backlog.md`、`conflict-check.md`、`03-nfr.md`、`00-vision.md`、`glossary.md`、`context.md`、`07-dialogue.md` | backlog 字段、D、`07-dialogue.md`（S） | S/D + 影响 / 冲突 | 冲突检查、影响分析、人确认后更新目标文件；需要决策时记 D；旧版本保留 |
 | 冲突 | `conflict-check.md`、`02-backlog.md`、`03-nfr.md`、`00-vision.md`、`glossary.md`、`context.md` | 冲突记录、Q、D | S/Q/REQ/P | 不选边；确定冲突停止 |
@@ -81,7 +81,7 @@
 | `08-decisions.md` | 冲突、愿景初次建立、其他明确决策 | 人做决定时 | S/Q/REQ/P | 追加 D；AI 只记录；规则见 `decision-log.md` |
 | `coverage-scan.md` | 会话开始（总览）、1b、模块确认前 | 扫描后 | 27 项判断 | 填表 / 更新模块覆盖总览 |
 | `glossary.md` | 会话开始、1b、1c | 人确认术语后 | S | 更新术语；文件不标来源 |
-| `models/` | 建模 | 需要出图 | 需求 / 上下文 | Mermaid 一图一文件 |
+| `models/` | 建模 | 需要出图 | 需求 / 上下文 | 源在 `src/`、图在 `img/`；目录表 `README.md` |
 | `research/<模块>.md` | 1a、1b | 1a brief | P | 六段 + 完整性检查 |
 | `sources/INDEX.md` | 1a | 来源验证 / 新增 | P | 更新状态 / 索引 |
 | `design-notes.md` | 成形、冲突 | 发现设计线索 | P/Q | 追加 `DSN-` |
@@ -372,7 +372,7 @@
 - **建立**：第一次建模；满足 `modeling-guide.md` 的触发条件时。
 - **读取**：建模时。
 - **写入**：按需。
-- **结构**：`models/<模块>-<主题>.mmd`，一图一文件，文件头写问题、来源。
+- **结构**：源在 `models/src/`（Mermaid 为 `<模块>-<主题>.mmd`，表格为 `.md`），导出图在 `models/img/`，目录表为 `models/README.md`；一图一源一图，同一图只保留一种图像格式；文件头写问题、来源。
 - **AI 如何完成**：
   1. 先写图要回答的问题。
   2. 按 `modeling-guide.md` 选最小图型。
