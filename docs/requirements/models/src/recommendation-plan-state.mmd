@@ -1,0 +1,25 @@
+%% 图题：推荐计划状态
+%% 问题：推荐计划从生成到完成经历哪些状态；接受、计划更新、未掌握知识点清空时如何迁移？
+%% 来源：REQ-RECO-001、REQ-RECO-002、REQ-RECO-004、REQ-RECO-005、REQ-RECO-007、REQ-RECO-008、glossary 推荐计划/计划项、S-056、D-013、D-014
+%%{init: {'theme':'neutral','themeVariables':{'fontFamily':'Microsoft YaHei, Segoe UI, sans-serif','fontSize':'16px'},'themeCSS':'.statediagram-note .outer-path path[fill=\"#666\"]{fill:#FFF8E1 !important;} .statediagram-note .outer-path path[stroke=\"#999\"]{stroke:#C9A227 !important;} .statediagram-note text,.statediagram-note tspan,.statediagram-note .nodeLabel{fill:#1A202C !important;color:#1A202C !important;}'}}%%
+stateDiagram-v2
+  direction LR
+  [*] --> 无计划
+  无计划 --> 待接受: 生成成功并通知
+  待接受 --> 已接受: 学生接受
+  已接受 --> 已完成: 复习完成，总览无未掌握
+  待接受 --> 无计划: 未掌握清空，删除计划
+  待接受 --> 待接受: 未掌握变化，新计划
+  已接受 --> 已接受: 仍有未掌握，保持未完成
+  已接受 --> 已接受: 未掌握变化，新计划
+  已完成 --> 已接受: 出现未掌握，新计划并通知
+  note right of 无计划
+    生成失败：每 5 分钟重试，成功前不显示计划；
+    成功后通知；触发条件不再成立时停止重试
+  end note
+  note right of 已接受
+    接受后：计划项均记为未执行，显示下一个待办
+    计划项：未执行 → 已执行（重新学习一次后）
+    更新时：通知学生，新旧共有的计划项保留执行进度
+    完成时：通知学生；删除未接受计划时不通知
+  end note

@@ -22,7 +22,8 @@
 | `docs/requirements/07-dialogue.md` | 对话记录：用户原话 S 与缺口问题 Q | 写需求前、遇到任何缺口时 |
 | `docs/requirements/08-decisions.md` | 决策记录（D） | 冲突、基线变更、需要决策时 |
 | `docs/requirements/glossary.md` | 术语表 | 需求讨论、命名、接口设计前 |
-| `docs/requirements/models/` | 模型图源（Mermaid） | 需要出图或引用模型前 |
+| `docs/requirements/models/` | 模型图源与导出图 | 需要出图或引用模型前 |
+| `docs/requirements/models/README.md` | 建模图目录（图题、类型、源、图、来源） | 查找、新增或修改图时 |
 | `docs/requirements/research/` | 对标调研 brief | 进入新模块、需要参考时 |
 | `docs/design-notes.md` | 设计线索，不进入需求 | 记录或查阅实现参考时 |
 
@@ -32,7 +33,7 @@
 
 - 文件与目录使用小写 kebab-case；正文用中文。
 - 编号：需求 `REQ-<模块缩写>-<三位序号>`，用户原话 `S-<三位序号>`，缺口问题 `Q-<三位序号>`，决策 `D-<三位序号>`，参考来源 `P-<三位序号>`，设计线索 `DSN-<三位序号>`；backlog、提交信息中使用同一编号。
-- 图统一用 Mermaid 源码存放，一图一文件，文件名与图题一致。
+- 图源统一用 Mermaid（表格用 Markdown 表）存放，一图一源；源在 `docs/requirements/models/src/`，导出图在 `docs/requirements/models/img/`，同一图只保留一种图像格式；文件名与图题一致。目录见 `models/README.md`，输出与拆页规则见 skill 的 `diagram-delivery.md`。
 - 文档和讨论中引用需求一律使用编号。
 
 ## 4. 协作工作原则

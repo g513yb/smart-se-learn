@@ -1,0 +1,29 @@
+%% 图题：5E 学习智能体行为
+%% 问题：学生在不同页面、不同问题类型下，智能体分别怎么表现；哪些能做、哪些拒答；数据和记忆边界是什么？
+%% 用途：说明智能体行为，不用于验收。
+%% 来源：REQ-AGENT-001、REQ-AGENT-002、REQ-AGENT-003、REQ-AGENT-004、REQ-AGENT-005、REQ-AGENT-006、REQ-AGENT-007、REQ-AGENT-008、REQ-AGENT-009、REQ-AGENT-010、Q-132、Q-133、Q-135、Q-136、Q-137、Q-138、Q-139、Q-140、Q-141、Q-142、Q-144
+%%{init: {'theme':'neutral','themeVariables':{'fontFamily':'Microsoft YaHei, Segoe UI, sans-serif','fontSize':'16px'}}}%%
+flowchart TB
+  A((5E 学习智能体))
+  A --> G1[对话行为]
+  A --> G2[支持与边界]
+
+  G1 --> C1[入口与上下文<br/>任意页面固定入口<br/>自动带当前课程<br/>章节、节点和题目<br/>首页无上下文<br/>先问课程或主题]
+  G1 --> C2[回答与拒答<br/>可答课程内容、练习求助<br/>学习方法、一般学习问题<br/>个人计划、本人诊断推荐画像<br/>拒答闲聊、违法有害<br/>代写、代考、查他人数据<br/>拒答说明原因<br/>引导回学习]
+  G1 --> C3[练习提示<br/>三级提示<br/>相关概念和课程节点<br/>解题方向和拆分问题<br/>关键步骤或部分代码<br/>不给最终答案和完整代码<br/>可连续要提示]
+  G1 --> C4[五步引导<br/>表达系统学习意图<br/>或点击系统学习入口<br/>参与、探究、解释<br/>迁移、评价<br/>每步等待学生回应<br/>可直接告诉我或退出<br/>详见五步引导状态图]
+  G1 --> C5[个人学习计划<br/>学生说目标<br/>可用时间和想补内容<br/>先出草稿，确认后保存<br/>按课程组织<br/>可删改和调整顺序<br/>智能体不自动修改<br/>与推荐计划平行]
+
+  G2 --> C6[数据读取与引用<br/>可读进度、成绩、诊断<br/>课程掌握总览、推荐计划<br/>画像、个人计划<br/>不读原始事件和他人数据<br/>引用章节和节点<br/>课程外内容要标注<br/>不确定时直接说明]
+  G2 --> C7[记忆与隐私<br/>对话和学习摘要长期保留<br/>跨会话可用<br/>可查看对话历史<br/>可清除记忆<br/>清除后删除摘要和对话<br/>仅学生本人可见]
+  G2 --> C8[主动提示<br/>同节点停留<br/>超过 5 分钟<br/>或连续两次同类答错<br/>页面内提示一次<br/>可关闭<br/>不发通知]
+  G2 --> C9[服务不可用<br/>入口显示<br/>智能体暂不可用<br/>学习、练习、诊断<br/>推荐、画像不受影响<br/>已有对话历史可查看<br/>恢复后继续对话]
+
+  classDef root fill:#DCE9F7,stroke:#315B8A,stroke-width:2px,font-weight:bold
+  classDef hub fill:#F0F2F5,stroke:#7A8699
+  classDef dialog fill:#E8F1FB,stroke:#5A7FA8
+  classDef support fill:#FFF8E1,stroke:#C9A227
+  class A root
+  class G1,G2 hub
+  class C1,C2,C3,C4,C5 dialog
+  class C6,C7,C8,C9 support

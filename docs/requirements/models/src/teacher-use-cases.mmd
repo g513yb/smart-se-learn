@@ -1,0 +1,31 @@
+%% 图题：教师用例
+%% 问题：教师在这套平台上能做什么？
+%% 来源：REQ-COURSE-001、REQ-COURSE-003、REQ-COURSE-006、REQ-COURSE-010、REQ-COURSE-014、REQ-COURSE-015、REQ-DIAG-002、REQ-DIAG-006、REQ-DIAG-007、REQ-RECO-006、REQ-PROF-003、REQ-INTV-001、REQ-INTV-003、REQ-INTV-004、REQ-INTV-005、REQ-DT-005、REQ-ACCT-003、Q-021
+%%{init: {'theme':'neutral','themeVariables':{'fontFamily':'Microsoft YaHei, Segoe UI, sans-serif','fontSize':'16px'}}}%%
+flowchart TB
+  T((教师))
+  T --> M1[课程建设]
+  T --> M2[学情查看]
+  T --> M3[教师干预]
+  T --> M4[账号]
+
+  M1 --> U11([开设课程])
+  M1 --> U12([设立章节])
+  M1 --> U13([上传与管理内容])
+  M1 --> U14([设置练习题目、分值与评分标准])
+  M1 --> U15([修改成绩])
+  M1 --> U16([查看与修改知识点])
+
+  M2 --> U21([查看班级进度与成绩])
+  M2 --> U22([查看错题与诊断])
+  M2 --> U23([查看课程掌握总览])
+  M2 --> U24([查看推荐计划与画像])
+  M2 --> U25([查看数字孪生预测])
+
+  M3 --> U31([关注列表与标记])
+  M3 --> U32([发送站内提醒])
+  M3 --> U33([对计划项反馈])
+  M3 --> U34([查看干预记录])
+
+  M4 --> U41([登录])
+  M4 --> U42([修改密码])

@@ -1,0 +1,40 @@
+%% 图题：练习提交到推荐
+%% 问题：一次练习提交之后，成绩、学习事件、章节诊断、课程掌握总览、推荐计划和通知按什么顺序发生？
+%% 来源：REQ-COURSE-006、REQ-COURSE-007、REQ-LOG-002、REQ-DIAG-004、REQ-DIAG-007、REQ-DIAG-008、REQ-RECO-001、REQ-RECO-004、REQ-RECO-005、REQ-RECO-006、REQ-RECO-008、REQ-NOTIF-002、REQ-NOTIF-003、S-056、D-014
+%% 导出：mmdc 渲染 SVG 后，把 labelText 中的 alt/opt 替换为“条件/可选”，再转 PNG
+%%{init: {'theme':'neutral','themeVariables':{'fontFamily':'Microsoft YaHei, Segoe UI, sans-serif','fontSize':'16px'},'themeCSS':'.loopLine{stroke:#4A5568 !important;stroke-width:2.5px !important;stroke-dasharray:9,5 !important;} .labelBox{fill:#EDF2F7 !important;stroke:#4A5568 !important;stroke-width:1.5px !important;filter:none !important;} .labelText{fill:#1A202C !important;font-weight:700 !important;} .loopText{fill:#1A202C !important;font-weight:600 !important;} .note{fill:#EDF2AE !important;stroke:#C9A227 !important;} .noteText,.noteText tspan{fill:#1A202C !important;}'}}%%
+sequenceDiagram
+  actor S as 学生
+  participant P as 平台
+  participant AI as 智能服务
+  S->>P: 提交章节练习
+  P->>P: 客观题判分（2 秒内）
+  P-->>S: 客观题对错与得分
+  alt 分支 1：练习含主观题
+    P->>AI: 按评分标准批改主观题
+    alt 分支 1.1：智能服务可用
+      AI-->>P: 得分与评分理由（1 分钟内）
+      P-->>S: 主观题得分、评分理由与总成绩
+    else 否则 1.2：智能服务不可用
+      P-->>S: 提示稍后查看主观题成绩；客观题成绩照常显示
+    end
+  else 否则 1：练习无主观题
+    P-->>S: 总成绩
+  end
+  P->>P: 记录本次提交（学习事件）
+  alt 分支 2：章节练习全部提交，或重做已诊断章节
+    P->>P: 生成或更新章节诊断，覆盖原结果（1 分钟内）
+    P->>P: 更新课程掌握总览
+    P-->>S: 诊断通知（10 秒内；总览同时更新时合并为一条）
+    opt 2.1：首次满足生成条件，或未掌握知识点变化
+      alt 2.1.1：仍存在未掌握知识点
+        P->>P: 生成新的推荐计划（沿用教师反馈，保留共有计划项进度）
+        P-->>S: 推荐与计划变化通知（10 秒内）
+      else 2.1.2：未掌握知识点清空
+        P->>P: 已接受计划标记完成；未接受计划删除
+        P-->>S: 计划完成通知（10 秒内；仅已接受计划）
+        Note over P,S: 无计划时不处理；删除未接受计划时不通知
+      end
+    end
+  end
+  S->>P: 点击通知进入章节页或推荐计划

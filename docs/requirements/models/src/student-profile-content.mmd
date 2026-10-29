@@ -1,0 +1,28 @@
+%% 图题：学生画像内容
+%% 问题：学生画像包含哪些展示内容、四个维度各有哪些指标、如何生成和展示？
+%% 用途：说明画像模块的完整内容，不用于验收。
+%% 来源：REQ-PROF-001、REQ-PROF-002、REQ-PROF-003、REQ-PROF-004、REQ-PROF-005、Q-084、Q-086、Q-089、Q-090、Q-095、Q-100、Q-182、D-006、D-015
+%%{init: {'theme':'neutral','themeVariables':{'fontFamily':'Microsoft YaHei, Segoe UI, sans-serif','fontSize':'16px'}}}%%
+flowchart TB
+  P((学生画像))
+  P --> G1[四维指标]
+  P --> G2[展示与边界]
+
+  G1 --> COG[认知特征<br/>知识覆盖度<br/>掌握结构<br/>优势与薄弱领域<br/>错误类型分布<br/>（AI 归类）<br/>错误复现率<br/>成绩水平与趋势<br/>题型表现差异]
+  G1 --> BEH[行为特征<br/>学习频率<br/>与规律性<br/>持续性与中断<br/>学习时长与密度<br/>资源使用结构<br/>练习行为<br/>计划遵循度]
+  G1 --> SELF[自我调节<br/>目标与计划<br/>监控行为<br/>调节行为<br/>求助行为<br/>元认知准确性<br/>反思行为]
+  G1 --> EMO[情感动机<br/>兴趣（问卷）<br/>自我效能<br/>（问卷）<br/>坚持性<br/>（行为推断）<br/>挫败与倦怠信号<br/>（行为推断）<br/>学习满意度<br/>（问卷）]
+
+  G2 --> TOP[顶部展示<br/>AI 概述<br/>依据指标<br/>自然语言<br/>四维雷达图<br/>归一化口径<br/>无数据维度灰色]
+  G2 --> DISPLAY[指标展示<br/>名称、数值<br/>或标签<br/>可查看证据<br/>数据不足<br/>单独标记<br/>点击维度展开<br/>未标注来源<br/>的指标<br/>来源待定]
+  G2 --> GEN[生成与更新<br/>第一份章节诊断<br/>后生成<br/>每日更新<br/>失败次日重试]
+  G2 --> STATE[状态与边界<br/>暂无画像<br/>暂未生成<br/>服务不可用<br/>学生看自己<br/>本班教师看本班<br/>只用于展示<br/>和数字孪生预测<br/>不进入诊断、<br/>推荐]
+
+  classDef root fill:#DCE9F7,stroke:#315B8A,stroke-width:2px,font-weight:bold
+  classDef hub fill:#F0F2F5,stroke:#7A8699
+  classDef dim fill:#E8F1FB,stroke:#5A7FA8
+  classDef meta fill:#FFF8E1,stroke:#C9A227
+  class P root
+  class G1,G2 hub
+  class COG,BEH,SELF,EMO dim
+  class TOP,DISPLAY,GEN,STATE meta

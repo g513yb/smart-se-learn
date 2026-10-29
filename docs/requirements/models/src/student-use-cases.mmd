@@ -1,0 +1,42 @@
+%% 图题：学生用例
+%% 问题：学生在这套平台上能做什么？
+%% 来源：REQ-COURSE-002、REQ-COURSE-004、REQ-COURSE-005、REQ-COURSE-007、REQ-COURSE-008、REQ-COURSE-009、REQ-COURSE-011、REQ-DIAG-005、REQ-DIAG-007、REQ-RECO-003、REQ-RECO-004、REQ-RECO-005、REQ-PROF-002、REQ-PROF-004、REQ-AGENT-001、REQ-AGENT-002、REQ-AGENT-003、REQ-AGENT-007、REQ-AGENT-009、REQ-DT-002、REQ-DT-003、REQ-DT-004、REQ-NOTIF-004、REQ-NOTIF-005、REQ-ACCT-003、Q-021
+%%{init: {'theme':'neutral','themeVariables':{'fontFamily':'Microsoft YaHei, Segoe UI, sans-serif','fontSize':'16px'}}}%%
+flowchart TB
+  S((学生))
+  S --> M1[课程学习]
+  S --> M2[学习诊断]
+  S --> M3[学习推荐]
+  S --> M4[学生画像]
+  S --> M5[5E 智能体]
+  S --> M6[学生数字孪生]
+  S --> M7[通知与账号]
+
+  M1 --> U11([选课])
+  M1 --> U12([浏览章节与节点])
+  M1 --> U13([看视频、讲义])
+  M1 --> U14([完成练习])
+  M1 --> U15([看成绩与错题])
+  M1 --> U16([看学习进度])
+
+  M2 --> U21([看章节诊断])
+  M2 --> U22([看课程掌握总览])
+
+  M3 --> U31([接受推荐计划])
+  M3 --> U32([执行计划与复习练习])
+
+  M4 --> U41([查看画像])
+  M4 --> U42([填写自评问卷])
+
+  M5 --> U51([提问])
+  M5 --> U52([五步引导])
+  M5 --> U53([制定个人学习计划])
+  M5 --> U54([查看对话历史、清除记忆])
+
+  M6 --> U61([查看章节预测])
+  M6 --> U62([查看学习趋势])
+  M6 --> U63([模拟不同学习安排])
+
+  M7 --> U71([登录])
+  M7 --> U72([查看通知、标已读])
+  M7 --> U73([修改密码])

@@ -1,0 +1,27 @@
+%% 图题：数字孪生输出结构
+%% 问题：数字孪生输出哪些内容，章节预测、学习趋势、模拟对比分别包含什么？
+%% 来源：REQ-DT-002、REQ-DT-003、REQ-DT-004、REQ-DT-006、Q-148、Q-149、Q-150、Q-152、Q-153、Q-154、Q-155、Q-159
+%%{init: {'theme':'neutral','themeVariables':{'fontFamily':'Microsoft YaHei, Segoe UI, sans-serif','fontSize':'16px'}}}%%
+flowchart TB
+  P((数字孪生输出))
+  P --> G1[预测内容]
+  P --> G2[限制与状态]
+
+  G1 --> F1[章节预测·概览<br/>预计掌握知识点数<br/>占已判定知识点数比例<br/>预期练习得分区间<br/>可信度（高/中/低）<br/>阈值待定]
+  G1 --> F2[章节预测·逐知识点<br/>预期掌握程度<br/>数据不足标记<br/>不计入比例]
+  G1 --> F3[章节预测·依据<br/>学习记录时间范围<br/>依据的诊断章节<br/>练习次数<br/>模拟使用的计划]
+  G1 --> F4[章节预测·说明<br/>预测是估计<br/>而非事实]
+  G1 --> T1[学习趋势<br/>掌握结构<br/>成绩水平<br/>学习进度<br/>综合改善/稳定/恶化<br/>可用指标少于 2 项<br/>显示数据不足]
+  G1 --> S1[模拟对比<br/>保持当前学习安排<br/>完成推荐计划<br/>可选一个个人计划<br/>各情形掌握比例<br/>得分区间和差异<br/>模拟假设]
+
+  G2 --> U1[不可用状态<br/>无诊断或可用练习少于 3 次<br/>数据不足，无法预测<br/>服务不可用<br/>预测暂不可用<br/>其他模块不受影响]
+  G2 --> L1[输出限制<br/>只预测未完成章节<br/>每章只保留最近一次<br/>不保留历史<br/>学生和本班教师<br/>看到相同内容]
+
+  classDef root fill:#DCE9F7,stroke:#315B8A,stroke-width:2px,font-weight:bold
+  classDef hub fill:#F0F2F5,stroke:#7A8699
+  classDef content fill:#E8F1FB,stroke:#5A7FA8
+  classDef meta fill:#FFF8E1,stroke:#C9A227
+  class P root
+  class G1,G2 hub
+  class F1,F2,F3,F4,T1,S1 content
+  class U1,L1 meta
