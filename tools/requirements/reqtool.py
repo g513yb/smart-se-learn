@@ -7,7 +7,10 @@ sys.stdout.reconfigure(encoding="utf-8")
 OPEN = {"待回答", "部分回答"}
 VALID_Q = {"待回答", "部分回答", "已确认", "已废弃"}
 VALID_S = {"已记录", "已废弃"}
-OLD_NAMES = ("00-vision", "01-personas", "02-backlog", "03-nfr", "07-dialogue", "08-decisions")
+OLD_NAMES = (
+    "00-vision", "01-personas", "02-backlog", "03-nfr", "07-dialogue", "08-decisions",
+    "04-hypotheses", "05-traceability", "06-changes",
+)
 CAT_RANK = {"确定冲突": 0, "可能冲突": 1, "无法判断": 1, "普通": 2}
 
 
@@ -274,7 +277,7 @@ def check_q(base):
             issues.append(f"缺少文件：{rel}")
 
     for dirpath, dirnames, filenames in os.walk(base):
-        dirnames[:] = [d for d in dirnames if d not in (".git", "PPT")]
+        dirnames[:] = [d for d in dirnames if d not in (".git", "PPT", "tools")]
         for fn in filenames:
             if not fn.endswith((".md", ".mmd")):
                 continue
@@ -584,6 +587,84 @@ def check_models(base, verbose=False):
     return 1 if issues else 0
 
 
+def check_refs(base):
+    issues = set()
+    scanned = pref = pathref = 0
+    index_path = os.path.join(base, "docs/requirements/research/sources/INDEX.md")
+    pids = set(re.findall(r"P-\d{3}", read(index_path))) if os.path.exists(index_path) else set()
+    if not pids:
+        issues.add("sources/INDEX.md 缺失或没有 P-ID")
+
+    docs_root = os.path.join(base, "docs")
+    for dp, dns, fns in os.walk(docs_root):
+        dns[:] = [d for d in dns if d != "PPT"]
+        for fn in fns:
+            if not fn.endswith((".md", ".mmd")):
+                continue
+            p = os.path.join(dp, fn)
+            rel = os.path.relpath(p, base)
+            scanned += 1
+            t = read(p)
+            for pid in re.findall(r"P-\d{3}", t):
+                pref += 1
+                if pid not in pids:
+                    issues.add(f"{rel}: P-ID 不在 INDEX：{pid}")
+            for path in re.findall(r"docs/[A-Za-z0-9_./-]+\.(?:md|mmd|svg|png)", t):
+                if any(x in path for x in "<>*"):
+                    continue
+                if path == "docs/requirements/context.md":
+                    continue
+                pathref += 1
+                if not os.path.exists(os.path.join(base, path)):
+                    issues.add(f"{rel}: 路径不存在：{path}")
+            for m in re.findall(r"(?<![A-Za-z0-9_/])research/([A-Za-z0-9_-]+)\.md", t):
+                pathref += 1
+                target = f"docs/requirements/research/{m}.md"
+                if not os.path.exists(os.path.join(base, target)):
+                    issues.add(f"{rel}: 路径不存在：{target}")
+            for m in re.findall(r"(?<![A-Za-z0-9_/])((?:src|img)/[A-Za-z0-9_.-]+\.(?:md|mmd|svg|png))", t):
+                pathref += 1
+                target = f"docs/requirements/models/{m}"
+                if not os.path.exists(os.path.join(base, target)):
+                    issues.add(f"{rel}: 路径不存在：{target}")
+
+    skill_root = os.path.join(base, ".claude/skills/requirements-analysis")
+    for dp, dirs, fns in os.walk(skill_root):
+        for fn in fns:
+            if not fn.endswith(".md"):
+                continue
+            p = os.path.join(dp, fn)
+            rel = os.path.relpath(p, base)
+            t = read(p)
+            for m in re.findall(r"references/([A-Za-z0-9_-]+\.md)", t):
+                if not os.path.exists(os.path.join(skill_root, "references", m)):
+                    issues.add(f"{rel}: 路径不存在：references/{m}")
+            for path in re.findall(r"tools/[A-Za-z0-9_./-]+", t):
+                if any(x in path for x in "<>*"):
+                    continue
+                if not os.path.exists(os.path.join(base, path)):
+                    issues.add(f"{rel}: 路径不存在：{path}")
+
+    for dp, dns, fns in os.walk(base):
+        dns[:] = [d for d in dns if d not in (".git", "PPT", "tools")]
+        for fn in fns:
+            if not fn.endswith((".md", ".mmd")):
+                continue
+            p = os.path.join(dp, fn)
+            rel = os.path.relpath(p, base)
+            t = read(p)
+            for old in OLD_NAMES:
+                if old in t:
+                    issues.add(f"{rel}: 旧名称 {old}")
+
+    print("== check refs ==")
+    print(f"INFO 文档：{scanned}；P-ID 引用：{pref}；路径引用：{pathref}")
+    for x in sorted(issues):
+        print("FAIL", x)
+    print(f"RESULT: {'FAIL' if issues else 'PASS'} ({len(issues)} 项)")
+    return 1 if issues else 0
+
+
 def q_next(base):
     _, qindex, qrows, _ = parse_dialogue(base)
     _, module_order = parse_vision_modules(base)
@@ -604,7 +685,7 @@ def q_next(base):
     return 0
 
 
-USAGE = "usage: reqtool.py [repo] check q | check dor [REQ] | check models | check gate handoff | q next"
+USAGE = "usage: reqtool.py [repo] check q | check dor [REQ] | check models | check refs | check gate handoff | q next"
 
 
 def main():
@@ -629,6 +710,8 @@ def main():
         return check_dor(base, target, "--verbose" in rest)
     if cmd == "check" and rest[:1] == ["models"]:
         return check_models(base, "--verbose" in rest)
+    if cmd == "check" and rest[:1] == ["refs"]:
+        return check_refs(base)
     if cmd == "check" and rest[:2] == ["gate", "handoff"]:
         return check_gate_handoff(base)
     if cmd == "q" and rest[:1] == ["next"]:

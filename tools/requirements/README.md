@@ -11,6 +11,7 @@ python tools/requirements/reqtool.py check q
 python tools/requirements/reqtool.py check dor
 python tools/requirements/reqtool.py check dor REQ-xxx
 python tools/requirements/reqtool.py check models
+python tools/requirements/reqtool.py check refs
 python tools/requirements/reqtool.py check gate handoff
 python tools/requirements/reqtool.py q next
 ```
@@ -96,6 +97,22 @@ RESULT: FAIL (1/75)
 
 - 模型行数、含待定点数量。`--verbose` 打印每条 PASS。
 
+### `check refs`
+
+检查项目文档中的路径、P-ID 和旧文件名。
+
+**FAIL**
+
+- `docs/...` 路径不存在（`docs/requirements/context.md` 可选，跳过）；
+- `research/<name>.md` 或 `src/`、`img/` 路径不存在；
+- `P-ID` 不在 `docs/requirements/research/sources/INDEX.md`；
+- skill 的 `references/...` 或 `tools/...` 路径不存在；
+- 仍引用旧文件名（`00-vision`、`01-personas`、`02-backlog`、`03-nfr`、`07-dialogue`、`08-decisions`、`04-hypotheses`、`05-traceability`、`06-changes`）。
+
+**INFO**
+
+- 扫描文档数、P-ID 引用数、路径引用数。
+
 ### `check gate handoff`
 
 检查能否移交设计。只做机械前置检查，语义判断仍按 `handoff.md`。
@@ -126,8 +143,8 @@ RESULT: FAIL (1/75)
 
 | 码 | 含义 |
 |---|---|
-| 0 | 检查通过（`check q` / `check dor` / `check models` / `check gate handoff`）或找到下一问（`q next`） |
-| 1 | 发现机械不一致或存在移交阻断项（`check q` / `check dor` / `check models` / `check gate handoff`） |
+| 0 | 检查通过（`check q` / `check dor` / `check models` / `check refs` / `check gate handoff`）或找到下一问（`q next`） |
+| 1 | 发现机械不一致或存在移交阻断项（`check q` / `check dor` / `check models` / `check refs` / `check gate handoff`） |
 | 2 | 没有开放 Q（`q next`） |
 | 64 | 命令用法错误 |
 
