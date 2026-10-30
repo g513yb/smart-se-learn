@@ -6,7 +6,7 @@
 
 ## 1. 开工顺序
 
-1. 读 `docs/STATUS.md`：当前阶段、当前模块、下一步、待决事项。
+1. 读 `docs/STATUS.md`：当前阶段、当前模块、下一步、待决事项。可运行 `python tools/requirements/reqtool.py check all` 做机械检查。
 2. 判断任务类型：
    - 需求（新建、修改、确认、建模、backlog、变更、移交）→ 先加载 `requirements-analysis` skill，按 skill 的流程走；本文件不替代 skill。skill 的 `SKILL.md` 末尾有“参考文件与阅读时机”表，按表读，不必一次读全部 reference。
    - 设计 → 由 `design-analysis` skill 承担（待建）；尚未建立时，按 `requirements-analysis` 的 `handoff.md` 输出移交包后停下，不自行开始设计。

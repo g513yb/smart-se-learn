@@ -13,6 +13,7 @@ python tools/requirements/reqtool.py check dor REQ-xxx
 python tools/requirements/reqtool.py check models
 python tools/requirements/reqtool.py check refs
 python tools/requirements/reqtool.py check coverage
+python tools/requirements/reqtool.py check all
 python tools/requirements/reqtool.py check gate module 学习诊断
 python tools/requirements/reqtool.py check gate handoff
 python tools/requirements/reqtool.py q next
@@ -132,6 +133,15 @@ RESULT: FAIL (1/75)
 **INFO**
 
 - 模块数量；`--verbose` 打印每条模块 PASS。
+
+### `check all`
+
+依次运行 `check q`、`check dor`、`check models`、`check refs`、`check coverage`，汇总结果。
+
+- 默认只显示 PASS/FAIL 和失败项详情；
+- `--verbose` 显示每个检查的完整输出；
+- 不包含 gate 命令（它们按阶段会失败）；
+- 任一失败退出 1。
 
 ### `check gate module <模块|缩写>`
 

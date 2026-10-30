@@ -1,6 +1,8 @@
+import io
 import os
 import re
 import sys
+from contextlib import redirect_stdout
 
 sys.stdout.reconfigure(encoding="utf-8")
 
@@ -866,6 +868,39 @@ def check_coverage(base, verbose=False):
     return 1 if issues else 0
 
 
+def check_all(base, verbose=False):
+    checks = [
+        ("check q", lambda: check_q(base)),
+        ("check dor", lambda: check_dor(base)),
+        ("check models", lambda: check_models(base)),
+        ("check refs", lambda: check_refs(base)),
+        ("check coverage", lambda: check_coverage(base)),
+    ]
+    failed = 0
+    print("== check all ==")
+    for name, fn in checks:
+        buf = io.StringIO()
+        try:
+            with redirect_stdout(buf):
+                code = fn()
+        except Exception as e:
+            code = 1
+            buf.write(f"ERROR {e}\n")
+        out = buf.getvalue().strip().splitlines()
+        if code == 0:
+            print(f"PASS {name}")
+            if verbose:
+                for line in out:
+                    print("  " + line)
+        else:
+            failed += 1
+            print(f"FAIL {name}")
+            for line in out:
+                print("  " + line)
+    print(f"RESULT: {'FAIL' if failed else 'PASS'} ({failed}/{len(checks)})")
+    return 1 if failed else 0
+
+
 def q_next(base):
     _, qindex, qrows, _ = parse_dialogue(base)
     _, module_order = parse_vision_modules(base)
@@ -886,7 +921,7 @@ def q_next(base):
     return 0
 
 
-USAGE = "usage: reqtool.py [repo] check q | check dor [REQ] | check models | check refs | check coverage | check gate module <模块> | check gate handoff | q next"
+USAGE = "usage: reqtool.py [repo] check q | check dor [REQ] | check models | check refs | check coverage | check all | check gate module <模块> | check gate handoff | q next"
 
 
 def main():
@@ -915,6 +950,8 @@ def main():
         return check_refs(base)
     if cmd == "check" and rest[:1] == ["coverage"]:
         return check_coverage(base, "--verbose" in rest)
+    if cmd == "check" and rest[:1] == ["all"]:
+        return check_all(base, "--verbose" in rest)
     if cmd == "check" and rest[:2] == ["gate", "module"]:
         return check_gate_module(base, rest[2] if len(rest) > 2 else None)
     if cmd == "check" and rest[:2] == ["gate", "handoff"]:
