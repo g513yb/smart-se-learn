@@ -68,7 +68,7 @@ description: Use when creating, modifying, confirming, or handing off requiremen
 
 1. **检查**：按 `references/file-templates.md` 的文件清单逐项检查，列出存在与缺失；不把缺失当已知，不预建空文件。
 2. **愿景**：按 `references/vision-guide.md` 第 4 节初次建立。回答先记 `S`；第一次需要 `S` 时按 `file-templates.md` 创建 `dialogue.md`，第一次需要 `D` 时创建 `decisions.md`。愿景的范围节是团队分工和模块选择的依据；范围不明确时停下补 Q。
-3. **团队与分工**：愿景范围确认后，问清成员和各自负责范围。范围名称应能对应愿景范围中的模块/能力；AI 从回答和已确认的愿景范围中提取并起草 `docs/team.md`，不记 `S`；可提出范围建议；人确认后写入。不写项目 D；不记录确认人/日期。
+3. **团队与分工**：愿景范围确认后，问清成员、角色简称和各自负责范围。范围名称应能对应愿景范围中的模块/能力；AI 从回答和已确认的愿景范围中提取并起草 `docs/team.md`，不记 `S`；可提出范围建议；人确认后写入。不写项目 D；不记录确认人/日期。
 4. **项目状态**：AI 按 `file-lifecycle.md` 的 STATUS 阶段判定表，从已有文件推导当前阶段、下一步和待决事项，按 `file-templates.md` 创建或更新 `docs/STATUS.md`；不需要人确认，不在对话中说明；不写项目 D；不记录确认人/日期。
 5. **角色**：按 `references/persona-guide.md` 第 4 节初次建立。
 6. **后续文件**：不预建；到达对应阶段时按 `file-templates.md` 创建。任何一步缺输入就停下提问，不跳到下一步。
