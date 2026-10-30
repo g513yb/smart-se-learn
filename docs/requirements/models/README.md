@@ -7,7 +7,7 @@
 | 图题 | 类型 | 回答的问题 | 源文件 | 图文件 | 主要来源 | 状态 |
 |---|---|---|---|---|---|---|
 | 5E 学习智能体行为 | 行为地图 | 学生在不同页面、不同问题下智能体怎么表现；哪些能做、哪些拒答；数据和记忆边界是什么 | `src/agent-behavior-map.mmd` | `img/agent-behavior-map.svg` | REQ-AGENT-001～010、Q-132～144 | 已定稿·含待定点 |
-| 五步引导状态 | 状态图 | 五步引导如何进入、每一步做什么、何时结束 | `src/agent-five-e-guide-state.mmd` | `img/agent-five-e-guide-state.svg` | REQ-AGENT-001、REQ-AGENT-003、Q-135；Q-134 待回答 | 已定稿·含待定点 |
+| 五步引导状态 | 状态图 | 五步引导如何进入、每一步做什么、何时结束 | `src/agent-five-e-guide-state.mmd` | `img/agent-five-e-guide-state.svg` | REQ-AGENT-001、REQ-AGENT-003、Q-135；Q-134、Q-183 待回答 | 已定稿·含待定点 |
 | 内容变更连锁反应 | 活动图 | 改名、新增、重新上传、删除内容，或修改成绩、知识点后，完成状态、诊断、总览、推荐计划和通知如何变化 | `src/course-content-change-cascade.mmd` | `img/course-content-change-cascade.svg` | REQ-COURSE-003/010/013/015、REQ-DIAG-002/004/007/008、REQ-RECO-004/005/008、REQ-NOTIF-001/002/003、Q-030、Q-102、D-013、D-014 | 已定稿 |
 | 课程内容与知识点关系 | 领域类图 | 课程、章节、节点、练习、题目、知识点之间是什么关系 | `src/course-content-knowledge-relations.mmd` | `img/course-content-knowledge-relations.svg` | REQ-COURSE-001/002/003/006/014/015、REQ-DIAG-001/002/003、glossary | 已定稿 |
 | 练习提交到推荐 | 时序图 | 一次练习提交后，成绩、学习事件、章节诊断、课程掌握总览、推荐计划和通知按什么顺序发生 | `src/course-submit-to-recommend.mmd` | `img/course-submit-to-recommend.svg` | REQ-COURSE-006/007、REQ-LOG-002、REQ-DIAG-004/007/008、REQ-RECO-001/004/005/006/008、REQ-NOTIF-002/003、S-056、D-014 | 已定稿 |
