@@ -12,6 +12,7 @@ python tools/requirements/reqtool.py check dor
 python tools/requirements/reqtool.py check dor REQ-xxx
 python tools/requirements/reqtool.py check models
 python tools/requirements/reqtool.py check refs
+python tools/requirements/reqtool.py check gate module 学习诊断
 python tools/requirements/reqtool.py check gate handoff
 python tools/requirements/reqtool.py q next
 ```
@@ -113,6 +114,21 @@ RESULT: FAIL (1/75)
 
 - 扫描文档数、P-ID 引用数、路径引用数。
 
+### `check gate module <模块|缩写>`
+
+检查一个模块能否进入确认。
+
+**FAIL**
+
+- 模块不在 `vision.md` 范围；
+- coverage-scan 缺模块总览，或六维有“未问”；
+- 模块有开放 Q；
+- 全局仍有“待建”关联列。
+
+**INFO**
+
+- 模块名/缩写、负责角色、六维状态、开放 Q 数量。
+
 ### `check gate handoff`
 
 检查能否移交设计。只做机械前置检查，语义判断仍按 `handoff.md`。
@@ -143,8 +159,8 @@ RESULT: FAIL (1/75)
 
 | 码 | 含义 |
 |---|---|
-| 0 | 检查通过（`check q` / `check dor` / `check models` / `check refs` / `check gate handoff`）或找到下一问（`q next`） |
-| 1 | 发现机械不一致或存在移交阻断项（`check q` / `check dor` / `check models` / `check refs` / `check gate handoff`） |
+| 0 | 检查通过（`check q` / `check dor` / `check models` / `check refs` / `check gate module` / `check gate handoff`）或找到下一问（`q next`） |
+| 1 | 发现机械不一致或存在阻断项（`check q` / `check dor` / `check models` / `check refs` / `check gate module` / `check gate handoff`） |
 | 2 | 没有开放 Q（`q next`） |
 | 64 | 命令用法错误 |
 

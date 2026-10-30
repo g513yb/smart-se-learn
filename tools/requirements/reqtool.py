@@ -665,6 +665,91 @@ def check_refs(base):
     return 1 if issues else 0
 
 
+def parse_glossary_modules(base):
+    text = read(os.path.join(base, "docs/requirements/glossary.md"))
+    out = {}
+    for line in text.splitlines():
+        if not line.startswith("| "):
+            continue
+        c = cells(line)
+        if len(c) < 2:
+            continue
+        m = re.match(r"(.+?)（([A-Z]+)）", c[0])
+        if m:
+            out[m.group(1).strip()] = m.group(2)
+    return out
+
+
+def parse_team_scopes(base):
+    text = read(os.path.join(base, "docs/team.md"))
+    rows = []
+    for line in text.splitlines():
+        if line.startswith("| ") and not line.startswith("|---"):
+            c = cells(line)
+            if len(c) >= 3 and c[0] != "角色":
+                rows.append((c[0], c[1], c[2]))
+    return rows
+
+
+def check_gate_module(base, target=None):
+    if not target:
+        print("usage: reqtool.py check gate module <模块|缩写>", file=sys.stderr)
+        return 64
+    _, module_order = parse_vision_modules(base)
+    glossary = parse_glossary_modules(base)
+    reverse = {v: k for k, v in glossary.items()}
+    name = reverse.get(target.upper(), target)
+    if name not in module_order:
+        print(f"FAIL 模块不在 vision 范围：{target}")
+        print("RESULT: FAIL")
+        return 1
+
+    _, qindex, qrows, srows = parse_dialogue(base)
+    _, coverage_rows = parse_coverage(base)
+    blockers, infos = [], []
+    abbr = glossary.get(name, "")
+    infos.append(f"模块：{name}" + (f"（{abbr}）" if abbr else ""))
+    roles = [r[0] for r in parse_team_scopes(base) if name in r[2]]
+    if roles:
+        infos.append("负责角色：" + "、".join(roles))
+
+    if name not in coverage_rows:
+        blockers.append("coverage-scan 缺模块总览")
+    else:
+        dims = coverage_rows[name]
+        infos.append("六维：" + "、".join(
+            f"{d}={s}" for d, s in zip(("角色", "旅程", "对象", "规则", "横切", "质量"), dims)
+        ))
+        if "未问" in dims:
+            blockers.append("六维有“未问”")
+
+    idxmap = {x["id"]: x for x in qindex}
+    open_qs = [
+        q["id"] for q in qrows
+        if q["status"] in OPEN and name in [
+            m.strip() for m in idxmap.get(q["id"], {}).get("module", "").split("、")
+        ]
+    ]
+    if open_qs:
+        blockers.append("开放 Q：" + "、".join(open_qs))
+    else:
+        infos.append("开放 Q：0")
+
+    wait_build = [x["id"] for x in srows + qrows if "待建" in x["link"]]
+    if wait_build:
+        blockers.append(f"待建关联列（全局）：{len(wait_build)} 处")
+    else:
+        infos.append("待建关联列：0")
+
+    print(f"== check gate module {name} ==")
+    for x in infos:
+        print("INFO", x)
+    for x in blockers:
+        print("FAIL", x)
+    print(f"RESULT: {'FAIL' if blockers else 'PASS'} ({len(blockers)} 项)")
+    return 1 if blockers else 0
+
+
 def q_next(base):
     _, qindex, qrows, _ = parse_dialogue(base)
     _, module_order = parse_vision_modules(base)
@@ -685,7 +770,7 @@ def q_next(base):
     return 0
 
 
-USAGE = "usage: reqtool.py [repo] check q | check dor [REQ] | check models | check refs | check gate handoff | q next"
+USAGE = "usage: reqtool.py [repo] check q | check dor [REQ] | check models | check refs | check gate module <模块> | check gate handoff | q next"
 
 
 def main():
@@ -712,6 +797,8 @@ def main():
         return check_models(base, "--verbose" in rest)
     if cmd == "check" and rest[:1] == ["refs"]:
         return check_refs(base)
+    if cmd == "check" and rest[:2] == ["gate", "module"]:
+        return check_gate_module(base, rest[2] if len(rest) > 2 else None)
     if cmd == "check" and rest[:2] == ["gate", "handoff"]:
         return check_gate_handoff(base)
     if cmd == "q" and rest[:1] == ["next"]:
