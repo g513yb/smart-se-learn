@@ -5,3 +5,5 @@ Thumbs.db
 docs/PPT/
 docs/requirements/research/sources/*.pdf
 docs/requirements/research/sources/_archive/*.pdf
+__pycache__/
+*.pyc

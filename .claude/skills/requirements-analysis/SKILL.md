@@ -127,6 +127,10 @@ AI 只写人确认后的需求内容；`docs/STATUS.md` 例外：AI 按阶段判
 **DoR / DoD**：见 `references/file-lifecycle.md` 的 `backlog.md` 节。
 **模块门禁**：六维无“未问”；S/Q 关联列无“待建”；该模块 `dialogue.md` 中无“待回答/部分回答”的 Q。
 
+## 工具
+
+仓库提供只读检查工具 `tools/requirements/reqtool.py`。会话开始、写入前、移交前运行 `check q`；需要选下一条 Q 时运行 `q next`。`FAIL` 项按输出处理，不得绕过；`INFO` 是当前阶段状态。工具不可用时按本 skill 手工检查。命令与退出码见 `tools/requirements/README.md`。
+
 ## 参考文件与阅读时机
 
 每次会话先读 `SKILL.md`。其余文件按当前动作读，不必全读。
@@ -148,6 +152,7 @@ AI 只写人确认后的需求内容；`docs/STATUS.md` 例外：AI 按阶段判
 | 建模前 | `modeling-guide.md`、`diagram-delivery.md` | 选图、图源与导出规则 |
 | 新建或更新文件前 | `file-templates.md`、`file-lifecycle.md` | 文件结构、建立时机、读写规则 |
 | 移交设计前 | `handoff.md` | 前置检查、移交包 |
+| 运行机械检查前 | `tools/requirements/README.md` | 命令、输出、退出码 |
 | 拿不准当前阶段 | `file-lifecycle.md` 的“阶段判定表”和“backlog.md 的 DoR 可执行检查” | 阶段、下一步、待决事项、DoR |
 
 最小必读集：`SKILL.md` + `conversation-style.md` + `file-lifecycle.md` 的“阶段判定表”和 `backlog.md` 的 DoR + 当前阶段对应的文件。当前阶段为“待决事项处理中”时，至少读 `STATUS.md`、`dialogue.md` 的待答 Q 索引和相关 Q、`vision.md` 的范围/模块顺序、对应模块的 `coverage-scan.md` 节。其余按需。

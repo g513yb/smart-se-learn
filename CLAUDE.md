@@ -33,6 +33,7 @@
 | `docs/requirements/research/` | 对标调研 brief 与来源 | 进入新模块、需要参考时 |
 | `docs/design-notes.md` | 设计线索 `DSN-`，不进入需求 | 记录或查阅设计参考时 |
 | `.claude/skills/requirements-analysis/` | 需求分析流程 | 执行需求流程时 |
+| `tools/requirements/` | 需求一致性检查工具（只读） | 会话开始、写入前、移交前 |
 
 文档尚未建立时，按 skill 的“初始化”顺序创建；不预建空文件，不预填内容。
 
