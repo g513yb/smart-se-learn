@@ -123,7 +123,7 @@ description: Use when creating, modifying, confirming, or handing off requiremen
    - **缺口提问**：按 `references/gap-check.md` 对当前单位逐项检查；原话先记 S，只对“未覆盖 / 部分覆盖 / 无法判断 / 缺依据”生成 Q，进 `dialogue.md`；已有待答 Q 不重复；生成 Q 后同步更新 `coverage-scan.md` 对应模块的维度聚合和总览。角色相关分析前，如果 `personas.md` 尚未建立，先按 `references/persona-guide.md` 初次建立
    - **NFR**：与 backlog 并行；模块边界明确后，模块首访的质量维度或用户提出质量要求时即可进入 NFR；不等待 backlog 完成；写 NFR 前检查相关 backlog 故事
    - 文档缺失或为空时先报告，不凭记忆补全
-2. **成形**：按 `references/extraction-guide.md` 提取；用故事卡（`references/story-card.md`）；先过冲突检查（`references/conflict-check.md`）并记录结论；过 DoR；写 Given-When-Then；写入故事卡后，回填相关 Q 的关联需求（`REQ-xxx`）和 S 的关联列，未回填不算成形完成；对话层按 `references/conversation-style.md` 说明依据，文件内容不标来源。
+2. **成形**：按 `references/extraction-guide.md` 提取（含诊断三栏、两个来源）；缺口用 `references/elicitation-playbook.md` 的成形四问；用故事卡（`references/story-card.md`）；先过冲突检查（`references/conflict-check.md`）并记录结论；过 DoR；写 Given-When-Then；写入故事卡后，回填相关 Q 的关联需求（`REQ-xxx`）和 S 的关联列，未回填不算成形完成；对话层按 `references/conversation-style.md` 说明依据，文件内容不标来源。
 3. **排序**：MoSCoW 或价值-成本；AI 可给建议，建议必须标“建议”；优先级由人决定；backlog 不记录依据或 D。
 4. **建模**：只在文字说不清流程、状态、规则、交互或边界时画；查 `references/modeling-guide.md` 选最小图型。每个图元素必须有 `S/D/REQ` 来源；未回答的 Q、P、推断不作来源；设计进 `DSN-`。源保存到 `models/src/<模块>-<主题>.mmd`（表格为 `.md`），导出到 `models/img/`，更新 `models/README.md`；文件头写问题、来源；人确认后写入。格式与拆页规则见 `references/diagram-delivery.md`。
 5. **确认**：AI 提交最终内容、验收标准和依据（有/无来源、哪些是 AI 生成）；人确认后写入；无评审环节；标准可执行、无歧义后，按 `references/handoff.md` 做移交检查并输出移交包；人确认后更新 `STATUS.md`，需求阶段结束。
@@ -132,30 +132,6 @@ description: Use when creating, modifying, confirming, or handing off requiremen
 ## 移交设计
 
 需求确认完成后，不直接开始设计。按 `references/handoff.md` 检查前置条件并输出移交包：REQ、NFR、需求模型、DSN、开放问题、设计入口。移交包经人确认后，`STATUS.md` 改为“已移交设计”。设计由独立的 `design-analysis` skill 承担；本 skill 只移交，不执行设计。
-
-## 成形四问
-
-每条故事必须回答；逐个问，问题进 Q，回答写入 Q 的回答列，独立陈述才另记 S：
-1. 角色：还有谁做这件事？
-2. 触发：什么条件下发生？前置是什么？
-3. 异常：失败、越权、边界时怎样？
-4. 完成：怎么判断做成了？看到什么？留下什么记录？
-
-四问只产生问题，不产生答案。
-
-## 需求诊断输出
-
-接到需求描述后，先在内部按三栏检查，再动笔：
-- **能确认的**：有 S/D 来源
-- **需要问的**：编号 Q，写清依据
-- **不能直接写成已确认的**：无来源的推断、设计细节、范围外内容；可标为“AI 提议”或 Q，写明原因
-
-三栏是内部检查，不在对话中逐栏展示。对话层按 `references/conversation-style.md` 输出必要的理解、问题和建议。
-
-## 需求的两个来源
-
-1. **用户描述**：用成形四问诊断缺口，问题引用用户原话（S）与缺口维度。
-2. **AI 主动发现**：基于 `P/S/D` 的候选写明依据；AI 生成的候选标为“AI 提议”；没有依据的可以作为开放问题或候选，但不得写成已确认需求。
 
 ## 对话循环
 
