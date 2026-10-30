@@ -20,7 +20,7 @@
 | 需求模型已定稿 | `models/README.md` | 列出“含待定点”的图，停 |
 | 本模块无待回答/部分回答的 Q | `dialogue.md` | 先处理，停 |
 
-每一关只认显式记录；没有记录就是未通过。
+每一关只认显式记录；没有记录就是未通过。也可运行 `tools/requirements/reqtool.py check gate handoff` 做机械前置检查；语义判断仍按本文件。
 
 ### 2.1 移交阻断项
 

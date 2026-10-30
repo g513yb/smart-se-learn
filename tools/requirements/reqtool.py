@@ -339,7 +339,7 @@ def check_q(base):
     return 0
 
 
-def check_dor(base, target=None, verbose=False):
+def collect_dor_issues(base):
     _, backlog = parse_backlog(base)
     roles = parse_team_roles(base)
     by_id = {r["id"]: r for r in backlog}
@@ -348,24 +348,16 @@ def check_dor(base, target=None, verbose=False):
     def add(rid, msg):
         issues.setdefault(rid, []).append(msg)
 
-    if target and target not in by_id:
-        print(f"FAIL {target}: 不存在")
-        print("RESULT: FAIL")
-        return 1
-
     seen = set()
     for r in backlog:
         if r["id"] in seen:
             add(r["id"], "REQ 编号重复")
         seen.add(r["id"])
 
-    selected = [r for r in backlog if target is None or r["id"] == target]
     allowed_priority = {"Must", "Should", "Could", "Won't", "Won’t"}
-    graph = {}
-    for r in backlog:
-        graph[r["id"]] = re.findall(r"REQ-[A-Z]+-\d{3}", r["deps"])
+    graph = {r["id"]: re.findall(r"REQ-[A-Z]+-\d{3}", r["deps"]) for r in backlog}
 
-    for r in selected:
+    for r in backlog:
         rid = r["id"]
         for field, label in (("title", "标题"), ("story", "故事"), ("acceptance", "验收标准"),
                              ("priority", "优先级"), ("owner", "负责人"), ("deps", "依赖")):
@@ -390,6 +382,17 @@ def check_dor(base, target=None, verbose=False):
     for cyc in find_cycles(graph):
         add(cyc[0], "依赖环：" + " → ".join(cyc))
 
+    return issues, backlog, by_id
+
+
+def check_dor(base, target=None, verbose=False):
+    issues, backlog, by_id = collect_dor_issues(base)
+    if target and target not in by_id:
+        print(f"FAIL {target}: 不存在")
+        print("RESULT: FAIL")
+        return 1
+
+    selected = [r for r in backlog if target is None or r["id"] == target]
     failed = [r["id"] for r in selected if r["id"] in issues]
     for r in selected:
         rid = r["id"]
@@ -400,6 +403,75 @@ def check_dor(base, target=None, verbose=False):
     print("INFO 未检查：故事来源、关联 Q（backlog 无列）")
     print(f"RESULT: {'FAIL' if failed else 'PASS'} ({len(failed)}/{len(selected)})")
     return 1 if failed else 0
+
+
+def check_gate_handoff(base):
+    _, qindex, qrows, srows = parse_dialogue(base)
+    _, stage, _, _ = parse_status(base)
+    _, module_order = parse_vision_modules(base)
+    _, coverage_rows = parse_coverage(base)
+    _, pending_models = parse_models(base)
+    _, nfr_ids = parse_nfr(base)
+    dor_issues, backlog, _ = collect_dor_issues(base)
+
+    open_rows = [q for q in qrows if q["status"] in OPEN]
+    idxmap = {x["id"]: x for x in qindex}
+    idx_order = {x["id"]: int(x["order"]) if x["order"].isdigit() else 999 for x in qindex}
+    open_rows.sort(key=lambda q: idx_order.get(q["id"], 999))
+    wait_build = [x["id"] for x in srows + qrows if "待建" in x["link"]]
+    blockers, infos = [], []
+
+    infos.append(f"阶段：{stage}（移交触发还需“需求确认完成”或用户明确要求）")
+    if open_rows:
+        blockers.append(f"开放 Q：{len(open_rows)} 条（{', '.join(q['id'] for q in open_rows)}）")
+    else:
+        infos.append("开放 Q：0")
+    if wait_build:
+        blockers.append(f"待建关联列：{len(wait_build)} 处")
+    else:
+        infos.append("待建关联列：0")
+    if pending_models:
+        blockers.append(f"含待定点模型：{len(pending_models)} 张（{', '.join(pending_models)}）")
+    else:
+        infos.append("含待定点模型：0")
+
+    bad_nfr = [x for x in nfr_ids if not re.match(r"NFR-\d{3}$", x)]
+    if bad_nfr or len(nfr_ids) != len(set(nfr_ids)):
+        blockers.append("NFR 编号非法或重复")
+    else:
+        infos.append(f"NFR：{len(nfr_ids)} 条编号合法")
+
+    if dor_issues:
+        ids = sorted(dor_issues)
+        more = "…" if len(ids) > 10 else ""
+        blockers.append(f"DoR 未通过：{len(ids)} 条（{', '.join(ids[:10])}{more}）")
+    else:
+        infos.append(f"DoR：0/{len(backlog)} 未通过")
+
+    module_issues = []
+    for m in module_order:
+        if m not in coverage_rows:
+            module_issues.append(f"{m} 缺模块总览")
+        elif "未问" in coverage_rows[m]:
+            module_issues.append(f"{m} 六维有未问")
+    open_modules = sorted({
+        m.strip() for q in open_rows
+        for m in idxmap.get(q["id"], {}).get("module", "").split("、") if m.strip()
+    })
+    if open_modules:
+        module_issues.append("开放 Q 模块：" + "、".join(open_modules))
+    if module_issues:
+        blockers.append("模块门禁：" + "；".join(module_issues))
+    else:
+        infos.append("模块门禁：通过")
+
+    print("== check gate handoff ==")
+    for x in infos:
+        print("INFO", x)
+    for x in blockers:
+        print("FAIL", x)
+    print(f"RESULT: {'FAIL' if blockers else 'PASS'} ({len(blockers)} 项)")
+    return 1 if blockers else 0
 
 
 def q_next(base):
@@ -422,7 +494,7 @@ def q_next(base):
     return 0
 
 
-USAGE = "usage: reqtool.py [repo] check q | check dor [REQ] | q next"
+USAGE = "usage: reqtool.py [repo] check q | check dor [REQ] | check gate handoff | q next"
 
 
 def main():
@@ -445,6 +517,8 @@ def main():
         args = [x for x in rest[1:] if not x.startswith("--")]
         target = args[0] if args else None
         return check_dor(base, target, "--verbose" in rest)
+    if cmd == "check" and rest[:2] == ["gate", "handoff"]:
+        return check_gate_handoff(base)
     if cmd == "q" and rest[:1] == ["next"]:
         return q_next(base)
     print(USAGE, file=sys.stderr)

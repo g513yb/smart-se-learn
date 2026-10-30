@@ -10,6 +10,7 @@
 python tools/requirements/reqtool.py check q
 python tools/requirements/reqtool.py check dor
 python tools/requirements/reqtool.py check dor REQ-xxx
+python tools/requirements/reqtool.py check gate handoff
 python tools/requirements/reqtool.py q next
 ```
 
@@ -78,6 +79,26 @@ INFO 未检查：故事来源、关联 Q（backlog 无列）
 RESULT: FAIL (1/75)
 ```
 
+### `check gate handoff`
+
+检查能否移交设计。只做机械前置检查，语义判断仍按 `handoff.md`。
+
+**FAIL（阻断移交）**
+
+- 开放 Q；
+- 关联列仍有“待建”；
+- 有“含待定点”模型；
+- NFR 编号非法或重复；
+- 有 REQ 未通过 DoR；
+- 模块门禁：模块缺总览、六维有“未问”、有开放 Q 的模块。
+
+**INFO**
+
+- 当前阶段（移交触发还需“需求确认完成”或用户明确要求）；
+- 待建数量、模型待定点数量、NFR 数量、DoR 结果、模块门禁结果。
+
+当前有开放 Q 时会 `FAIL`，这是预期：它不是“检查当前状态”，而是“检查能否移交”。
+
 ### `q next`
 
 按“确定冲突 → 可能冲突/无法判断 → 普通缺口；同层按模块顺序、再按 Q 号”计算下一问。
@@ -88,8 +109,8 @@ RESULT: FAIL (1/75)
 
 | 码 | 含义 |
 |---|---|
-| 0 | 检查通过（`check q` / `check dor`）或找到下一问（`q next`） |
-| 1 | 发现机械不一致（`check q` / `check dor`） |
+| 0 | 检查通过（`check q` / `check dor` / `check gate handoff`）或找到下一问（`q next`） |
+| 1 | 发现机械不一致或存在移交阻断项（`check q` / `check dor` / `check gate handoff`） |
 | 2 | 没有开放 Q（`q next`） |
 | 64 | 命令用法错误 |
 
