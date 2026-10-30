@@ -5,6 +5,7 @@ import sys
 sys.stdout.reconfigure(encoding="utf-8")
 
 OPEN = {"待回答", "部分回答"}
+DIMS = ("角色", "旅程", "对象", "规则", "横切", "质量")
 VALID_Q = {"待回答", "部分回答", "已确认", "已废弃"}
 VALID_S = {"已记录", "已废弃"}
 OLD_NAMES = (
@@ -86,7 +87,7 @@ def parse_coverage(base):
         if in_overview and line.startswith("| ") and not line.startswith("|---"):
             c = cells(line)
             if len(c) >= 8 and c[0] != "模块":
-                rows[c[0]] = c[1:7]
+                rows[c[0]] = c[1:8]
     return text, rows
 
 
@@ -750,6 +751,106 @@ def check_gate_module(base, target=None):
     return 1 if blockers else 0
 
 
+def parse_coverage_sections(base):
+    text = read(os.path.join(base, "docs/requirements/coverage-scan.md"))
+    sections = {}
+    current = None
+    sub = None
+    for line in text.splitlines():
+        if line.startswith("## 模块："):
+            current = line.split("：", 1)[1].strip()
+            sections[current] = {"scan": [], "agg": {}}
+            sub = None
+            continue
+        if line.startswith("### "):
+            sub = line[4:].strip()
+            continue
+        if current and line.startswith("| ") and not line.startswith("|---"):
+            c = cells(line)
+            if sub == "扫描记录" and len(c) >= 5 and c[0] in DIMS:
+                sections[current]["scan"].append({"dim": c[0], "sub": c[1], "status": c[3], "gap": c[4]})
+            elif sub == "维度聚合" and len(c) >= 3 and c[0] in DIMS + ("对标调研",):
+                sections[current]["agg"][c[0]] = (c[1], c[2])
+    return text, sections
+
+
+def check_coverage(base, verbose=False):
+    _, _, qrows, _ = parse_dialogue(base)
+    open_ids = {q["id"] for q in qrows if q["status"] in OPEN}
+    _, module_order = parse_vision_modules(base)
+    _, overview = parse_coverage(base)
+    _, sections = parse_coverage_sections(base)
+    allowed = {"已确认", "已问待答", "未问", "部分覆盖", "无法判断", "有需求", "不适用"}
+    expected_subs = set()
+    for prefix, n in (("R", 4), ("J", 4), ("O", 6), ("B", 3), ("X", 5), ("Q", 5)):
+        expected_subs |= {f"{prefix}{i}" for i in range(1, n + 1)}
+
+    issues = {}
+
+    def add(m, msg):
+        issues.setdefault(m, []).append(msg)
+
+    for m in module_order:
+        if m not in sections:
+            add(m, "缺扫描节")
+            continue
+        scan = sections[m]["scan"]
+        agg = sections[m]["agg"]
+        actual = set()
+        for r in scan:
+            mm = re.match(r"([RJOBXQ]\d+)", r["sub"])
+            if mm:
+                actual.add(mm.group(1))
+            if r["status"] not in allowed:
+                add(m, f"扫描状态非法：{r['status']}")
+        missing = expected_subs - actual
+        extra = actual - expected_subs
+        if len(scan) != 27 or missing or extra:
+            msg = f"扫描项 {len(scan)}/27"
+            if missing:
+                msg += f"；缺 {','.join(sorted(missing))}"
+            if extra:
+                msg += f"；多 {','.join(sorted(extra))}"
+            add(m, msg)
+        for dim in DIMS:
+            qids = set()
+            for r in scan:
+                if r["dim"] == dim:
+                    qids |= set(extract_q_ids(r["gap"]))
+            if dim in agg:
+                qids |= set(extract_q_ids(agg[dim][1]))
+            open_here = any(q in open_ids for q in qids)
+            status = agg.get(dim, ("", ""))[0]
+            if status not in allowed:
+                add(m, f"{dim} 聚合状态非法：{status}")
+            if open_here and status != "已问待答":
+                add(m, f"{dim} 有开放 Q 但聚合为 {status}")
+            if not open_here and status == "已问待答":
+                add(m, f"{dim} 无开放 Q 但聚合为已问待答")
+        if m in overview:
+            ov = overview[m]
+            for idx, dim in enumerate(DIMS):
+                if idx < len(ov) and dim in agg and ov[idx] != agg[dim][0]:
+                    add(m, f"总览 {dim}={ov[idx]} 与聚合 {agg[dim][0]} 不一致")
+            if "对标调研" in agg and len(ov) >= 7 and ov[6] != agg["对标调研"][0]:
+                add(m, f"总览对标调研={ov[6]} 与聚合 {agg['对标调研'][0]} 不一致")
+        else:
+            add(m, "缺模块总览")
+
+    for m in sections:
+        if m not in module_order:
+            add(m, "模块不在 vision 范围")
+
+    for m in module_order:
+        if m in issues:
+            print(f"FAIL {m}: " + "；".join(issues[m]))
+        elif verbose:
+            print(f"PASS {m}")
+    print(f"INFO 模块：{len(module_order)}；扫描标准 27 项")
+    print(f"RESULT: {'FAIL' if issues else 'PASS'} ({len(issues)} 项)")
+    return 1 if issues else 0
+
+
 def q_next(base):
     _, qindex, qrows, _ = parse_dialogue(base)
     _, module_order = parse_vision_modules(base)
@@ -770,7 +871,7 @@ def q_next(base):
     return 0
 
 
-USAGE = "usage: reqtool.py [repo] check q | check dor [REQ] | check models | check refs | check gate module <模块> | check gate handoff | q next"
+USAGE = "usage: reqtool.py [repo] check q | check dor [REQ] | check models | check refs | check coverage | check gate module <模块> | check gate handoff | q next"
 
 
 def main():
@@ -797,6 +898,8 @@ def main():
         return check_models(base, "--verbose" in rest)
     if cmd == "check" and rest[:1] == ["refs"]:
         return check_refs(base)
+    if cmd == "check" and rest[:1] == ["coverage"]:
+        return check_coverage(base, "--verbose" in rest)
     if cmd == "check" and rest[:2] == ["gate", "module"]:
         return check_gate_module(base, rest[2] if len(rest) > 2 else None)
     if cmd == "check" and rest[:2] == ["gate", "handoff"]:

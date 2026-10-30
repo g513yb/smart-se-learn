@@ -12,6 +12,7 @@ python tools/requirements/reqtool.py check dor
 python tools/requirements/reqtool.py check dor REQ-xxx
 python tools/requirements/reqtool.py check models
 python tools/requirements/reqtool.py check refs
+python tools/requirements/reqtool.py check coverage
 python tools/requirements/reqtool.py check gate module 学习诊断
 python tools/requirements/reqtool.py check gate handoff
 python tools/requirements/reqtool.py q next
@@ -114,6 +115,24 @@ RESULT: FAIL (1/75)
 
 - 扫描文档数、P-ID 引用数、路径引用数。
 
+### `check coverage`
+
+检查每个模块的 27 项扫描、维度聚合和模块总览是否一致。
+
+**FAIL**
+
+- 模块缺扫描节或模块总览；
+- 扫描项不是 27 项，或缺/多子提问；
+- 扫描记录或聚合状态非法；
+- 某维有开放 Q，但聚合不是“已问待答”；
+- 某维没有开放 Q，但聚合是“已问待答”；
+- 总览某维与聚合不一致；
+- 扫描节的模块不在 `vision.md` 范围。
+
+**INFO**
+
+- 模块数量；`--verbose` 打印每条模块 PASS。
+
 ### `check gate module <模块|缩写>`
 
 检查一个模块能否进入确认。
@@ -159,8 +178,8 @@ RESULT: FAIL (1/75)
 
 | 码 | 含义 |
 |---|---|
-| 0 | 检查通过（`check q` / `check dor` / `check models` / `check refs` / `check gate module` / `check gate handoff`）或找到下一问（`q next`） |
-| 1 | 发现机械不一致或存在阻断项（`check q` / `check dor` / `check models` / `check refs` / `check gate module` / `check gate handoff`） |
+| 0 | 检查通过（所有 `check` 命令）或找到下一问（`q next`） |
+| 1 | 发现机械不一致或存在阻断项（所有 `check` 命令） |
 | 2 | 没有开放 Q（`q next`） |
 | 64 | 命令用法错误 |
 
