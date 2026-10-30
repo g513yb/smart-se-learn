@@ -50,19 +50,21 @@ def parse_dialogue(base):
 def parse_status(base):
     text = read(os.path.join(base, "docs/STATUS.md"))
     pending, active = [], False
-    stage, module = "", ""
+    stage, module, next_step = "", "", ""
     for line in text.splitlines():
         if line.startswith("- 当前阶段："):
             stage = line.split("：", 1)[1].strip()
         elif line.startswith("- 当前模块："):
             module = line.split("：", 1)[1].strip()
+        elif line.startswith("- 下一步："):
+            next_step = line.split("：", 1)[1].strip()
         elif line.startswith("- 待决事项"):
             active = True
         elif active and line.lstrip().startswith("- "):
             pending.extend(re.findall(r"Q-\d{3}", line))
         elif active and line.startswith("## "):
             break
-    return text, stage, module, pending
+    return text, stage, module, next_step, pending
 
 
 def parse_vision_modules(base):
@@ -173,7 +175,7 @@ def order_open(open_rows, module_order):
 
 def check_q(base):
     dialogue_text, qindex, qrows, srows = parse_dialogue(base)
-    status_text, stage, current_module, status_pending = parse_status(base)
+    status_text, stage, current_module, next_step, status_pending = parse_status(base)
     vision_text, module_order = parse_vision_modules(base)
     coverage_text, coverage_rows = parse_coverage(base)
     models_text, pending_models = parse_models(base)
@@ -232,6 +234,16 @@ def check_q(base):
     if stage in ("需求确认完成", "已移交设计") and open_rows:
         issues.append(f"STATUS 阶段为“{stage}”，但仍有 {len(open_rows)} 条开放 Q")
 
+    if not next_step:
+        issues.append("STATUS 缺下一步")
+    else:
+        qids = re.findall(r"Q-\d{3}", next_step)
+        if len(qids) > 1:
+            issues.append(f"STATUS 下一步写了多条 Q：{', '.join(qids)}")
+        m = re.search(r"(\d+)\s*条", next_step)
+        if m and int(m.group(1)) > 1:
+            issues.append(f"STATUS 下一步写了 {m.group(1)} 条，应只写一个关卡/Q")
+
     idxmap = {x["id"]: x for x in qindex}
     ordered = order_open([
         dict(q, module=idxmap.get(q["id"], {}).get("module", ""), category=idxmap.get(q["id"], {}).get("category", "普通"))
@@ -241,12 +253,13 @@ def check_q(base):
         expected = [q["id"] for q in ordered]
         if expected != idx_ids:
             issues.append(f"Q 索引顺序与规则不一致：应为 {', '.join(expected)}")
+    current_module_name = re.sub(r"（.*?）", "", current_module).strip()
     if open_rows:
         first = ordered[0]
         mods = [m.strip() for m in idxmap.get(first["id"], {}).get("module", "").split("、") if m.strip()]
-        if current_module in ("", "无", "多个"):
+        if current_module_name in ("", "无", "多个"):
             issues.append(f"STATUS 当前模块应写第一条开放 Q 的模块，当前为“{current_module or '空'}”")
-        elif mods and current_module not in mods:
+        elif mods and current_module_name not in mods:
             issues.append(f"STATUS 当前模块“{current_module}”不在第一条开放 Q 的模块 {mods} 中")
 
     for x in qindex:
@@ -413,7 +426,7 @@ def check_dor(base, target=None, verbose=False):
 
 def check_gate_handoff(base):
     _, qindex, qrows, srows = parse_dialogue(base)
-    _, stage, _, _ = parse_status(base)
+    _, stage, _, _, _ = parse_status(base)
     _, module_order = parse_vision_modules(base)
     _, coverage_rows = parse_coverage(base)
     _, pending_models = parse_models(base)

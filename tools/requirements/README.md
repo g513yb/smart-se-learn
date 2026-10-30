@@ -40,6 +40,7 @@ python tools/requirements/reqtool.py <repo> check q
 - Q/S 状态值非法；
 - 关联列仍有“待建”，或指向不存在的 Q/REQ；
 - STATUS 待决事项与开放 Q 不一致；
+- STATUS 缺下一步，或下一步写了多条 Q/多个事项；
 - STATUS 阶段与开放 Q 矛盾；
 - STATUS 当前模块不是第一条开放 Q 的模块；
 - 开放 Q 不在 `coverage-scan.md`，或对应模块总览没有“已问待答”；
