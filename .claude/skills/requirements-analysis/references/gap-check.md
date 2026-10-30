@@ -28,14 +28,14 @@
 |---|---|---|
 | 一条需求描述（A 路径） | 成形四问 + 故事卡字段 | `elicitation-playbook.md`、`story-card.md` |
 | 一个模块（B 路径 / 扫描） | 27 个子提问 | `coverage-scan.md` |
-| 角色 / 职责 | 角色定义、目标、场景 | `01-personas.md` |
-| 术语 / 规则 / 范围 | 术语表、上下文、愿景、非目标 | `glossary.md`、`context.md`、`00-vision.md` |
+| 角色 / 职责 | 角色定义、目标、场景 | `personas.md` |
+| 术语 / 规则 / 范围 | 术语表、上下文、愿景、非目标 | `glossary.md`、`context.md`、`vision.md` |
 
 只检查这些固定项；清单外发现标为“清单外建议”，需用户批准。
 
 ## 4. 判断步骤
 
-0. 用户用自然语言描述时，先在 `07-dialogue.md` 记 `S-xxx`，保存原话；后续缺口 Q 的依据引用 `S-xxx`。
+0. 用户用自然语言描述时，先在 `dialogue.md` 记 `S-xxx`，保存原话；后续缺口 Q 的依据引用 `S-xxx`。
 
 对每个检查项，按固定顺序查找：
 

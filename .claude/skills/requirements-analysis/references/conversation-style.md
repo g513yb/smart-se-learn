@@ -44,7 +44,7 @@
 
 ## 5. 记录层不变
 
-- S/Q 仍写入 `07-dialogue.md`；D 写入 `08-decisions.md`；REQ 写入 `02-backlog.md`。
+- S/Q 仍写入 `dialogue.md`；D 写入 `decisions.md`；REQ 写入 `backlog.md`。
 - 文件内容仍不标来源。
 - 对话中不回声编号，不等于不记录；写入前仍按原规则核对关联 Q。
 

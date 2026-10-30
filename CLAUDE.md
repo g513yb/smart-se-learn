@@ -20,13 +20,13 @@
 |---|---|---|
 | `docs/STATUS.md` | 当前阶段、当前模块、下一步、待决事项 | 会话开始、不确定进度时 |
 | `docs/team.md` | 成员与负责范围 | 分配负责人时 |
-| `docs/requirements/00-vision.md` | 愿景、范围、目标与非目标 | 需求讨论前 |
+| `docs/requirements/vision.md` | 愿景、范围、目标与非目标 | 需求讨论前 |
 | `docs/requirements/context.md` | 已确认的稳定业务事实 | 按需；缺失正常 |
-| `docs/requirements/01-personas.md` | 角色、目标、场景 | 讨论用户相关需求前 |
-| `docs/requirements/02-backlog.md` | 需求故事池 | 新增、修改或领取需求前 |
-| `docs/requirements/03-nfr.md` | 非功能需求 | 涉及性能、安全、可用性时 |
-| `docs/requirements/07-dialogue.md` | 用户原话 S 与缺口问题 Q | 写需求前、遇到缺口时 |
-| `docs/requirements/08-decisions.md` | 决策 D | 冲突、基线变更、需要决策时 |
+| `docs/requirements/personas.md` | 角色、目标、场景 | 讨论用户相关需求前 |
+| `docs/requirements/backlog.md` | 需求故事池 | 新增、修改或领取需求前 |
+| `docs/requirements/nfr.md` | 非功能需求 | 涉及性能、安全、可用性时 |
+| `docs/requirements/dialogue.md` | 用户原话 S 与缺口问题 Q | 写需求前、遇到缺口时 |
+| `docs/requirements/decisions.md` | 决策 D | 冲突、基线变更、需要决策时 |
 | `docs/requirements/glossary.md` | 术语表 | 需求讨论、命名前 |
 | `docs/requirements/coverage-scan.md` | 模块覆盖扫描 | 模块首访、状态变化时 |
 | `docs/requirements/models/` | 建模源与导出图，目录见其中的 `README.md` | 出图或引用模型前 |
@@ -47,7 +47,7 @@
 
 - 每条需求设一名负责人，负责人见 `docs/team.md`。
 - 每条需求可溯源到明确来源（`S`/`D`、已写入文件或人确认）；没有来源的内容标待确认或写入 Q，不写成需求。
-- 需求内容、backlog、基线（`00-vision.md`、`01-personas.md`）的写入由人确认；记录层（S/Q/D 记录、Q 回答回写、`STATUS.md` 维护）由 AI 自动完成。
+- 需求内容、backlog、基线（`vision.md`、`personas.md`）的写入由人确认；记录层（S/Q/D 记录、Q 回答回写、`STATUS.md` 维护）由 AI 自动完成。
 - 修改已确认的需求或基线前先确认；基线变更由人确认；管理/流程规则变更记录在文件本身，不写项目 D。
 - 技术方案、算法、架构、库选型只写 `docs/design-notes.md`；需求 skill 不做设计，只移交。
 - 需求文档只放标题、指针、表头和项目内容；流程、管理、确认规则只写本文件和 skill references。需求文档出现规则文字视为缺陷。

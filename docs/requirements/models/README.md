@@ -2,7 +2,7 @@
 
 源文件在 `src/`，导出图在 `img/`。目录、格式和拆页规则见 `.claude/skills/requirements-analysis/references/diagram-delivery.md`。
 
-“含待定点”表示图已定稿，但图中标注的局部口径仍待确认；待定点见 `07-dialogue.md` 与 `STATUS.md`。
+“含待定点”表示图已定稿，但图中标注的局部口径仍待确认；待定点见 `dialogue.md` 与 `STATUS.md`。
 
 | 图题 | 类型 | 回答的问题 | 源文件 | 图文件 | 主要来源 | 状态 |
 |---|---|---|---|---|---|---|
@@ -18,8 +18,8 @@
 | 学习趋势判定 | 决策表（Markdown 表） | 可用指标数、改善项数、恶化项数如何合成改善、稳定、恶化或数据不足 | `src/dt-trend-decision-table.md` | `img/dt-trend-decision-table.png` | REQ-DT-003、Q-151、glossary 学习趋势 | 已定稿 |
 | 学习结果与支持数据关系 | 领域类图 | 完成状态、练习提交、作答、学习事件、章节诊断、课程掌握总览、推荐计划、复习练习、画像和通知之间是什么关系 | `src/learning-result-relations.mmd` | `img/learning-result-relations.svg` | REQ-COURSE-005/007/008/009、REQ-DIAG-004/005/007/008、REQ-RECO-002/003/005/008、REQ-LOG-001/002/003/005、REQ-PROF-001、REQ-NOTIF-004、glossary | 已定稿 |
 | 推荐计划状态 | 状态图 | 推荐计划从生成到完成经历哪些状态；接受、更新、未掌握知识点清空时如何迁移 | `src/recommendation-plan-state.mmd` | `img/recommendation-plan-state.svg` | REQ-RECO-001/002/004/005/007/008、glossary 推荐计划/计划项、S-055、S-056、D-013、D-014 | 已定稿 |
-| 学生一次学习旅程 | 旅程图（Mermaid timeline） | 学生从登录到关闭平台经历哪些阶段，每个阶段做什么、看到什么反馈 | `src/student-journey.mmd` | `img/student-journey.svg` | 01-personas 学生场景、REQ-COURSE/DIAG/RECO/PROF/AGENT/DT/NOTIF | 已定稿 |
+| 学生一次学习旅程 | 旅程图（Mermaid timeline） | 学生从登录到关闭平台经历哪些阶段，每个阶段做什么、看到什么反馈 | `src/student-journey.mmd` | `img/student-journey.svg` | personas 学生场景、REQ-COURSE/DIAG/RECO/PROF/AGENT/DT/NOTIF | 已定稿 |
 | 学生画像内容 | 内容结构图 | 学生画像包含哪些展示内容、四个维度各有哪些指标、如何生成和展示 | `src/student-profile-content.mmd` | `img/student-profile-content.svg` | REQ-PROF-001～005、Q-084/086/089/090/095/100/182、D-006、D-015 | 已定稿·含待定点 |
 | 学生用例 | 用例图（flowchart 近似） | 学生在这套平台上能做什么 | `src/student-use-cases.mmd` | `img/student-use-cases.svg` | REQ-COURSE/DIAG/RECO/PROF/AGENT/DT/NOTIF/ACCT、Q-021 | 已定稿 |
-| 教师一次教学旅程 | 旅程图（Mermaid timeline） | 教师从登录到关闭平台经历哪些阶段，每个阶段做什么、看到什么反馈 | `src/teacher-journey.mmd` | `img/teacher-journey.svg` | 01-personas 教师场景、REQ-COURSE/DIAG/RECO/PROF/INTV/DT | 已定稿 |
+| 教师一次教学旅程 | 旅程图（Mermaid timeline） | 教师从登录到关闭平台经历哪些阶段，每个阶段做什么、看到什么反馈 | `src/teacher-journey.mmd` | `img/teacher-journey.svg` | personas 教师场景、REQ-COURSE/DIAG/RECO/PROF/INTV/DT | 已定稿 |
 | 教师用例 | 用例图（flowchart 近似） | 教师在这套平台上能做什么 | `src/teacher-use-cases.mmd` | `img/teacher-use-cases.svg` | REQ-COURSE/DIAG/RECO/PROF/INTV/DT/ACCT、Q-021 | 已定稿 |

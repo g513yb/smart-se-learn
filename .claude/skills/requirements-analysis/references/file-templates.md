@@ -26,11 +26,11 @@
 | | |
 ```
 
-## 愿景 `docs/requirements/00-vision.md`
+## 愿景 `docs/requirements/vision.md`
 
 结构见 `vision-guide.md` 第 3 节。
 
-## 角色 `docs/requirements/01-personas.md`
+## 角色 `docs/requirements/personas.md`
 
 结构见 `persona-guide.md` 第 3 节。
 
@@ -44,7 +44,7 @@
 | | |
 ```
 
-## Backlog `docs/requirements/02-backlog.md`
+## Backlog `docs/requirements/backlog.md`
 
 ```markdown
 # Backlog
@@ -55,7 +55,7 @@
 
 字段定义见 `story-card.md`。
 
-## NFR `docs/requirements/03-nfr.md`
+## NFR `docs/requirements/nfr.md`
 
 ```markdown
 # 非功能需求
@@ -66,11 +66,11 @@
 
 字段与提问见 `nfr-checklist.md`。
 
-## 对话记录 `docs/requirements/07-dialogue.md`
+## 对话记录 `docs/requirements/dialogue.md`
 
 结构见 `dialogue-log.md`。
 
-## 决策记录 `docs/requirements/08-decisions.md`
+## 决策记录 `docs/requirements/decisions.md`
 
 结构见 `decision-log.md`。
 

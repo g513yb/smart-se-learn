@@ -18,10 +18,10 @@ description: Use when creating, modifying, confirming, or handing off requiremen
 
 1. **来源与问题标签**：最终写入的需求应有明确依据：`S-`（用户自己发起、能脱离 AI 文本独立成立的产品或需求陈述/原话；角色、团队、状态输入不记 S；简短确认、仅依赖问题的答复，以及对 AI 草案/建议的纠正、改写不记 S）、`D-`（项目级决策）、已写入文件，或 AI 提议经人确认。AI 草案经人确认、修改或纠正后直接写入目标文件，不记为 `S`。`Q-` 是缺口问题，不是来源；`P-` 是实践参考，可以生成 Q，也可以作为 AI 草案的依据，但不是最终来源；推断不得进入“已确认”，需要保留时写 `Q` 或标为“AI 提议”。引用 P 的最终需求必须另有 S/D、已写入文件或人确认。依据写入记录；对话层按 `references/conversation-style.md` 说明依据；文件内容不标来源。
 2. **先提问后动笔**：成形前先在内部列缺口；对话中一次只问一个，回答后再问下一个。缺口未确认，可以写候选草稿，但不得写成已确认需求。
-3. **未知入清单**：不确定项写入 `docs/requirements/07-dialogue.md` 的 Q 表，编号并写清依据，不留在正文里当假设。
+3. **未知入清单**：不确定项写入 `docs/requirements/dialogue.md` 的 Q 表，编号并写清依据，不留在正文里当假设。
 4. **示例保护**：出现“比如 / 例如 / 类似”时，先确认是举例还是真实需求；举例不得直接升级为需求。
 5. **禁止越界**：AI 可以提出角色、字段、业务规则、非功能指标的候选，但必须标为“AI 提议”，经人确认后才能写入；技术方案只进 DSN。
-6. **生成与确认**：AI 可以生成、起草、归纳和提议内容；有 `S/D` 或项目文件依据的内容优先使用。需求内容、backlog、基线（`00-vision.md`、`01-personas.md`）写入前，必须把最终内容交人确认；有依据不等于可以写入。记录层（S/Q/D 的记录、Q 回答回写、`docs/STATUS.md` 维护）由 AI 自动完成，不需要逐条确认，不在对话中说明。用户自己的产品或需求陈述记为 `S`；角色输入写入 `01-personas.md`，团队输入写入 `docs/team.md`，状态由 AI 维护，均不记 `S`；简短确认和仅依赖问题的答复记入 Q 的回答列；AI 草案经人确认、修改或纠正后直接写入目标文件，不记为 `S`。AI 不得把需求标为“已确认”；不记录确认人、确认日期；无评审环节。
+6. **生成与确认**：AI 可以生成、起草、归纳和提议内容；有 `S/D` 或项目文件依据的内容优先使用。需求内容、backlog、基线（`vision.md`、`personas.md`）写入前，必须把最终内容交人确认；有依据不等于可以写入。记录层（S/Q/D 的记录、Q 回答回写、`docs/STATUS.md` 维护）由 AI 自动完成，不需要逐条确认，不在对话中说明。用户自己的产品或需求陈述记为 `S`；角色输入写入 `personas.md`，团队输入写入 `docs/team.md`，状态由 AI 维护，均不记 `S`；简短确认和仅依赖问题的答复记入 Q 的回答列；AI 草案经人确认、修改或纠正后直接写入目标文件，不记为 `S`。AI 不得把需求标为“已确认”；不记录确认人、确认日期；无评审环节。
 7. **设计隔离**：需求只写“做什么、为什么”；技术方案、算法、架构、库选型写入 `docs/design-notes.md`（`DSN-`），不进入需求文档。
 8. **主动发现**：AI 可以主动提出需求候选；基于 `P` 的候选必须关联 Q；AI 生成的候选必须标为“AI 提议”，写入前经人确认。AI 准备提出遗漏内容但不确定时，可先做快速调研：查 1～2 个已批准来源，输出 P 观察 + Q + 可选 AI 草案；草案标“AI 提议”，人确认后写入；不写正式 brief。没有依据的可以作为开放问题或候选，但不得写成已确认需求。
 9. **整理不等于补全**：把用户原话整理成故事卡时，只重述、拆分、归一化用语；原话中没有的角色、字段、规则、指标不得直接写成已确认内容。AI 可以提出补充建议，标为“AI 提议”，写入前由人确认；无法确认的写 Q。
@@ -54,12 +54,12 @@ description: Use when creating, modifying, confirming, or handing off requiremen
 
 ## 会话开始
 
-读 `docs/team.md`、`docs/STATUS.md`、`00-vision.md`、`01-personas.md`、`07-dialogue.md`（S 与 Q）和 `08-decisions.md`（D）；`context.md`、`glossary.md` 和当前模块 brief 存在时一并读。用 3～5 行自然语言复述当前理解，不播报流程步骤。
+读 `docs/team.md`、`docs/STATUS.md`、`vision.md`、`personas.md`、`dialogue.md`（S 与 Q）、`decisions.md`（D）和 `coverage-scan.md` 的模块覆盖总览；`backlog.md`、`nfr.md` 按当前 Q 的相关条目读；`context.md`、`glossary.md` 和当前模块 brief 存在时一并读。用 3～5 行自然语言复述当前理解，不播报流程步骤。
 
 - 必读基础文件缺失时：先按下一节“初始化”建立，不凭记忆补，不跳到模块选择。`context.md`、`glossary.md` 和模块 brief 缺失是正常状态，不触发初始化。
-- 核对：`07-dialogue.md` 中状态为“待回答/部分回答”的 Q 与 `STATUS.md` 的待决事项不一致时，以 `07-dialogue.md` 为准并更新 `STATUS.md`。
-- 有多个待答 Q 时，按 `00-vision.md` 范围节的模块顺序、再按 Q 号升序处理；一次只问一个。
-- 未指定模块：列出 `00-vision.md` 范围节中明确列出的模块/能力；没有明确列出则先补范围 Q，不自行归纳。参考 `STATUS.md` 的下一步，请用户选择；不得自行开始。
+- 核对：`dialogue.md` 中状态为“待回答/部分回答”的 Q 与 `STATUS.md` 的待决事项不一致时，以 `dialogue.md` 为准并更新 `STATUS.md`。
+- 有多个待答 Q 时，按 `vision.md` 范围节的模块顺序、再按 Q 号升序处理；一次只问一个。
+- 未指定模块：列出 `vision.md` 范围节中明确列出的模块/能力；没有明确列出则先补范围 Q，不自行归纳。参考 `STATUS.md` 的下一步，请用户选择；不得自行开始。
 - 已指定模块：把模块选择写入 `STATUS.md` 和 `glossary.md`，不记 `S`，进入边界确认。
 
 ## 初始化：从零建立
@@ -67,7 +67,7 @@ description: Use when creating, modifying, confirming, or handing off requiremen
 适用：会话开始时项目文件缺失，或用户要求从零建立。初始化只建立结构、愿景与角色基线、团队信息和项目状态，不写需求、假设、NFR 或验收标准。
 
 1. **检查**：按 `references/file-templates.md` 的文件清单逐项检查，列出存在与缺失；不把缺失当已知，不预建空文件。
-2. **愿景**：按 `references/vision-guide.md` 第 4 节初次建立。回答先记 `S`；第一次需要 `S` 时按 `file-templates.md` 创建 `07-dialogue.md`，第一次需要 `D` 时创建 `08-decisions.md`。愿景的范围节是团队分工和模块选择的依据；范围不明确时停下补 Q。
+2. **愿景**：按 `references/vision-guide.md` 第 4 节初次建立。回答先记 `S`；第一次需要 `S` 时按 `file-templates.md` 创建 `dialogue.md`，第一次需要 `D` 时创建 `decisions.md`。愿景的范围节是团队分工和模块选择的依据；范围不明确时停下补 Q。
 3. **团队与分工**：愿景范围确认后，问清成员和各自负责范围。范围名称应能对应愿景范围中的模块/能力；AI 从回答和已确认的愿景范围中提取并起草 `docs/team.md`，不记 `S`；可提出范围建议；人确认后写入。不写项目 D；不记录确认人/日期。
 4. **项目状态**：AI 按 `file-lifecycle.md` 的 STATUS 阶段判定表，从已有文件推导当前阶段、下一步和待决事项，按 `file-templates.md` 创建或更新 `docs/STATUS.md`；不需要人确认，不在对话中说明；不写项目 D；不记录确认人/日期。
 5. **角色**：按 `references/persona-guide.md` 第 4 节初次建立。
@@ -77,15 +77,15 @@ description: Use when creating, modifying, confirming, or handing off requiremen
 
 | 文件 | 建立时机 |
 |---|---|
-| `00-vision.md` | 初始化步骤 2 |
-| `07-dialogue.md` | 第一次记录 `S`（初始化步骤 2 期间） |
-| `08-decisions.md` | 第一次记录 `D`（愿景六节确认后） |
+| `vision.md` | 初始化步骤 2 |
+| `dialogue.md` | 第一次记录 `S`（初始化步骤 2 期间） |
+| `decisions.md` | 第一次记录 `D`（愿景六节确认后） |
 | `docs/team.md` | 初始化步骤 3 |
 | `docs/STATUS.md` | 初始化步骤 4 |
-| `01-personas.md` | 初始化步骤 5 |
+| `personas.md` | 初始化步骤 5 |
 | `context.md`、`glossary.md` | 第一次知识回填 |
-| `02-backlog.md` | 第一条故事卡 |
-| `03-nfr.md` | 第一条 NFR |
+| `backlog.md` | 第一条故事卡 |
+| `nfr.md` | 第一条 NFR |
 | `coverage-scan.md` | 模块首访首次扫描 |
 | `models/` | 第一次建模 |
 | `design-notes.md` | 第一条 `DSN-` |
@@ -117,10 +117,10 @@ description: Use when creating, modifying, confirming, or handing off requiremen
 ## 六步流程
 
 1. **采集**：
-   - **边界确认**：从 `00-vision.md`、`context.md`、`glossary.md`、`02-backlog.md` 确认模块边界。边界明确 = 范围明确列出本期包含的模块/能力，且明确不包含什么；只有模块名不算明确。不明确时，记 S（用户选择的模块），先查 `07-dialogue.md` 是否已有范围 Q；有则引用原 Q，没有则生成一个范围 Q。无论哪种都停止；不做 brief、不做 27 项扫描、不生成功能问题。明确后进入对标调研。如果 `00-vision.md` 尚未建立，先按 `references/vision-guide.md` 初次建立，再判断模块边界。模块缩写由用户在边界确认时指定，记入 `glossary.md`；未指定则问，不自行缩写。
+   - **边界确认**：从 `vision.md`、`context.md`、`glossary.md`、`backlog.md` 确认模块边界。边界明确 = 范围明确列出本期包含的模块/能力，且明确不包含什么；只有模块名不算明确。不明确时，记 S（用户选择的模块），先查 `dialogue.md` 是否已有范围 Q；有则引用原 Q，没有则生成一个范围 Q。无论哪种都停止；不做 brief、不做 27 项扫描、不生成功能问题。明确后进入对标调研。如果 `vision.md` 尚未建立，先按 `references/vision-guide.md` 初次建立，再判断模块边界。模块缩写由用户在边界确认时指定，记入 `glossary.md`；未指定则问，不自行缩写。
    - **对标调研**（边界明确后）：按 `references/research-guide.md` 选 1～2 个平台，产出 brief；brief 是主动提问的依据，只提取用户可见行为，设计细节进 `docs/design-notes.md`
    - **模块首访**：按 `references/coverage-scan.md` 的 27 个子提问逐项判断，产出 `docs/requirements/coverage-scan.md` 记录并更新其中的模块覆盖总览；扫描只产出问题，不产出需求
-   - **缺口提问**：按 `references/gap-check.md` 对当前单位逐项检查；原话先记 S，只对“未覆盖 / 部分覆盖 / 无法判断 / 缺依据”生成 Q，进 `07-dialogue.md`；已有待答 Q 不重复。角色相关分析前，如果 `01-personas.md` 尚未建立，先按 `references/persona-guide.md` 初次建立
+   - **缺口提问**：按 `references/gap-check.md` 对当前单位逐项检查；原话先记 S，只对“未覆盖 / 部分覆盖 / 无法判断 / 缺依据”生成 Q，进 `dialogue.md`；已有待答 Q 不重复。角色相关分析前，如果 `personas.md` 尚未建立，先按 `references/persona-guide.md` 初次建立
    - **NFR**：与 backlog 并行；模块边界明确后，模块首访的质量维度或用户提出质量要求时即可进入 NFR；不等待 backlog 完成；写 NFR 前检查相关 backlog 故事
    - 文档缺失或为空时先报告，不凭记忆补全
 2. **成形**：按 `references/extraction-guide.md` 提取；用故事卡（`references/story-card.md`）；先过冲突检查（`references/conflict-check.md`）并记录结论；过 DoR；写 Given-When-Then；写入故事卡后，回填相关 Q 的关联需求（`REQ-xxx`）和 S 的关联列，未回填不算成形完成；对话层按 `references/conversation-style.md` 说明依据，文件内容不标来源。
@@ -167,7 +167,7 @@ description: Use when creating, modifying, confirming, or handing off requiremen
 4. 用户用自己的话回答 Q → 记入 Q 的回答列；回答本身补充了新内容时才另记 S-xxx；人采用 AI 草案 → 不记 S，直接写入目标文件。人不回答时，AI 按规则提出草案和依据，人确认后写入；未确认不写入。
 5. AI 把用户原话整理成故事卡：只重述、拆分、归一化用语，不新增内容。
 6. 人确认最终内容；AI 写入，并回填相关 Q/S 的关联列。
-7. 按 `00-vision.md` 范围节的模块顺序、再按 Q 号升序，进入下一个问题；一次只处理一个。
+7. 按 `vision.md` 范围节的模块顺序、再按 Q 号升序，进入下一个问题；一次只处理一个。
 
 一次只处理一个模块或一个问题，不一次性生成整份需求文档。
 
@@ -185,11 +185,11 @@ description: Use when creating, modifying, confirming, or handing off requiremen
 
 ## 写入与更新
 
-AI 只写人确认后的需求内容；`docs/STATUS.md` 例外：AI 按阶段判定表自行维护。更新故事前先确认。需求文件不设状态字段，不记录评审/确认/D；决策记录用 `08-decisions.md` 的状态列（已决定/已废弃）。
+AI 只写人确认后的需求内容；`docs/STATUS.md` 例外：AI 按阶段判定表自行维护。更新故事前先确认。需求文件不设状态字段，不记录评审/确认/D；决策记录用 `decisions.md` 的状态列（已决定/已废弃）。
 
 ## DoR / DoD
 
-**DoR**：故事卡字段齐全；有角色与价值、有依据（`S/D`、已写入文件或 AI 提议经人确认）、有可测验收标准、依赖已确认或不存在、关联 Q 全部已确认或已废弃、一个迭代内可完成。可执行检查见 `references/file-lifecycle.md` 的 `02-backlog.md` 节。
+**DoR**：故事卡字段齐全；有角色与价值、有依据（`S/D`、已写入文件或 AI 提议经人确认）、有可测验收标准、依赖已确认或不存在、关联 Q 全部已确认或已废弃、一个迭代内可完成。可执行检查见 `references/file-lifecycle.md` 的 `backlog.md` 节。
 **DoD（需求侧）**：验收标准经人确认。
 **模块门禁**：模块进入确认前，`coverage-scan.md` 的模块覆盖总览中该模块适用的六维不得为“未问”；该模块的 S/Q 关联列不得为“待建”，无法唯一对应时写模块缩写。
 
@@ -215,6 +215,7 @@ AI 只写人确认后的需求内容；`docs/STATUS.md` 例外：AI 按阶段判
 |---|---|---|
 | 第一次回复前 | `conversation-style.md` | 对话层：一次一问、不展示编号和流程 |
 | 记录 S/Q 前 | `dialogue-log.md` | S/Q 表结构、收录标准、关联列 |
+| 处理待答 Q 前 | `dialogue.md` 的 Q、相关 `REQ`/`NFR`、对应模块的 `coverage-scan.md` 节；必要时 `nfr-checklist.md`、`elicitation-playbook.md` | 判断答案、影响和缺口 |
 | 写愿景或角色基线前 | `vision-guide.md`、`persona-guide.md` | 六节/五节结构、初次建立与变更 |
 | 写决策前 | `decision-log.md` | D 的字段和记录规则 |
 | 模块边界确认后、对标调研前 | `research-guide.md` | brief 六段、来源等级、停止条件 |
@@ -225,6 +226,6 @@ AI 只写人确认后的需求内容；`docs/STATUS.md` 例外：AI 按阶段判
 | 建模前 | `modeling-guide.md`、`diagram-delivery.md` | 选图、图源与导出规则 |
 | 新建或更新文件前 | `file-templates.md`、`file-lifecycle.md` | 文件结构、建立时机、读写规则 |
 | 移交设计前 | `handoff.md` | 前置检查、移交包 |
-| 拿不准当前阶段 | `file-lifecycle.md` 的阶段判定表 | 阶段、下一步、待决事项 |
+| 拿不准当前阶段 | `file-lifecycle.md` 的“阶段判定表”和“backlog.md 的 DoR 可执行检查” | 阶段、下一步、待决事项、DoR |
 
-最小必读集：`SKILL.md` + `conversation-style.md` + `file-lifecycle.md` 的阶段表和 DoR + 当前阶段对应的文件。其余按上表在读之前再读。
+最小必读集：`SKILL.md` + `conversation-style.md` + `file-lifecycle.md` 的“阶段判定表”和“backlog.md 的 DoR 可执行检查” + 当前阶段对应的文件。当前阶段为“待决事项处理中”时，至少读 `STATUS.md`、`dialogue.md` 的相关 Q、对应模块的 `coverage-scan.md` 节。其余按上表在读之前再读。
