@@ -10,6 +10,7 @@
 python tools/requirements/reqtool.py check q
 python tools/requirements/reqtool.py check dor
 python tools/requirements/reqtool.py check dor REQ-xxx
+python tools/requirements/reqtool.py check models
 python tools/requirements/reqtool.py check gate handoff
 python tools/requirements/reqtool.py q next
 ```
@@ -79,6 +80,22 @@ INFO 未检查：故事来源、关联 Q（backlog 无列）
 RESULT: FAIL (1/75)
 ```
 
+### `check models`
+
+检查 `models/README.md` 与 `models/src/`、`models/img/` 的一致性。
+
+**FAIL**
+
+- 源文件或图文件不存在、扩展名不对；
+- 状态含“含待定点”但没有关联开放 Q；
+- 状态含待定点，但源文件没有“待定/待确认/未定”注释；
+- `src/`、`img/` 有未登记的源或图；
+- 同一图同时存在 `.svg` 和 `.png`，或同一源同时存在 `.mmd` 和 `.md`。
+
+**INFO**
+
+- 模型行数、含待定点数量。`--verbose` 打印每条 PASS。
+
 ### `check gate handoff`
 
 检查能否移交设计。只做机械前置检查，语义判断仍按 `handoff.md`。
@@ -109,8 +126,8 @@ RESULT: FAIL (1/75)
 
 | 码 | 含义 |
 |---|---|
-| 0 | 检查通过（`check q` / `check dor` / `check gate handoff`）或找到下一问（`q next`） |
-| 1 | 发现机械不一致或存在移交阻断项（`check q` / `check dor` / `check gate handoff`） |
+| 0 | 检查通过（`check q` / `check dor` / `check models` / `check gate handoff`）或找到下一问（`q next`） |
+| 1 | 发现机械不一致或存在移交阻断项（`check q` / `check dor` / `check models` / `check gate handoff`） |
 | 2 | 没有开放 Q（`q next`） |
 | 64 | 命令用法错误 |
 

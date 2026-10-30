@@ -129,7 +129,7 @@ AI 只写人确认后的需求内容；`docs/STATUS.md` 例外：AI 按阶段判
 
 ## 工具
 
-仓库提供只读检查工具 `tools/requirements/reqtool.py`。会话开始、写入前运行 `check q`；写故事卡前运行 `check dor [REQ]`；移交前运行 `check gate handoff`；需要选下一条 Q 时运行 `q next`。`FAIL` 项按输出处理，不得绕过；`INFO` 是当前阶段状态。工具不可用时按本 skill 手工检查。命令与退出码见 `tools/requirements/README.md`。
+仓库提供只读检查工具 `tools/requirements/reqtool.py`。会话开始、写入前运行 `check q`；写故事卡前运行 `check dor [REQ]`；建模后运行 `check models`；移交前运行 `check gate handoff`；需要选下一条 Q 时运行 `q next`。`FAIL` 项按输出处理，不得绕过；`INFO` 是当前阶段状态。工具不可用时按本 skill 手工检查。命令与退出码见 `tools/requirements/README.md`。
 
 ## 参考文件与阅读时机
 

@@ -474,6 +474,116 @@ def check_gate_handoff(base):
     return 1 if blockers else 0
 
 
+def extract_q_ids(text):
+    ids = []
+    for m in re.finditer(r"Q-(\d{3})\s*[～~]\s*(?:Q-)?(\d{3})", text):
+        a, b = int(m.group(1)), int(m.group(2))
+        ids.extend(f"Q-{i:03d}" for i in range(a, b + 1))
+    for m in re.finditer(r"Q-(\d{3})((?:/\d{3})+)", text):
+        ids.append(f"Q-{int(m.group(1)):03d}")
+        for part in m.group(2).split("/")[1:]:
+            ids.append(f"Q-{int(part):03d}")
+    ids.extend(re.findall(r"Q-\d{3}", text))
+    seen, out = set(), []
+    for x in ids:
+        if x not in seen:
+            seen.add(x)
+            out.append(x)
+    return out
+
+
+def parse_models_table(base):
+    text = read(os.path.join(base, "docs/requirements/models/README.md"))
+    rows = []
+    for line in text.splitlines():
+        if line.startswith("| ") and not line.startswith("|---"):
+            c = cells(line)
+            if len(c) >= 7 and c[0] != "图题":
+                rows.append({
+                    "title": c[0],
+                    "src": c[3].strip("`"),
+                    "img": c[4].strip("`"),
+                    "sources": c[5],
+                    "status": c[6],
+                })
+    return text, rows
+
+
+def check_models(base, verbose=False):
+    _, _, qrows, _ = parse_dialogue(base)
+    open_ids = {q["id"] for q in qrows if q["status"] in OPEN}
+    _, rows = parse_models_table(base)
+    mdir = os.path.join(base, "docs/requirements/models")
+    src_dir = os.path.join(mdir, "src")
+    img_dir = os.path.join(mdir, "img")
+    issues = {}
+
+    def add(title, msg):
+        issues.setdefault(title, []).append(msg)
+
+    pending = 0
+    for r in rows:
+        src = os.path.join(mdir, r["src"]) if r["src"] else ""
+        img = os.path.join(mdir, r["img"]) if r["img"] else ""
+        if not r["src"] or not os.path.exists(src):
+            add(r["title"], f"源文件不存在：{r['src'] or '空'}")
+        elif not r["src"].endswith((".mmd", ".md")):
+            add(r["title"], f"源扩展名不对：{r['src']}")
+        if not r["img"] or not os.path.exists(img):
+            add(r["title"], f"图文件不存在：{r['img'] or '空'}")
+        elif not r["img"].endswith((".svg", ".png")):
+            add(r["title"], f"图扩展名不对：{r['img']}")
+        if "含待定点" in r["status"]:
+            pending += 1
+            qids = set(extract_q_ids(r["sources"] + " " + r["status"]))
+            if not (qids & open_ids):
+                add(r["title"], "含待定点但没有关联开放 Q")
+            if src and os.path.exists(src):
+                st = read(src)
+                if not any(x in st for x in ("待定", "待确认", "未定")):
+                    add(r["title"], "状态含待定点，但源文件没有待定注释")
+
+    src_files = sorted(os.listdir(src_dir)) if os.path.isdir(src_dir) else []
+    img_files = sorted(os.listdir(img_dir)) if os.path.isdir(img_dir) else []
+    listed_src = {r["src"] for r in rows if r["src"]}
+    listed_img = {r["img"] for r in rows if r["img"]}
+    for fn in src_files:
+        if fn.endswith((".mmd", ".md")) and f"src/{fn}" not in listed_src:
+            add("README", f"源文件未登记：src/{fn}")
+    for fn in img_files:
+        if fn.endswith((".svg", ".png")) and f"img/{fn}" not in listed_img:
+            add("README", f"图文件未登记：img/{fn}")
+
+    img_stems = {}
+    for fn in img_files:
+        stem, ext = os.path.splitext(fn)
+        if ext in (".svg", ".png"):
+            img_stems.setdefault(stem, set()).add(ext)
+    for stem, exts in img_stems.items():
+        if len(exts) > 1:
+            add("README", f"同一图多种格式：{stem} {sorted(exts)}")
+
+    src_stems = {}
+    for fn in src_files:
+        stem, ext = os.path.splitext(fn)
+        if ext in (".mmd", ".md"):
+            src_stems.setdefault(stem, set()).add(ext)
+    for stem, exts in src_stems.items():
+        if len(exts) > 1:
+            add("README", f"同一源多种格式：{stem} {sorted(exts)}")
+
+    for r in rows:
+        if r["title"] in issues:
+            print(f"FAIL {r['title']}: " + "；".join(issues[r["title"]]))
+        elif verbose:
+            print(f"PASS {r['title']}")
+    if "README" in issues:
+        print("FAIL README: " + "；".join(issues["README"]))
+    print(f"INFO 模型：{len(rows)} 行；含待定点 {pending} 张")
+    print(f"RESULT: {'FAIL' if issues else 'PASS'} ({len(issues)} 项)")
+    return 1 if issues else 0
+
+
 def q_next(base):
     _, qindex, qrows, _ = parse_dialogue(base)
     _, module_order = parse_vision_modules(base)
@@ -494,7 +604,7 @@ def q_next(base):
     return 0
 
 
-USAGE = "usage: reqtool.py [repo] check q | check dor [REQ] | check gate handoff | q next"
+USAGE = "usage: reqtool.py [repo] check q | check dor [REQ] | check models | check gate handoff | q next"
 
 
 def main():
@@ -517,6 +627,8 @@ def main():
         args = [x for x in rest[1:] if not x.startswith("--")]
         target = args[0] if args else None
         return check_dor(base, target, "--verbose" in rest)
+    if cmd == "check" and rest[:1] == ["models"]:
+        return check_models(base, "--verbose" in rest)
     if cmd == "check" and rest[:2] == ["gate", "handoff"]:
         return check_gate_handoff(base)
     if cmd == "q" and rest[:1] == ["next"]:
