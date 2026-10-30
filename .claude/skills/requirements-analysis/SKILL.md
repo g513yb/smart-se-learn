@@ -58,7 +58,7 @@ description: Use when creating, modifying, confirming, or handing off requiremen
 
 - 必读基础文件缺失时：先按下一节“初始化”建立，不凭记忆补，不跳到模块选择。`context.md`、`glossary.md` 和模块 brief 缺失是正常状态，不触发初始化。
 - 核对：`dialogue.md` 中状态为“待回答/部分回答”的 Q 与 `STATUS.md` 的待决事项不一致时，以 `dialogue.md` 为准并更新 `STATUS.md`。
-- 有多个待答 Q 时，确定冲突的优先；其次可能冲突/无法判断；其余按 `vision.md` 范围节的模块顺序、再按 Q 号升序；一次只问一个。
+- 有多个待答 Q 时，按 `references/dialogue-log.md` 的处理顺序；对话层按 `references/conversation-style.md` 一次只问一个。
 - 未指定模块：列出 `vision.md` 范围节中明确列出的模块/能力；没有明确列出则先补范围 Q，不自行归纳。参考 `STATUS.md` 的下一步，请用户选择；不得自行开始。
 - 已指定模块：把模块选择写入 `STATUS.md` 和 `glossary.md`，不记 `S`，进入边界确认。
 
@@ -167,7 +167,7 @@ description: Use when creating, modifying, confirming, or handing off requiremen
 4. 用户用自己的话回答 Q → 记入 Q 的回答列；回答本身补充了新内容时才另记 S-xxx；人采用 AI 草案 → 不记 S，直接写入目标文件。人不回答时，AI 按规则提出草案和依据，人确认后写入；未确认不写入。
 5. AI 把用户原话整理成故事卡：只重述、拆分、归一化用语，不新增内容。
 6. 人确认最终内容；AI 写入，并回填相关 Q/S 的关联列。
-7. 按“确定冲突 → 可能冲突/无法判断 → 普通缺口”的顺序进入下一个问题；同一层内按 `vision.md` 范围节的模块顺序、再按 Q 号升序；一次只处理一个。
+7. 按 `references/dialogue-log.md` 的处理顺序进入下一个问题；对话层一次只问一个。
 
 一次只处理一个模块或一个问题，不一次性生成整份需求文档。
 
