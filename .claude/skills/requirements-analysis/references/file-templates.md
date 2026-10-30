@@ -44,6 +44,8 @@
 | | |
 ```
 
+按需：第一次知识回填才建；没有跨文件稳定事实就不建，缺失正常。
+
 ## Backlog `docs/requirements/backlog.md`
 
 ```markdown
