@@ -61,6 +61,7 @@ description: Use when creating, modifying, confirming, or handing off requiremen
 - 有多个待答 Q 时，按 `references/dialogue-log.md` 的处理顺序；对话层按 `references/conversation-style.md` 一次只问一个。
 - 未指定模块：列出 `vision.md` 范围节中明确列出的模块/能力；没有明确列出则先补范围 Q，不自行归纳。参考 `STATUS.md` 的下一步，请用户选择；不得自行开始。
 - 已指定模块：把模块选择写入 `STATUS.md` 和 `glossary.md`，不记 `S`，进入边界确认。
+- 多模块待决或模块已有分析记录：不重选模块、不重做边界确认或模块首访；按 `references/dialogue-log.md` 的 Q 顺序逐条处理，当前模块写当前 Q 所属模块，其余模块留在待决事项。
 
 ## 信息充足性判断
 
