@@ -3,3 +3,5 @@ Thumbs.db
 ~$*
 *.tmp
 docs/PPT/
+docs/requirements/research/sources/*.pdf
+docs/requirements/research/sources/_archive/*.pdf
