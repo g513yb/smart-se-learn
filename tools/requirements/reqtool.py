@@ -115,8 +115,23 @@ def parse_backlog(base):
         if line.startswith("| REQ-"):
             c = cells(line)
             if len(c) >= 7:
-                rows.append({"id": c[0], "owner": c[5], "deps": c[6]})
+                rows.append({
+                    "id": c[0], "title": c[1], "story": c[2],
+                    "acceptance": c[3], "priority": c[4],
+                    "owner": c[5], "deps": c[6],
+                })
     return text, rows
+
+
+def parse_team_roles(base):
+    text = read(os.path.join(base, "docs/team.md"))
+    roles = set()
+    for line in text.splitlines():
+        if line.startswith("| ") and not line.startswith("|---"):
+            c = cells(line)
+            if len(c) >= 3 and c[0] not in ("角色",):
+                roles.add(c[1])
+    return roles
 
 
 def find_cycles(graph):
@@ -161,6 +176,10 @@ def check_q(base):
 
     issues, infos = [], []
     qmap = {q["id"]: q for q in qrows}
+    if len(qrows) != len(qmap):
+        issues.append("Q 表编号重复")
+    if len(srows) != len({s["id"] for s in srows}):
+        issues.append("S 表编号重复")
     open_rows = [q for q in qrows if q["status"] in OPEN]
     open_ids = {q["id"] for q in open_rows}
     idx_ids = [x["id"] for x in qindex]
@@ -320,6 +339,69 @@ def check_q(base):
     return 0
 
 
+def check_dor(base, target=None, verbose=False):
+    _, backlog = parse_backlog(base)
+    roles = parse_team_roles(base)
+    by_id = {r["id"]: r for r in backlog}
+    issues = {}
+
+    def add(rid, msg):
+        issues.setdefault(rid, []).append(msg)
+
+    if target and target not in by_id:
+        print(f"FAIL {target}: 不存在")
+        print("RESULT: FAIL")
+        return 1
+
+    seen = set()
+    for r in backlog:
+        if r["id"] in seen:
+            add(r["id"], "REQ 编号重复")
+        seen.add(r["id"])
+
+    selected = [r for r in backlog if target is None or r["id"] == target]
+    allowed_priority = {"Must", "Should", "Could", "Won't", "Won’t"}
+    graph = {}
+    for r in backlog:
+        graph[r["id"]] = re.findall(r"REQ-[A-Z]+-\d{3}", r["deps"])
+
+    for r in selected:
+        rid = r["id"]
+        for field, label in (("title", "标题"), ("story", "故事"), ("acceptance", "验收标准"),
+                             ("priority", "优先级"), ("owner", "负责人"), ("deps", "依赖")):
+            if not r[field].strip():
+                add(rid, f"{label}为空")
+        acc = r["acceptance"]
+        if acc and not (
+            ("给定" in acc and any(x in acc for x in ("则", "当", "如果", "后")))
+            or ("Given" in acc and "When" in acc and "Then" in acc)
+        ):
+            add(rid, "验收标准缺少“给定…则…”或 Given-When-Then")
+        if r["priority"] and r["priority"] not in allowed_priority:
+            add(rid, f"优先级非法：{r['priority']}")
+        if r["owner"] and r["owner"] not in roles:
+            add(rid, f"负责人不在 team.md：{r['owner']}")
+        for d in re.findall(r"REQ-[A-Z]+-\d{3}", r["deps"]):
+            if d == rid:
+                add(rid, "自依赖")
+            elif d not in by_id:
+                add(rid, f"依赖不存在：{d}")
+
+    for cyc in find_cycles(graph):
+        add(cyc[0], "依赖环：" + " → ".join(cyc))
+
+    failed = [r["id"] for r in selected if r["id"] in issues]
+    for r in selected:
+        rid = r["id"]
+        if rid in issues:
+            print(f"FAIL {rid}: " + "；".join(issues[rid]))
+        elif verbose:
+            print(f"PASS {rid}")
+    print("INFO 未检查：故事来源、关联 Q（backlog 无列）")
+    print(f"RESULT: {'FAIL' if failed else 'PASS'} ({len(failed)}/{len(selected)})")
+    return 1 if failed else 0
+
+
 def q_next(base):
     _, qindex, qrows, _ = parse_dialogue(base)
     _, module_order = parse_vision_modules(base)
@@ -340,7 +422,7 @@ def q_next(base):
     return 0
 
 
-USAGE = "usage: reqtool.py [repo] check q | [repo] q next"
+USAGE = "usage: reqtool.py [repo] check q | check dor [REQ] | q next"
 
 
 def main():
@@ -359,6 +441,10 @@ def main():
         rest = args[2:]
     if cmd == "check" and rest[:1] == ["q"]:
         return check_q(base)
+    if cmd == "check" and rest[:1] == ["dor"]:
+        args = [x for x in rest[1:] if not x.startswith("--")]
+        target = args[0] if args else None
+        return check_dor(base, target, "--verbose" in rest)
     if cmd == "q" and rest[:1] == ["next"]:
         return q_next(base)
     print(USAGE, file=sys.stderr)

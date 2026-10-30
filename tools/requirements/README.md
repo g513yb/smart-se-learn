@@ -8,6 +8,8 @@
 
 ```bash
 python tools/requirements/reqtool.py check q
+python tools/requirements/reqtool.py check dor
+python tools/requirements/reqtool.py check dor REQ-xxx
 python tools/requirements/reqtool.py q next
 ```
 
@@ -50,6 +52,32 @@ python tools/requirements/reqtool.py <repo> check q
 
 当前阶段有开放 Q 是正常状态，所以 `check q` 仍然退出 0；只有机械不一致才退出 1。
 
+### `check dor [REQ]`
+
+检查故事卡是否满足 DoR 的机械部分。默认只打印失败项和汇总；加 `--verbose` 打印每条 PASS。
+
+**FAIL**
+
+- REQ 不存在；
+- 标题、故事、验收标准、优先级、负责人、依赖为空；
+- 验收标准缺少“给定…则…”或 Given-When-Then 结构（启发式）；
+- 优先级不在 Must/Should/Could/Won't；
+- 负责人不在 `docs/team.md` 的简称里；
+- 依赖不存在、自依赖、依赖环。
+
+**INFO**
+
+- 未检查：故事来源、关联 Q（backlog 没有这些列）。
+
+示例：
+
+```
+$ python tools/requirements/reqtool.py check dor
+FAIL REQ-ACCT-002: 验收标准缺少“给定…则…”；负责人为空
+INFO 未检查：故事来源、关联 Q（backlog 无列）
+RESULT: FAIL (1/75)
+```
+
 ### `q next`
 
 按“确定冲突 → 可能冲突/无法判断 → 普通缺口；同层按模块顺序、再按 Q 号”计算下一问。
@@ -60,8 +88,8 @@ python tools/requirements/reqtool.py <repo> check q
 
 | 码 | 含义 |
 |---|---|
-| 0 | 检查通过（`check q`）或找到下一问（`q next`） |
-| 1 | 发现机械不一致（`check q`） |
+| 0 | 检查通过（`check q` / `check dor`）或找到下一问（`q next`） |
+| 1 | 发现机械不一致（`check q` / `check dor`） |
 | 2 | 没有开放 Q（`q next`） |
 | 64 | 命令用法错误 |
 
