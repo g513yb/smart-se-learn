@@ -209,3 +209,7 @@ RESULT: FAIL (1/75)
 ## 与 skill 的关系
 
 `requirements-analysis` skill 在会话开始、写入前、移交前提示运行 `check q`；需要选下一条 Q 时运行 `q next`。`FAIL` 项不得绕过；工具不可用时按 skill 手工检查。
+
+## CI
+
+`.github/workflows/checks.yml` 在 push、pull request 和手动触发时运行 `python tools/requirements/reqtool.py check all`。CI 不运行 gate 命令（它们按阶段会失败）。

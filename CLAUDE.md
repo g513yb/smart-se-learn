@@ -63,6 +63,6 @@
 
 - 提交信息用中文，沿用 `docs:`、`refactor:` 等前缀。
 - 不提交 `docs/PPT/`、临时文件和本地产物。
-- 推送前运行 `python tools/requirements/reqtool.py check refs`。
+- 推送前运行 `python tools/requirements/reqtool.py check refs`；CI 会在 push/PR 运行 `check all`。
 
 本文件不记录会过期的信息；进度和待决事项一律看 `docs/STATUS.md`。
