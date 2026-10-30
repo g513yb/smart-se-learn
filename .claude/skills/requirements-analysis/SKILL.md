@@ -56,41 +56,11 @@ description: Use when creating, modifying, confirming, or handing off requiremen
 
 读 `docs/team.md`、`docs/STATUS.md`、`vision.md`、`personas.md`、`dialogue.md`（S 与 Q）、`decisions.md`（D）和 `coverage-scan.md` 的模块覆盖总览；`backlog.md`、`nfr.md` 按当前 Q 的相关条目读；`context.md`、`glossary.md` 和当前模块 brief 存在时一并读。用 3～5 行自然语言复述当前理解，不播报流程步骤。
 
-- 必读基础文件缺失时：先按下一节“初始化”建立，不凭记忆补，不跳到模块选择。`context.md`、`glossary.md` 和模块 brief 缺失是正常状态，不触发初始化。
+- 必读基础文件缺失时：按 `references/file-lifecycle.md` 的“初始化顺序”建立，不凭记忆补，不跳到模块选择。`context.md`、`glossary.md` 和模块 brief 缺失是正常状态，不触发初始化。
 - 核对：`dialogue.md` 中状态为“待回答/部分回答”的 Q 与 `STATUS.md` 的待决事项不一致时，以 `dialogue.md` 为准并更新 `STATUS.md`。
 - 有多个待答 Q 时，按 `references/dialogue-log.md` 的处理顺序；对话层按 `references/conversation-style.md` 一次只问一个。
 - 未指定模块：列出 `vision.md` 范围节中明确列出的模块/能力；没有明确列出则先补范围 Q，不自行归纳。参考 `STATUS.md` 的下一步，请用户选择；不得自行开始。
 - 已指定模块：把模块选择写入 `STATUS.md` 和 `glossary.md`，不记 `S`，进入边界确认。
-
-## 初始化：从零建立
-
-适用：会话开始时项目文件缺失，或用户要求从零建立。初始化只建立结构、愿景与角色基线、团队信息和项目状态，不写需求、假设、NFR 或验收标准。
-
-1. **检查**：按 `references/file-templates.md` 的文件清单逐项检查，列出存在与缺失；不把缺失当已知，不预建空文件。
-2. **愿景**：按 `references/vision-guide.md` 第 4 节初次建立。回答先记 `S`；第一次需要 `S` 时按 `file-templates.md` 创建 `dialogue.md`，第一次需要 `D` 时创建 `decisions.md`。愿景的范围节是团队分工和模块选择的依据；范围不明确时停下补 Q。
-3. **团队与分工**：愿景范围确认后，问清成员、角色简称和各自负责范围。范围名称应能对应愿景范围中的模块/能力；AI 从回答和已确认的愿景范围中提取并起草 `docs/team.md`，不记 `S`；可提出范围建议；人确认后写入。不写项目 D；不记录确认人/日期。
-4. **项目状态**：AI 按 `file-lifecycle.md` 的 STATUS 阶段判定表，从已有文件推导当前阶段、下一步和待决事项，按 `file-templates.md` 创建或更新 `docs/STATUS.md`；不需要人确认，不在对话中说明；不写项目 D；不记录确认人/日期。
-5. **角色**：按 `references/persona-guide.md` 第 4 节初次建立。
-6. **后续文件**：不预建；到达对应阶段时按 `file-templates.md` 创建。任何一步缺输入就停下提问，不跳到下一步。
-
-文件建立时机：
-
-| 文件 | 建立时机 |
-|---|---|
-| `vision.md` | 初始化步骤 2 |
-| `dialogue.md` | 第一次记录 `S`（初始化步骤 2 期间） |
-| `decisions.md` | 第一次记录 `D`（愿景六节确认后） |
-| `docs/team.md` | 初始化步骤 3 |
-| `docs/STATUS.md` | 初始化步骤 4 |
-| `personas.md` | 初始化步骤 5 |
-| `context.md`、`glossary.md` | 第一次知识回填 |
-| `backlog.md` | 第一条故事卡 |
-| `nfr.md` | 第一条 NFR |
-| `coverage-scan.md` | 模块首访首次扫描 |
-| `models/` | 第一次建模 |
-| `design-notes.md` | 第一条 `DSN-` |
-
-各时机的输入、判定和确认方式见 `file-lifecycle.md` 对应文件节。
 
 ## 信息充足性判断
 
@@ -162,6 +132,7 @@ AI 只写人确认后的需求内容；`docs/STATUS.md` 例外：AI 按阶段判
 
 | 时机 | 必读 | 用途 |
 |---|---|---|
+| 初始化前 | `file-lifecycle.md` 的“初始化顺序” | 从零建立的结构、团队、状态和角色 |
 | 第一次回复前 | `conversation-style.md` | 对话层：一次一问、不展示编号和流程 |
 | 记录 S/Q 前 | `dialogue-log.md` | S/Q 表结构、收录标准、关联列 |
 | 处理待答 Q 前 | `dialogue.md` 的 Q、相关 `REQ`/`NFR`、对应模块的 `coverage-scan.md` 节；必要时 `nfr-checklist.md`、`elicitation-playbook.md` | 判断答案、影响和缺口 |
