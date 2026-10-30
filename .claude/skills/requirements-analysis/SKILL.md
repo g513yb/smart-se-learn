@@ -125,7 +125,7 @@ AI 只写人确认后的需求内容；`docs/STATUS.md` 例外：AI 按阶段判
 ## 门禁
 
 **DoR / DoD**：见 `references/file-lifecycle.md` 的 `backlog.md` 节。
-**模块门禁**：六维无“未问”；S/Q 关联列无“待建”；该模块 `dialogue.md` 中无“待回答/部分回答”的 Q。可用 `tools/requirements/reqtool.py check gate module <模块>` 机械检查。
+**模块门禁**：六维无“未问”；覆盖扫描 27 项完整；S/Q 关联列无“待建”；该模块 `dialogue.md` 中无“待回答/部分回答”的 Q。可用 `tools/requirements/reqtool.py check gate module <模块>` 机械检查。
 
 ## 工具
 

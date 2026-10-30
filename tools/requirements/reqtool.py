@@ -417,6 +417,7 @@ def check_gate_handoff(base):
     _, pending_models = parse_models(base)
     _, nfr_ids = parse_nfr(base)
     dor_issues, backlog, _ = collect_dor_issues(base)
+    cov_issues, _ = collect_coverage_issues(base)
 
     open_rows = [q for q in qrows if q["status"] in OPEN]
     idxmap = {x["id"]: x for x in qindex}
@@ -468,6 +469,11 @@ def check_gate_handoff(base):
         blockers.append("模块门禁：" + "；".join(module_issues))
     else:
         infos.append("模块门禁：通过")
+
+    if cov_issues:
+        blockers.append(f"覆盖扫描：{len(cov_issues)} 个模块未通过（{', '.join(sorted(cov_issues))}）")
+    else:
+        infos.append("覆盖扫描：通过")
 
     print("== check gate handoff ==")
     for x in infos:
@@ -724,6 +730,10 @@ def check_gate_module(base, target=None):
         if "未问" in dims:
             blockers.append("六维有“未问”")
 
+    cov_issues, _ = collect_coverage_issues(base)
+    if name in cov_issues:
+        blockers.append("覆盖扫描：" + "；".join(cov_issues[name]))
+
     idxmap = {x["id"]: x for x in qindex}
     open_qs = [
         q["id"] for q in qrows
@@ -774,7 +784,7 @@ def parse_coverage_sections(base):
     return text, sections
 
 
-def check_coverage(base, verbose=False):
+def collect_coverage_issues(base):
     _, _, qrows, _ = parse_dialogue(base)
     open_ids = {q["id"] for q in qrows if q["status"] in OPEN}
     _, module_order = parse_vision_modules(base)
@@ -841,7 +851,12 @@ def check_coverage(base, verbose=False):
         if m not in module_order:
             add(m, "模块不在 vision 范围")
 
-    for m in module_order:
+    return issues, module_order
+
+
+def check_coverage(base, verbose=False):
+    issues, module_order = collect_coverage_issues(base)
+    for m in module_order + [m for m in sorted(issues) if m not in module_order]:
         if m in issues:
             print(f"FAIL {m}: " + "；".join(issues[m]))
         elif verbose:
