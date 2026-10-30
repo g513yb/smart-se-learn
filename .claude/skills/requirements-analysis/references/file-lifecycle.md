@@ -45,7 +45,7 @@
 | 阶段 | 读 | 写 | 来源 | 关键规则 |
 |---|---|---|---|---|
 | 初始化 | `CLAUDE.md`、skill references、`file-templates.md` | `vision.md`、`docs/team.md`、`STATUS.md`、`personas.md`、`dialogue.md`、`decisions.md`（按需） | S/D + 用户回答 | 从零建立；只建结构、愿景与角色基线、团队和状态，不写需求 |
-| 会话开始 | `docs/team.md`、`STATUS.md`、`vision.md`、`personas.md`、`dialogue.md`、`decisions.md`、`coverage-scan.md`（总览）；`backlog.md`、`nfr.md`（按当前 Q）；`context.md`、`glossary.md`、当前模块 brief（存在时） | 当前模块写入 STATUS；新模块选择同时写 glossary | 用户选择 | 未指定模块只列清单；多模块待决或已有分析记录按 Q 顺序继续，不重选、不重做门禁 |
+| 会话开始 | `STATUS.md`、`vision.md`（范围/模块顺序）、`dialogue.md`（相关 Q）、`coverage-scan.md`（总览 + 对应模块节）；按当前 Q 读 `backlog.md`、`nfr.md`、相关模型、当前模块 brief；`team.md`、`personas.md`、`decisions.md`、`context.md`、`glossary.md` 按需 | 当前模块写入 STATUS；新模块选择同时写 glossary | 用户选择 | 未指定模块只列清单；多模块待决或已有分析记录按 Q 顺序继续，不重选、不重做门禁 |
 | 愿景初次建立 | `vision.md`、`context.md`、`dialogue.md`、`decisions.md` | `vision.md`（六节、版本表）、`dialogue.md`（S）、`decisions.md`（D） | S/D | AI 起草；人逐节确认；初次记 D |
 | 边界确认 | `vision.md`、`context.md`、`glossary.md`、`backlog.md`、`dialogue.md` | STATUS + glossary（模块选择）、范围 Q 或引用已有 Q | 用户选择 + 缺失文档 | 边界不清停止；不做 brief/扫描 |
 | 角色初次建立 | `vision.md`、`context.md`、`personas.md` | `personas.md`（角色清单、角色卡、版本表） | 用户回答（角色卡） | 角色回答不记 S；AI 起草；人逐角色确认；初次写 v1 |

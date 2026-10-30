@@ -54,9 +54,9 @@ description: Use when creating, modifying, confirming, or handing off requiremen
 
 ## 会话开始
 
-读 `docs/team.md`、`docs/STATUS.md`、`vision.md`、`personas.md`、`dialogue.md`（S 与 Q）、`decisions.md`（D）和 `coverage-scan.md` 的模块覆盖总览；`backlog.md`、`nfr.md` 按当前 Q 的相关条目读；`context.md`、`glossary.md` 和当前模块 brief 存在时一并读。用 3～5 行自然语言复述当前理解，不播报流程步骤。
+读 `STATUS.md`、`dialogue.md` 的相关 Q、`vision.md` 的范围/模块顺序；`coverage-scan.md` 只读模块覆盖总览。按当前 Q 再读相关 `REQ`/`NFR`、对应模块的 `coverage-scan.md` 节、相关模型和模块 brief。`team.md` 只在分配负责人时读；`context.md`、`glossary.md`、`personas.md`、`decisions.md` 按需读。用 3～5 行自然语言复述当前理解，不播报流程步骤。
 
-- 必读基础文件缺失时：按 `references/file-lifecycle.md` 的“初始化顺序”建立，不凭记忆补，不跳到模块选择。`context.md`、`glossary.md` 和模块 brief 缺失是正常状态，不触发初始化。
+- 必读基础文件（`STATUS.md`、`vision.md`、`personas.md`、`dialogue.md`）缺失时：按 `references/file-lifecycle.md` 的“初始化顺序”建立，不凭记忆补，不跳到模块选择。`context.md`、`glossary.md` 和模块 brief 缺失是正常状态，不触发初始化。
 - 核对：`dialogue.md` 中状态为“待回答/部分回答”的 Q 与 `STATUS.md` 的待决事项不一致时，以 `dialogue.md` 为准并更新 `STATUS.md`。
 - 有多个待答 Q 时，按 `references/dialogue-log.md` 的处理顺序；对话层按 `references/conversation-style.md` 一次只问一个。
 - 未指定模块：列出 `vision.md` 范围节中明确列出的模块/能力；没有明确列出则先补范围 Q，不自行归纳。参考 `STATUS.md` 的下一步，请用户选择；不得自行开始。
@@ -136,7 +136,8 @@ AI 只写人确认后的需求内容；`docs/STATUS.md` 例外：AI 按阶段判
 | 初始化前 | `file-lifecycle.md` 的“初始化顺序” | 从零建立的结构、团队、状态和角色 |
 | 第一次回复前 | `conversation-style.md` | 对话层：一次一问、不展示编号和流程 |
 | 记录 S/Q 前 | `dialogue-log.md` | S/Q 表结构、收录标准、关联列 |
-| 处理待答 Q 前 | `dialogue.md` 的 Q、相关 `REQ`/`NFR`、对应模块的 `coverage-scan.md` 节；必要时 `nfr-checklist.md`、`elicitation-playbook.md` | 判断答案、影响和缺口 |
+| 处理待答 Q 前 | `dialogue.md` 的 Q、相关 `REQ`/`NFR`、对应模块的 `coverage-scan.md` 节、相关模型与模块 brief；必要时 `nfr-checklist.md`、`elicitation-playbook.md` | 判断答案、影响和缺口 |
+| 处理 Q 涉及模型时 | `models/README.md` + 对应 `models/src/` 文件 | 确认待定点、图元素来源 |
 | 写愿景或角色基线前 | `vision-guide.md`、`persona-guide.md` | 六节/五节结构、初次建立与变更 |
 | 写决策前 | `decision-log.md` | D 的字段和记录规则 |
 | 模块边界确认后、对标调研前 | `research-guide.md` | brief 六段、来源等级、停止条件 |
@@ -149,4 +150,4 @@ AI 只写人确认后的需求内容；`docs/STATUS.md` 例外：AI 按阶段判
 | 移交设计前 | `handoff.md` | 前置检查、移交包 |
 | 拿不准当前阶段 | `file-lifecycle.md` 的“阶段判定表”和“backlog.md 的 DoR 可执行检查” | 阶段、下一步、待决事项、DoR |
 
-最小必读集：`SKILL.md` + `conversation-style.md` + `file-lifecycle.md` 的“阶段判定表”和“backlog.md 的 DoR 可执行检查” + 当前阶段对应的文件。当前阶段为“待决事项处理中”时，至少读 `STATUS.md`、`dialogue.md` 的相关 Q、对应模块的 `coverage-scan.md` 节。其余按上表在读之前再读。
+最小必读集：`SKILL.md` + `conversation-style.md` + `file-lifecycle.md` 的“阶段判定表”和 `backlog.md` 的 DoR + 当前阶段对应的文件。当前阶段为“待决事项处理中”时，至少读 `STATUS.md`、`dialogue.md` 的相关 Q、`vision.md` 的范围/模块顺序、对应模块的 `coverage-scan.md` 节。其余按需。
